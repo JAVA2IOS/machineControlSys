@@ -26,48 +26,117 @@
     <session id="-1904037345">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.22" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="ini" value="2" />
-          <entry key="php" value="18" />
+          <entry key="js" value="1" />
+          <entry key="php" value="25" />
           <entry key="sql" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Ini" value="2" />
-          <entry key="PHP" value="18" />
-          <entry key="Scratch" value="1" />
+          <entry key="PHP" value="25" />
+          <entry key="Scratch" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="10" />
-          <entry key="php" value="6656" />
+          <entry key="php" value="7909" />
           <entry key="txt" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PHP" value="6656" />
+          <entry key="PHP" value="7909" />
           <entry key="PLAIN_TEXT" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.new.class">
         <counts>
-          <entry key="PHP Class.type" value="10" />
+          <entry key="PHP Class.type" value="11" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dao/userDao.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="729">
+              <caret line="94" column="2" lean-forward="true" selection-start-line="94" selection-start-column="2" selection-end-line="94" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dao/roleDao.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tool/Common.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="22" selection-start-line="22" selection-end-line="27" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/user.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="126" column="21" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tool/StatusObject.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tool/DB.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-483">
+              <caret line="17" column="61" lean-forward="true" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/service/Routers.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="697">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+              <folding>
+                <element signature="e#10#108#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -77,10 +146,12 @@
       <find>\&lt;\?php\n\n\/\*\*\n \* Created by PhpStorm\.\n \* User\: codez\n \* Date\: 2018年10月13日\n \* Time\: 21点15分\n \*\/\n\n\n    define\(\&quot;CodeZUpdate\&quot;\, \&quot;update\&quot;\)\;\n    define\(\&quot;CodeZInsert\&quot;\, \&quot;insert\&quot;\)\;\n    define\(\&quot;CodeZDeleted\&quot;\, \&quot;delete\&quot;\)\;\n    define\(\&quot;SQLERROR_SYNTAX\&quot;\, \&quot;SQL_SYNTAX_ERROR\&quot;\)\;\n    define\(\&quot;SQLERROR_EXCUTE_FAILED\&quot;\, \&quot;SQL_EXCUTE_FAILED\&quot;\)\;\n    define\(\&quot;SQLERROR_DATA_EMPTY\&quot;\, \&quot;SQL_DATA_EMPTY\&quot;\)\;\n    define\(\&quot;SQLERROR_SQL_SCENTENCE_EMPTY\&quot;\, \&quot;SQL_SCENTENCE_NULL\&quot;\)\;\n\n    class CodeDBTool\n    \{\n\n        const insertAction \= \&quot;insert into\&quot;\;\n        const updateAction \= \&quot;update\&quot;\;\n        const deleteAction \= \&quot;delete from\&quot;\;\n        const sqlSentenceSelect \= \&quot;SELECT\&quot;\;\n        const sqlSentenceFrom \= \&quot;FROM\&quot;\;\n        const sqlSentenceWhere \= \&quot;WHERE\&quot;\;\n        const sqlSentenceLeftJoin \= \&quot;LEFT JOIN\&quot;\;\n        const sqlSentenceRightJoin \= \&quot;RIGHT JOIN\&quot;\;\n\n        \/\*\n         \* sql 查询 字符串拼写\n         \* \*\/\n        function CodeZQuerySql\(\$tableName \= NULL\, \$queryColumns \= NULL\, \$parameters \= NULL\) \{\n            if \(empty\(\$tableName\)\) \{\n                return NULL\;\n            \}\n            \$sqlString \= \&quot;SELECT \&quot;\;\n            if \(empty\(\$queryColumns\)\) \{\n                \$sqlString \= \$sqlString \. \&quot; \* FROM \&quot; \. \$tableName\;\n            \}else \{\n                \$sqlString \= \$sqlString \. \$queryColumns \. \&quot; FROM \&quot; \. \$tableName\;\n            \}\n\n            if \(empty\(\$parameters\)\) \{\n                return \$sqlString \. \&quot;\;\&quot;\;\n            \}\n\n            return \$sqlString \. \&quot; where \&quot; \. \$parameters \. \&quot;\;\&quot;\;\n        \}\n\n        \/\*\n         \* 关于 更新 字符串的拼写\n         \* \*\/\n        function CodeZCommitUpdateSql\(\$commitAction\, \$tableName \= NULL\, \$queryColumn \= NULL\, \$values \= NULL\, \$parameters \= NULL\) \{\n            if \(empty\(\$commitAction\)\) \{\n                return NULL\;\n            \}\n\n            switch \(\$commitAction\) \{\n                case CodeZUpdate\:\n                    return \$this\-\&gt;CodeZUpdateSql\(\$tableName\, \$values\, \$parameters\)\;\n                    break\;\n                case CodeZInsert\:\n                    return \$this\-\&gt;CodeZInsertSql\(\$tableName\, \$queryColumn\, \$values\)\;\n                    break\;\n                case CodeZDeleted\:\n                    return \$this\-\&gt;CodeZDeletedSql\(\$tableName\, \$parameters\)\;\n                    break\;\n            \}\n\n            return NULL\;\n        \}\n\n        \/\* sql insert \*\/\n        function CodeZInsertSql\(\$tableName \= NULL\, \$columns \= NULL\, \$values \= NULL\) \{\n            if \(empty\(\$tableName\)\) \{\n                return NULL\;\n            \}\n\n            \$sqlString \= self\:\:insertAction \. \&quot; \&quot; \. \$tableName\;\n\n            if \(empty\(\$columns\)\) \{\n\n            \}else \{\n                \$sqlString \= \$sqlString \. \&quot; \(\&quot; \. \$columns \. \&quot;\)\&quot;\;\n            \}\n\n            if \(empty\(\$values\)\) \{\n                return NULL\;\n            \}else \{\n                return \$sqlString \. \&quot; VALUES \(\&quot; \. \$values \. \&quot;\)\;\&quot;\;\n            \}\n        \}\n\n        \/\* sql update  \*\/\n        function CodeZUpdateSql\(\$tableName \= NULL\, \$values \= NULL\, \$parameters \= NULL\) \{\n            if \(empty\(\$tableName\)\) \{\n                return NULL\;\n            \}\n\n            \$sqlString \= self\:\:updateAction \. \&quot; \&quot; \. \$tableName\;\n\n            if \(empty\(\$values\)\) \{\n                return NULL\;\n            \}else \{\n                \$sqlString \= \$sqlString \. \&quot; SET \&quot; \. \$values \. \&quot; \&quot;\;\n            \}\n\n            if \(empty\(\$parameters\)\) \{\n                return \$sqlString \. \&quot;\;\&quot;\;\n            \}else \{\n                return \$sqlString \. \&quot; WHERE \&quot; \. \$values \. \&quot;\;\&quot;\;\n            \}\n        \}\n\n        \/\* sql delete  \*\/\n        function CodeZDeletedSql\(\$tableName \= NULL\, \$parameters \= NULL\) \{\n            if \(empty\(\$tableName\)\) \{\n                return NULL\;\n            \}\n\n            \$sqlString \= self\:\:deleteAction \. \&quot; \&quot; \. \$tableName\;\n\n            if \(empty\(\$parameters\)\) \{\n                return \$sqlString \. \&quot;\;\&quot;\;\n            \}else \{\n                return \$sqlString \. \&quot; WHERE \&quot; \. \$parameters \. \&quot;\;\&quot;\;\n            \}\n        \}\n\n        \/\*\n        连接数据库\n        \*\/\n        public static function getConn\(\)\n        \{\n            \/\* 配置文件数据 \*\/\n            \$config \= parse_ini_file\(realpath\(dirname\(__FILE__\)\.\'\/\.\.\/\'\)\.\'\/config\/cfg\.ini\'\)\;\n            \$host \= \$config\[\'databasepath\'\]\;\n            \$username \= \$config\[\'account\'\]\;\n            \$password \= \$config\[\'passport\'\]\;\n            \$dbname \= \$config\[\'database\'\]\;\n\n            \$conn \= mysqli_connect\(\$host\, \$username\, \$password\, \$dbname\)\;\n\n            if \(\$conn\-\&gt;connect_errno\)\n            \{\n                die\(\&quot;连接MySQL数据库失败\！\&quot; \. \$conn\-\&gt;connect_error\)\;\n            \}\n\n            \/\* 设置字符串编码\，防止乱码问题 \*\/\n            mysqli_query\(\$conn\, \&quot;set names utf8\&quot;\)\;\n\n            return \$conn\;\n        \}\n\n\n        \/\* excute query data \*\/\n        public static function excuteQuery\(\$sqlString\)\n        \{\n            try \{\n                \/\/ 创建连接\n                \$conn \= self\:\:getConn\(\)\;\n                if \(empty\(\$sqlString\)\) \{\n                    die\(\&quot;sql为空\, 无法查询 \&quot;\)\;\n                \}\n\n                \$result \= mysqli_query\(\$conn\, \$sqlString\)\;\n\n                if \(mysqli_num_rows\(\$result\) \&gt; 0\) \{\n                    return \$result\;\n                \} else \{\n                    throw new  Exception\(SQLERROR_SQL_SCENTENCE_EMPTY\)\;\n                \}\n            \}catch \(Exception \$e\)\{\n                \n            \}\n\n    \/\/\	\	mysqli_close\(\$conn\)\;\n        \}\n\n        \/\* excute update\, insert\, delete data \*\/\n        public static function excuteUpdate\(\$sqlString\)\n        \{\n            try \{\n            \/\/ 创建连接\n            \$conn \= self\:\:getConn\(\)\;\n            if \(empty\(\$sqlString\)\) \{\n                throw new  Exception\(SQLERROR_SQL_SCENTENCE_EMPTY\)\;\n            \}\n\n            if \(mysqli_query\(\$conn\, \$sqlString\)\) \{\n                return true\;\n            \} else \{\n                throw new  Exception\(SQLERROR_EXCUTE_FAILED\. \&quot; reason \:\&quot; \. mysqli_error\(\$conn\)\)\;\n            \}\n        \}catch \(Exception \$e\)\{\n\n    \}\n        \}\n    \}\n\?\&gt;</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/service/Routers.php" />
         <option value="$PROJECT_DIR$/model/role.php" />
         <option value="$PROJECT_DIR$/model/counter.php" />
         <option value="$PROJECT_DIR$/model/controlParameter.php" />
@@ -90,10 +161,12 @@
         <option value="$PROJECT_DIR$/model/machine.php" />
         <option value="$PROJECT_DIR$/model/operator.php" />
         <option value="$PROJECT_DIR$/model/user.php" />
+        <option value="$PROJECT_DIR$/tool/StatusObject.php" />
+        <option value="$PROJECT_DIR$/tool/Common.php" />
         <option value="$PROJECT_DIR$/tool/DB.php" />
+        <option value="$PROJECT_DIR$/service/Routers.php" />
         <option value="$PROJECT_DIR$/dao/roleDao.php" />
         <option value="$PROJECT_DIR$/dao/userDao.php" />
-        <option value="$PROJECT_DIR$/tool/Common.php" />
       </list>
     </option>
   </component>
@@ -104,18 +177,18 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="395" />
     <option name="y" value="119" />
     <option name="width" value="1400" />
     <option name="height" value="996" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -148,10 +221,30 @@
               <item name="machineControlSys" type="462c0819:PsiDirectoryNode" />
               <item name="tool" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="machineControlSys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="machineControlSys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+            <path>
+              <item name="machineControlSys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Database Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+            </path>
+            <path>
+              <item name="machineControlSys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Database Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+              <item name="90a32d92-e4ac-408a-8544-53e11cab0132" type="1e004dc1:ScratchProjectViewPane$MyRootNode$1$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -186,12 +279,13 @@
       <option name="presentableId" value="Default" />
       <updated>1539497190756</updated>
       <workItem from="1539497192082" duration="13257000" />
-      <workItem from="1539606038407" duration="11893000" />
+      <workItem from="1539606038407" duration="12447000" />
+      <workItem from="1539700962779" duration="4206000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25150000" />
+    <option name="totallyTimeSpent" value="29910000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -203,9 +297,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="395" y="119" width="1400" height="996" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49892703" visible="true" weight="0.35373133" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49892703" visible="true" weight="0.2563966" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -233,16 +327,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/service/Routers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#10#108#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/90a32d92-e4ac-408a-8544-53e11cab0132/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -295,31 +379,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tool/DB.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-673">
-          <caret line="142" column="59" selection-start-line="142" selection-start-column="59" selection-end-line="142" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/roleDao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/sensor.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/user.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
         </state>
       </provider>
     </entry>
@@ -330,17 +393,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/extensions/com.intellij.database/data/extractors/HTML-JavaScript.html.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="20" column="3" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="126" column="21" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tool/StatusObject.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tool/DB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="17" column="61" lean-forward="true" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tool/Common.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        <state relative-caret-position="391">
+          <caret line="22" selection-start-line="22" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/Routers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="e#10#108#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/roleDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dao/userDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1237">
-          <caret line="98" column="32" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
+        <state relative-caret-position="729">
+          <caret line="94" column="2" lean-forward="true" selection-start-line="94" selection-start-column="2" selection-end-line="94" selection-end-column="2" />
         </state>
       </provider>
     </entry>

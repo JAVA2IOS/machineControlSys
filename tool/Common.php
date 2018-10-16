@@ -6,6 +6,9 @@
      * Time: 14:50
      */
 
+    /* import 导入文件 */
+    require_once "StatusObject.php";
+
     /* 时间戳 */
     define("CodeZNowTimeStamp", date('Y-m-d', time()));
     define("CodeZNowDate", date('Y-m-d'));

@@ -8,16 +8,21 @@
 
 
     /*
-    * constant
-    */
-    define("usrLogin","usrLogin");
-
-    /*
     * import file
     */
     require_once dirname(__FILE__) . "../model/user.php";
 
 
+    /*
+     路由重定向
+     */
+    abstract class RoutersEnumUri
+    {
+        const login = "usrLogin";   // 登录
+    }
+
+
+    /* 重定位 */
     class Routers
     {
 
@@ -29,7 +34,7 @@
     $action = $_POST['action'];
 
     switch($action){
-    case usrLogin:
+    case RoutersEnumUri::login:
 
     break;
     }

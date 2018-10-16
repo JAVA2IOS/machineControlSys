@@ -12,9 +12,10 @@
     define("CodeZInsert", "insert");
     define("CodeZDeleted", "delete");
     define("SQLERROR_SYNTAX", "SQL_SYNTAX_ERROR");
+    define("DATABASE_CONNECT_FAILED", "database connected failed !");
     define("SQLERROR_EXCUTE_FAILED", "SQL_EXCUTE_FAILED");
     define("SQLERROR_DATA_EMPTY", "SQL_DATA_EMPTY");
-    define("SQLERROR_SQL_SCENTENCE_EMPTY", "SQL_SCENTENCE_NULL");
+    define("SQLERROR_SQL_SCENTENCE_EMPTY", "sql is empty !");
 
     class CodeDBTool
     {
@@ -175,7 +176,7 @@
 
             if ($conn->connect_errno)
             {
-                die("连接MySQL数据库失败！" . $conn->connect_error);
+                return self::handler(false, NULL, DATABASE_CONNECT_FAILED . " " . $conn->connect_error);
             }
 
             /* 设置字符串编码，防止乱码问题 */
@@ -188,44 +189,59 @@
         /* excute query data */
         public static function excuteQuery($sqlString)
         {
-            try {
-                // 创建连接
-                $conn = self::getConn();
-                if (empty($sqlString)) {
-                    die("sql为空, 无法查询 ");
-                }
+            // 创建连接
+            $conn = self::getConn();
+            if (empty($sqlString)) {
+                return self::handler(false, NULL,SQLERROR_SQL_SCENTENCE_EMPTY);
+            }
 
-                $result = mysqli_query($conn, $sqlString);
-
-                if (mysqli_num_rows($result) > 0) {
-                    return $result;
-                } else {
-                    throw new  Exception(SQLERROR_SQL_SCENTENCE_EMPTY. ", reason :" . mysqli_error($conn));
-                }
-            }catch (Exception $e){
-                echo $e->getMessage();
+            $result = mysqli_query($conn, $sqlString);
+            if (empty(mysqli_error($conn))) {
+                return self::handler(true, $result, NULL);
+            }else {
+                return self::handler(false, NULL,SQLERROR_EXCUTE_FAILED . ", reason :" . mysqli_error($conn));
             }
         }
 
         /* excute update, insert, delete data */
         public static function excuteUpdate($sqlString)
         {
-            try {
-                // 创建连接
-                $conn = self::getConn();
-                if (empty($sqlString)) {
-                    throw new  Exception(SQLERROR_SQL_SCENTENCE_EMPTY);
-                }
-
-                if (mysqli_query($conn, $sqlString)) {
-                    return true;
-                } else {
-                    throw new  Exception(SQLERROR_EXCUTE_FAILED. ", reason :" . mysqli_error($conn));
-                }
-            }catch (Exception $e){
-                echo $e->getMessage();
-                return false;
+            // 创建连接
+            $conn = self::getConn();
+            if (empty($sqlString)) {
+                return self::handler(false, NULL,SQLERROR_SQL_SCENTENCE_EMPTY);
             }
+
+            if (mysqli_query($conn, $sqlString)) {
+                return self::handler(true, "更新成功", NULL);
+            } else {
+                return self::handler(false, NULL,SQLERROR_EXCUTE_FAILED . ", reason :" . mysqli_error($conn));
+            }
+        }
+
+        /* 错误信息处理 */
+        public static function handler($success = false, $data = NULL, $error = "错误信息未知") {
+            return ["success" => $success,
+                    "data" => $data,
+                    "error" => $error];
+        }
+
+        /* 返回状态信息 */
+        public static function dataExisted($data)
+        {
+            return $data['success'];
+        }
+
+        /* 返回错误信息 */
+        public static function getError($data)
+        {
+            return $data['error'];
+        }
+
+        /* 返回数据 */
+        public static function getData($data)
+        {
+            return $data['data'];
         }
     }
 ?>

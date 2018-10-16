@@ -9,12 +9,6 @@
 	 */
 	class UserDao extends CodeDBTool
 	{
-		
-		
-		/*function __construct(argument)
-		{
-			# code...
-		}*/
 
 		/*
 		 * 登录查看
@@ -36,10 +30,10 @@
             $sqlString = $this->CodeZUpdateSql(CodeZEnumTable::USER, $values, $parameters);
             $result = self::excuteUpdate($sqlString);
             echo $sqlString;
-            if ($result === true) {
-                echo "更新权限成功";
+            if (self::dataExisted($result)) {
+                echo self::getData($result);
             }else {
-                echo "更新权限失败";
+                echo self::getError($result);
             }
         }
 
@@ -71,52 +65,31 @@
             $sqlString = $this->CodeZQueryLeftJoinSql(CodeZEnumTable::USER, $columns, CodeZEnumTable::ROLE, $equalColumns, $parameter);
             echo $sqlString;
             $result = self::excuteQuery($sqlString);
-            if (empty($result)) {
-                return NULL;
-            } else {
+            if (self::dataExisted($result)) {
                 // 输出数据
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $role = new role();
-                    $role->roleId = $row['SecondRoleId'];
+                while ($row = mysqli_fetch_assoc(self::getData($result))) {
+                    $role           = new role();
+                    $role->roleId   = $row['SecondRoleId'];
                     $role->roleName = $row['roleName'];
                     $role->descript = $row['descript'];
-                    $role->deleted = $row['roleDeleted'];
-                    $user = new user($row['userId'], $row['userName'], $row['userAccount'], $row['password'], $role, $row['dep'], $row['loginTime'], $row['logoutTime'], $row['deleted']);
+                    $role->deleted  = $row['roleDeleted'];
+                    $user           = new user($row['userId'], $row['userName'], $row['userAccount'], $row['password'], $role, $row['dep'], $row['loginTime'], $row['logoutTime'], $row['deleted']);
                     return $user;
                 }
+            } else {
+                echo self::getError($result);
+                return NULL;
             }
         }
 	}
 
     $usrDao = new UserDao();
 	$user = $usrDao->queryUser("1");
-	if (empty($user)) {
-	    echo "没有用户数据";
-    }else {
-	    echo "有数据哦";
 
-
-	    $user->role->roleId = "2";
-	    $usrDao->changeUserPermission($user);
-    }
-
-    /*$columns = "userName, userAccount, password, roleId, dep";
-    $values = "'admin', 'admin', 'admin', '1', '行政部'";
-
-    $usrDao = new UserDao();
-    $sqlString = $usrDao->CodeZInsertSql("user", $columns, $values);
-    echo $sqlString;
-    UserDao::excuteUpdate($sqlString);
-    $result = $usrDao->checkUsr("admin", "admin");
-    if (empty($result)) {
-        echo "没有数据";
-    } else {
-        // 输出数据
-        while($row = mysqli_fetch_assoc($result)) {
-            echo "有数据 :" . $row['userName'] . " dep :" . $row['dep']. "<br>";
-        }
-    }*/
-
+	$jsonString = json_encode($user);
+	$newUser = new user();
+	$newUser = json_decode($jsonString);
+	echo $newUser->role->roleName;
 
 
 ?>
