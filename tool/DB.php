@@ -197,7 +197,7 @@
 
             $result = mysqli_query($conn, $sqlString);
             if (empty(mysqli_error($conn))) {
-                return self::handler(true, $result, NULL);
+                return self::handler(true, mysqli_fetch_assoc($result), NULL);
             }else {
                 return self::handler(false, NULL,SQLERROR_EXCUTE_FAILED . ", reason :" . mysqli_error($conn));
             }
@@ -242,6 +242,12 @@
         public static function getData($data)
         {
             return $data['data'];
+        }
+
+        /* 找不到数据提示 */
+        public static function dataEmpty()
+        {
+            return self::handler(false, NULL, "找不到数据");
         }
     }
 ?>

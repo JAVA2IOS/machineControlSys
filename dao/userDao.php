@@ -16,8 +16,17 @@
 		function checkUsr(user $userObject) {
 		    $parameters = "userAccount = " . CodeZAddApostrophe($userObject->userAccount) . " AND password = " . CodeZAddApostrophe($userObject->password);
 		    $sqlString = $this->CodeZQuerySql(CodeZEnumTable::USER, NULL, $parameters);
-		    echo $sqlString;
-		    return self::excuteQuery($sqlString);
+
+		    $result = self::excuteQuery($sqlString);
+            $statusObj = new StatusObject();
+            $statusObj = json_decode(json_encode($result));
+            if (empty($statusObj->data)){
+                return self::dataEmpty();
+            }
+		    $user = new user();
+		    $user = $statusObj->data;
+
+		    return self::queryUser($user->userId);
         }
 
         /*
@@ -59,37 +68,21 @@
         }
 
         function queryUser($userId) {
-            $columns = CodeZEnumTable::USER . ".userId, " . CodeZEnumTable::USER . ".userName, ". CodeZEnumTable::USER . ".userAccount, " . CodeZEnumTable::USER . ".password, " . CodeZEnumTable::USER . ".roleId as SecondRoleId, " . CodeZEnumTable::USER . ".dep, " . CodeZEnumTable::USER . ".loginTime, " . CodeZEnumTable::USER . ".logoutTime, " . CodeZEnumTable::USER . ".deleted, " . CodeZEnumTable::ROLE . ".roleId, " . CodeZEnumTable::ROLE . ".roleName, " . CodeZEnumTable::ROLE . ".descript, " . CodeZEnumTable::ROLE . ".deleted as roleDeleted";
+            $columns = CodeZEnumTable::USER . ".userId, " . CodeZEnumTable::USER . ".userName, ". CodeZEnumTable::USER . ".userAccount, " . CodeZEnumTable::USER . ".password, " . CodeZEnumTable::USER . ".dep, " . CodeZEnumTable::USER . ".loginTime, " . CodeZEnumTable::USER . ".logoutTime, " . CodeZEnumTable::USER . ".deleted, " . CodeZEnumTable::ROLE . ".roleId, " . CodeZEnumTable::ROLE . ".roleName, " . CodeZEnumTable::ROLE . ".descript";
             $equalColumns = CodeZEnumTable::USER . ".roleId = " .  CodeZEnumTable::ROLE . ".roleId";
             $parameter = CodeZEnumTable::USER . ".userId = " . $userId;
             $sqlString = $this->CodeZQueryLeftJoinSql(CodeZEnumTable::USER, $columns, CodeZEnumTable::ROLE, $equalColumns, $parameter);
-            echo $sqlString;
-            $result = self::excuteQuery($sqlString);
-            if (self::dataExisted($result)) {
-                // 输出数据
-                while ($row = mysqli_fetch_assoc(self::getData($result))) {
-                    $role           = new role();
-                    $role->roleId   = $row['SecondRoleId'];
-                    $role->roleName = $row['roleName'];
-                    $role->descript = $row['descript'];
-                    $role->deleted  = $row['roleDeleted'];
-                    $user           = new user($row['userId'], $row['userName'], $row['userAccount'], $row['password'], $role, $row['dep'], $row['loginTime'], $row['logoutTime'], $row['deleted']);
-                    return $user;
-                }
-            } else {
-                echo self::getError($result);
-                return NULL;
-            }
+            return self::excuteQuery($sqlString);
         }
 	}
 
-    $usrDao = new UserDao();
+/*    $usrDao = new UserDao();
 	$user = $usrDao->queryUser("1");
 
 	$jsonString = json_encode($user);
 	$newUser = new user();
 	$newUser = json_decode($jsonString);
-	echo $newUser->role->roleName;
+	echo $newUser->role->roleName;*/
 
 
 ?>

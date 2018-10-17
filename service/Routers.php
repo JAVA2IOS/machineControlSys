@@ -10,7 +10,7 @@
     /*
     * import file
     */
-    require_once dirname(__FILE__) . "../model/user.php";
+    require_once "UserMan.php";
 
 
     /*
@@ -35,9 +35,12 @@
 
     switch($action){
     case RoutersEnumUri::login:
-
+        {
+            UserMan::userLogin($_POST['user'], $_POST['pwd']);
+        }
     break;
     }
-
+/*
+    UserMan::userLogin("", "");*/
 
 ?>
