@@ -1,10 +1,11 @@
 <?php
     require_once dirname(__FILE__) . "/../tool/Common.php";
-    require_once"role.php";
+    require_once "role.php";
+    require_once dirname(__FILE__) . "/../tool/CodeZObject.php";
     /*
      * 角色类
      * */
-    class user {
+    class user implements CodeZObject {
         /*用户Id*/
         public $userId;
         /*
@@ -131,6 +132,39 @@
             $this->deleted = $del;
 
             return $this;
+        }
+
+        public function tableMappers($tableArray)
+        {
+            // TODO: Implement tableMappers() method.
+            if (is_array($tableArray)) {
+                if (isset($tableArray['userId'])) {
+                    $this->userId = $tableArray['userId'];
+                }
+                if (isset($tableArray['userName'])) {
+                    $this->userName = $tableArray['userName'];
+                }
+                if (isset($tableArray['userAccount'])) {
+                    $this->userAccount = $tableArray['userAccount'];
+                }
+                if (isset($tableArray['dep'])) {
+                    $this->dep = $tableArray['dep'];
+                }
+                if (isset($tableArray['password'])) {
+                    $this->password = $tableArray['password'];
+                }
+                if (isset($tableArray['loginTime'])) {
+                    $this->lginTime = $tableArray['loginTime'];
+                }
+                if (isset($tableArray['logoutTime'])) {
+                    $this->lgoutTime = $tableArray['logoutTime'];
+                }
+                if (isset($tableArray['deleted'])) {
+                    $this->deleted = $tableArray['deleted'];
+                }
+                $this->role = new role();
+                $this->role->tableMappers($tableArray);
+            }
         }
     }
 ?>

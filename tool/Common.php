@@ -9,6 +9,9 @@
     /* import 导入文件 */
     require_once "StatusObject.php";
 
+    /*修改时区*/
+    date_default_timezone_set('Asia/Shanghai');
+
     /* 时间戳 */
     define("CodeZNowTimeStamp", date('Y-m-d', time()));
     define("CodeZNowDate", date('Y-m-d'));
