@@ -18,3 +18,4 @@
         public $connectable;
         public $deleted;
     }
+?>

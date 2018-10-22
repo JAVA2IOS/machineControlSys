@@ -28,7 +28,7 @@
 
             $array = self::getData($result);
             $user = new user();
-            $user->tableMappers($array);
+            $user->tableMappers($array[0]);
             $user->lginTime = CodeZNowDateY_M_D_HMS;
             /* 更新登录时间 */
             $this->editUser($user);
@@ -115,19 +115,43 @@
                 return self::dataEmpty();
             }
             $user = new user();
-            $user->tableMappers($result['data']);
+            $user->tableMappers($result['data'][0]);
             $result['data'] = $user;
             return $result;
         }
+
+        /* 用户列表 */
+        function userList($getAll) {
+            $columns = CodeZEnumTable::USER . ".userId, ";
+            $columns = $columns . CodeZEnumTable::USER . ".userName, ";
+            $columns = $columns . CodeZEnumTable::USER . ".userAccount, ";
+            $columns = $columns . CodeZEnumTable::USER . ".password, ";
+            $columns = $columns . CodeZEnumTable::USER . ".dep, ";
+            $columns = $columns . CodeZEnumTable::USER . ".loginTime, ";
+            $columns = $columns . CodeZEnumTable::USER . ".logoutTime, ";
+            $columns = $columns . CodeZEnumTable::USER . ".deleted, ";
+            $columns = $columns . CodeZEnumTable::ROLE . ".roleId, ";
+            $columns = $columns . CodeZEnumTable::ROLE . ".roleName, ";
+            $columns = $columns . CodeZEnumTable::ROLE . ".descript";
+
+            $equalColumns = CodeZEnumTable::USER . ".roleId = " .  CodeZEnumTable::ROLE . ".roleId";
+
+            $parameters = CodeZEnumTable::USER . ".deleted = 0 AND " . CodeZEnumTable::ROLE . ".deleted = 0";
+
+            $sqlString = $this->CodeZQueryLeftJoinSql(CodeZEnumTable::USER, $columns, CodeZEnumTable::ROLE, $equalColumns, $getAll ? NULL : $parameters);
+
+            $result = self::excuteQuery($sqlString);
+
+            $userList = array();
+            foreach ($result['data'] as $row) {
+                $user = new  user();
+                $user->tableMappers($row);
+                array_push($userList, $user);
+            }
+
+            $result['data'] = $userList;
+
+            return $result;
+        }
 	}
-
-/*    $usrDao = new UserDao();
-	$user = $usrDao->queryUser("1");
-
-	$jsonString = json_encode($user);
-	$newUser = new user();
-	$newUser = json_decode($jsonString);
-	echo $newUser->role->roleName;*/
-
-
 ?>

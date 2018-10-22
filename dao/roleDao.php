@@ -30,15 +30,24 @@
                 echo "插入失败";
             }
         }
+
+        /* 角色列表 */
+        function roleList() {
+            $sqlString = $this->CodeZQuerySql(CodeZEnumTable::ROLE, NULL, NULL);
+            $result = self::excuteQuery($sqlString);
+
+            if (self::dataExisted($result)) {
+                $rowArray = array();
+                foreach ($result['data'] as $row) {
+                    $role = new role();
+                    $role->tableMappers($row);
+                    array_push($rowArray, $role);
+                }
+
+                $result['data'] = $rowArray;
+            }
+
+            return $result;
+        }
     }
-
-
-   /* $role = new role();
-    $role->roleId = 2;
-    $role->roleName = CodeZEnumRole::Normal;
-    $role->descript = "只能使用一般查询权限，权限范围较少";
-
-
-    $roleDao = new roleDao();
-    $roleDao->insertRole($role);*/
 ?>

@@ -9,6 +9,9 @@
     /* import 导入文件 */
     require_once "StatusObject.php";
 
+    /* 是否是调试模式，在调试模式下可以在控制台打印结果 */
+    define("CodeZ_DEBUG", true);
+
     /*修改时区*/
     date_default_timezone_set('Asia/Shanghai');
 
@@ -54,5 +57,12 @@
     /* 将字符前后添加单引号 */
     function CodeZAddApostrophe($apostraopedString) {
         return "'" . $apostraopedString . "'";
+    }
+
+    function CodeZPrintData($printedValue) {
+        if (CodeZ_DEBUG) {
+            echo  "打印结果: ";
+            print_r($printedValue);
+        }
     }
 ?>

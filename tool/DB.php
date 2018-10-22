@@ -180,7 +180,7 @@
             }
 
             /* 设置字符串编码，防止乱码问题 */
-            mysqli_query($conn, "set names utf8");
+            $conn->set_charset("utf8");
 
             return $conn;
         }
@@ -196,8 +196,16 @@
             }
 
             $result = mysqli_query($conn, $sqlString);
+
             if (empty(mysqli_error($conn))) {
-                return self::handler(true, mysqli_fetch_assoc($result), NULL);
+                if (mysqli_num_rows($result) >0) {
+                    $rolwArray = array();
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        array_push($rolwArray, $row);
+                    }
+                    return self::handler(true, $rolwArray, NULL);
+                }
+                return self::dataEmpty();
             }else {
                 return self::handler(false, NULL,SQLERROR_EXCUTE_FAILED . ", reason :" . mysqli_error($conn));
             }
@@ -248,6 +256,11 @@
         public static function dataEmpty()
         {
             return self::handler(false, NULL, "找不到数据");
+        }
+
+        /* 替换数据源 */
+        public static function replaceData($result, $datas) {
+            $result['data'] = $datas;
         }
     }
 ?>

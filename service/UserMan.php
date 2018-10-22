@@ -27,8 +27,10 @@
         public static function userLogout($userJsonString)
         {
             $userDao = new UserDao();
-            $obj = json_decode($userJsonString);
-            $user = new user($obj->userId, $obj->userName, $obj->userAccount, $obj->password, NULL, $obj->dep, $obj->loginTime, $obj->logoutTime, $obj->deleted);
+            $user = new user();
+            $user->modelWithJson($userJsonString);
+
+            CodeZPrintData($user);
 
             $data = $userDao->logout($user);
             echo json_encode($data);
@@ -37,22 +39,42 @@
         /*修改权限*/
         public static function userChangePermission($userJsonString)
         {
-            $userDao = new UserDao();
-//            $userDao->changeUserPermission()
+            self::editUser($userJsonString);
         }
 
         /* 修改密码 */
         public static function changeUserPassword($userJsonString)
         {
-            $obj = json_decode($userJsonString);
-            $userDao = new UserDao();
-            $userDao->editUser($obj);
+            self::editUser($userJsonString);
         }
 
         /*新增用户*/
         public static function addNewUser($userJsonString)
         {
-            
+            $userDao = new UserDao();
+            $user = new user();
+            $user->modelWithJson($userJsonString);
+            CodeZPrintData($user);
+
+            echo json_encode($userDao->addNewUser($user));
+        }
+
+        /* 更新用户信息，修改密码，更新权限，删除用户等 */
+        public static function editUser($userJsonString)
+        {
+            $userDao = new UserDao();
+            $user = new user();
+            $user->modelWithJson($userJsonString);
+            CodeZPrintData($user);
+
+            echo json_encode($userDao->editUser($user));
+        }
+
+        public static function userList($getAll)
+        {
+            $userDao = new UserDao();
+
+            echo json_encode($userDao->userList($getAll));
         }
     }
 ?>

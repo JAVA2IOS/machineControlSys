@@ -164,7 +164,17 @@
                 }
                 $this->role = new role();
                 $this->role->tableMappers($tableArray);
+                if (isset($tableArray['role'])) {
+                    $this->role->tableMappers($tableArray['role']);
+                }
             }
+        }
+
+        public function modelWithJson($jsonString)
+        {
+            // TODO: Implement modelWithJson() method.
+            $tableArray = json_decode($jsonString, true);
+            $this->tableMappers($tableArray);
         }
     }
 ?>

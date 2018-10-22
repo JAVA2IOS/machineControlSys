@@ -33,4 +33,12 @@
                 }
             }
         }
+
+        public function modelWithJson($jsonString)
+        {
+            // TODO: Implement modelWithJson() method.
+            $tableArray = json_decode($jsonString, true);
+            $this->tableMappers($tableArray);
+        }
     }
+?>

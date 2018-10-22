@@ -7,5 +7,10 @@
      */
 
     interface CodeZObject {
+        /* 数据库数据转模型对象 */
         public function tableMappers($tableArray);
+
+        /* json 转对象 */
+        public function modelWithJson($jsonString);
     }
+?>
