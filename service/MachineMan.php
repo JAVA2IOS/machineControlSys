@@ -6,6 +6,8 @@
      * Time: 16:35
      */
 
+    require_once dirname(__FILE__) . "/../dao/sensorDao.php";
+
     /*
      * 压铸机配置
      * */
@@ -17,16 +19,32 @@
          * */
 
         /* 新增传感器 */
-        public static function addNewSensor()
+        public static function addNewSensor($sensorJson)
         {
-            
+            $sensorDao = new sensorDao();
+            $sensor = new sensor();
+            $sensor->modelWithJson($sensorJson);
+            CodeZPrintData($sensor);
+
+            echo json_encode($sensorDao->addSensor($sensor));
         }
 
         /* 传感器列表 */
+        public static function sensorList($getAll = true)
+        {
+            $sensorDao = new sensorDao();
+            echo json_encode($sensorDao->sensorList($getAll));
+        }
 
         /* 修改传感器 */
+        public static function editSensor($sensorJson) {
+            $sensorDao = new sensorDao();
+            $sensor = new sensor();
+            $sensor->modelWithJson($sensorJson);
+            CodeZPrintData($sensor);
 
-        /* 打开传感器 */
+            echo json_encode($sensorDao->editSensor($sensor));
+        }
 
 
         /*

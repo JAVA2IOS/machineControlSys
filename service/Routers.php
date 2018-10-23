@@ -67,9 +67,16 @@
        SoftParameterMan::addDataBase($insertSql);*/
 
 
-        $updateSql = "{\"dbId\":\"2\",\"dbName\":\"卧式冷室压铸机更新后的数据库03\",\"opened\":\"1\",\"deleted\":\"1\"}";
+/*        $updateSql = "{\"dbId\":\"2\",\"dbName\":\"卧式冷室压铸机更新后的数据库03\",\"opened\":\"1\",\"deleted\":\"1\"}";
         SoftParameterMan::checkDataBaseOpened($updateSql);
-        SoftParameterMan::dataBaseList(false);
+        SoftParameterMan::dataBaseList(false);*/
+
+        // 传感器
+/*        $insertSql = "{\"sensorName\":\"温控传感器01\",\"sensorModel\":\"数字型\",\"sensorType\":\"在线式\",\"location\":\"压铸线高架式270压铸\",\"address\":10230,\"sensorPort\":2008,\"connected\":0}";
+        MachineMan::addNewSensor($insertSql);*/
+//        MachineMan::sensorList(false);
+        $updateJson = "{\"sensorId\":\"1\",\"sensorName\":\"温控传感器01修改后\",\"sensorModel\":\"数字型\",\"sensorType\":\"在线式\",\"sensorPort\":\"2008\",\"location\":\"压铸线高架式270压铸\",\"address\":\"10230\",\"connected\":\"1\",\"deleted\":\"1\"}";
+        MachineMan::editSensor($updateJson);
     }else {
 
         /*

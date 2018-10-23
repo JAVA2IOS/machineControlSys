@@ -15,6 +15,7 @@
         public $sensorModel;
         public $sensorType;
         public $location;
+        public $sensorPort;
         public $address;
         public $connected;
         public $deleted;
@@ -39,6 +40,9 @@
                 }
                 if (isset($tableArray['address'])) {
                     $this->address = $tableArray['address'];
+                }
+                if (isset($tableArray['sensorPort'])) {
+                    $this->sensorPort = $tableArray['sensorPort'];
                 }
                 if (isset($tableArray['connected'])) {
                     $this->connected = $tableArray['connected'];
