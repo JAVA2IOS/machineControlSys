@@ -75,8 +75,31 @@
 /*        $insertSql = "{\"sensorName\":\"温控传感器01\",\"sensorModel\":\"数字型\",\"sensorType\":\"在线式\",\"location\":\"压铸线高架式270压铸\",\"address\":10230,\"sensorPort\":2008,\"connected\":0}";
         MachineMan::addNewSensor($insertSql);*/
 //        MachineMan::sensorList(false);
-        $updateJson = "{\"sensorId\":\"1\",\"sensorName\":\"温控传感器01修改后\",\"sensorModel\":\"数字型\",\"sensorType\":\"在线式\",\"sensorPort\":\"2008\",\"location\":\"压铸线高架式270压铸\",\"address\":\"10230\",\"connected\":\"1\",\"deleted\":\"1\"}";
-        MachineMan::editSensor($updateJson);
+//        $updateJson = "{\"sensorId\":\"1\",\"sensorName\":\"温控传感器01修改后\",\"sensorModel\":\"数字型\",\"sensorType\":\"在线式\",\"sensorPort\":\"2008\",\"location\":\"压铸线高架式270压铸\",\"address\":\"10230\",\"connected\":\"1\",\"deleted\":\"1\"}";
+//        MachineMan::editSensor($updateJson);
+
+        // 新增压铸机
+/*        $newMachineJson = "{\"machineName\":\"自动快速卧式冷室压铸机01\",\"machineModel\":\"库卡2010\",\"machineType\":\"自动\",\"port\":2008,\"location\":\"自动压铸机控制车间01\",\"address\":\"10.1.1.1\",\"connectable\":1}";
+        MachineMan::addMachine($newMachineJson);*/
+
+        // 编辑压铸机
+//        $editedMachineJson = "{\"machineId\":\"1\",\"machineName\":\"自动快速卧式冷室修改后压铸机01\",\"machineModel\":\"库卡2011\",\"machineType\":\"自动\",\"port\":\"20008\",\"location\":\"自动压铸机控制车间02\",\"address\":\"10.1.1.02\",\"connectable\":\"1\",\"deleted\":\"1\"}";
+//        MachineMan::editMachine($editedMachineJson);
+
+        // 压铸机列表
+//        MachineMan::machineList(true);
+//        MachineMan::searchMachine("压铸机");
+
+        // 新增计数器
+        $newCounterJson = "{\"counterName\":\"数量计数器01\",\"counterModel\":\"数字型\",\"counterType\":\"十进制\",\"counterPort\":9008,\"counterDecimal\":\"十进制\",\"address\":\"10.1.1.1\",\"connectable\":1}";
+//        MachineMan::addCounter($newCounterJson);
+
+        // 编辑计数器
+        $editedCounterJson = "{\"counterId\":\"1\",\"counterName\":\"数量计数器修改后02\",\"counterModel\":\"数字型\",\"counterType\":\"二进制\",\"counterPort\":\"900801\",\"counterDecimal\":\"二进制\",\"address\":\"10.1.1.102\",\"connectable\":\"1\",\"deleted\":\"0\"}";
+        MachineMan::editCounter($editedCounterJson);
+
+        MachineMan::counterList(true);
+        MachineMan::searchCounter("计数器01");
     }else {
 
         /*

@@ -958,7 +958,7 @@
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="227" name="port">
+    <column id="241" parent="227" name="counterPort">
       <Position>5</Position>
       <Comment>远程端口号</Comment>
       <DataType>varchar(255)|0s</DataType>
