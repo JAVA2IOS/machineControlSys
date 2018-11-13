@@ -14,6 +14,7 @@
         /*登录*/
         public static function userLogin($userAccount, $password)
         {
+            CodeZPrintData($userAccount . ' ' . $password);
             $userDao = new UserDao();
             $user = new user();
             $user->userAccount = $userAccount;

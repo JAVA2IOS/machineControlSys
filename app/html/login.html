@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>登录</title>
+
+		<!-- Bootstrap -->
+		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../bootstrap/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+		<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+		<style type="text/css">
+			input[type="text"],
+			input[type="password"] {
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+			
+			.btn {
+				margin-top: 30px;
+				margin-left: 3%;
+				margin-bottom: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="jumbotron" style="background-color: #FFFFFF;">
+
+			<div class="container">
+
+				<div class="row" style="margin-top: 14%;">
+					<div class="col-sm-6 col-sm-offset-3 form-box bg-primary" style="border-radius : 5px;">
+							<div class="form-group" style="margin-left: 5%;margin-bottom: 40px;">
+								<h3>请登录</h3>
+								<p>使用该系统需要先登录</p>
+							</div>
+							<div class="form-group" style="margin-left: 5%;margin-right: 5%;">
+								<label class="sr-only" for="form-username">账号</label>
+								<input type="text" name="form-username" placeholder="请输入账号" class="form-username form-control" id="form-username">
+							</div>
+							<div class="form-group" style="margin-left: 5%;margin-right: 5%;">
+								<label class="sr-only" for="form-password">密码</label>
+								<input type="password" name="form-password" placeholder="请输入密码" class="form-control" id="password">
+							</div>
+							<button type="button" class="btn btn-info pull-right" style="margin-right: 10%;" onclick="usrLogin()">登录</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../bootstrap/js/bootstrap-dialog.js" ></script>
+		<script type="text/javascript" src="../bootstrap/js/pnotify/PNotify.js" ></script>
+		<script type="text/javascript" src="../bootstrap/js/codez-components.js" ></script>
+		<script src="../bootstrap/js/user-man.js"></script>
+	</body>
+
+</html>

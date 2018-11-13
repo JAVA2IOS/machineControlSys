@@ -1,0 +1,12 @@
+.codezSideBar {
+	display: table-cell;
+	border-right: 1px solid #ebebec;
+	height: 100%;
+	width: 100%;
+	background-color: #adadad;
+}
+
+/*override*/
+.login-dialog .modal-dialog {
+    width: 300px;
+}

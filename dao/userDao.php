@@ -20,7 +20,7 @@
 
 		    $result = self::excuteQuery($sqlString);
             if (!$result['success']) {
-                return self::getError($result);
+                return $result;
             }
             if (empty($result['data'])){
                 return self::dataEmpty();
@@ -32,6 +32,15 @@
             $user->lginTime = CodeZNowDateY_M_D_HMS;
             /* 更新登录时间 */
             $this->editUser($user);
+
+            session_start();
+            $_SESSION['userId'] = $user->userId;
+            $_SESSION['account'] = $user->userAccount;
+            $_SESSION['userName'] = $user->userName;
+            $_SESSION['pwd'] = $user->password;
+            $_SESSION['dep'] = $user->dep;
+            $_SESSION['role'] = $user->role;
+
             return self::queryUser($user->userId);
         }
 
@@ -109,7 +118,7 @@
             $result = self::excuteQuery($sqlString);
 
             if (!$result['success']) {
-                return self::getError($result);
+                return $result;
             }
             if (empty($result['data'])){
                 return self::dataEmpty();
@@ -117,6 +126,7 @@
             $user = new user();
             $user->tableMappers($result['data'][0]);
             $result['data'] = $user;
+
             return $result;
         }
 

@@ -66,5 +66,40 @@
 
             echo json_encode($dbManDao->addNewDataBase($dbMan));
         }
+
+
+        public static function addNewOperator($operatorJson)
+        {
+            $operator = new operator();
+            $operator->modelWithJson($operatorJson);
+
+            $manDao = new softParameterDao();
+
+            echo json_encode($manDao->addOperator($operator));
+        }
+
+        public static function editOperator($operatorJson)
+        {
+            $operator = new operator();
+            $operator->modelWithJson($operatorJson);
+
+            $manDao = new softParameterDao();
+
+            echo json_encode($manDao->editOperator($operator));
+        }
+
+        public static function operatorList($getAll = true)
+        {
+            $manDao = new softParameterDao();
+
+            echo json_encode($manDao->operatorList($getAll));
+        }
+
+        public static function searchOperator($serachJson)
+        {
+            $manDao = new softParameterDao();
+
+            echo json_encode($manDao->searchOperatorList($serachJson));
+        }
     }
 ?>

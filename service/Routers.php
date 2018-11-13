@@ -26,6 +26,28 @@
         const userEdit = "usrEdit"; // 用户权限管理
         const userRegist = "usrRegist"; // 用户注册
         const userList = "usrList"; // 用户列表
+        const roleList = "roleList"; // 角色列表
+        const newRole = "addRole"; // 新增角色
+        const portAdd = "portAdd"; // 新增端口
+        const portList = "portList"; // 端口列表
+        const portEdit = "portEdit"; // 修改端口
+        const sensorList = "sensorList"; // 传感器列表
+        const sensorAdd = "sensorAdd"; // 新增传感器
+        const sensorEdit = "sensorEdit"; // 修改传感器
+        const machineAdd = "machineAdd"; // 新增压铸机
+        const machineList = "machineList"; // 压铸机列表
+        const machineEdit = "machineEdit"; // 修改压铸机
+        const machineSrch = "machineSearch"; // 搜索压铸机
+        const counterList = "counterList"; // 计数器列表
+        const counterAdd = "counterAdd"; // 新增计数器
+        const counterEdit = "counterEdit"; // 修改计数器
+        const counterSrch = "counterSearch"; // 搜索计数器
+        const parameterList = "parameterList"; // 控制参数列表
+        const parameterAdd = "parameterAdd"; // 新增控制参数
+        const parameterEdit = "parameterEdit"; // 修改控制参数
+        const parameterSrch = "parameterSearch"; // 搜索控制参数
+
+
     }
 
 
@@ -102,10 +124,21 @@
         MachineMan::searchCounter("计数器01");
     }else {
 
+
         /*
         * action动作
         */
         $action = $_POST['action'];
+
+        if ($action != RoutersEnumUri::login) {
+            session_start();
+            if (empty($_SESSION["userId"]) || ((int)$_SESSION["userId"]) < 0) {
+                $errorCode = ["code" => "-10000"];
+                echo json_encode(CodeDBTool::handler(false,$errorCode, "未登录，请重新登录"));
+                return;
+            }
+        }
+
 
         switch($action){
             case RoutersEnumUri::login:
@@ -116,6 +149,11 @@
             case RoutersEnumUri::logout:
                 {
                     UserMan::userLogout($_POST['user']);
+                }
+                break;
+            case RoutersEnumUri::userList:
+                {
+                    UserMan::userList(true);
                 }
                 break;
         }

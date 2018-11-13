@@ -10,7 +10,7 @@
     require_once "StatusObject.php";
 
     /* 是否是调试模式，在调试模式下可以在控制台打印结果 */
-    define("CodeZ_DEBUG", true);
+    define("CodeZ_DEBUG", false);
 
     /*修改时区*/
     date_default_timezone_set('Asia/Shanghai');
