@@ -16,7 +16,22 @@ function usrLogin() {
 	});
 }
 
+function usrLogout() {
+	CodeZComponents.postRequest({
+		action: CodeZ.ACTION_LOGOUT,
+	}, function(data) {
+		goLogin();
+	});
+}
+
+$('#log-out').click(function() {
+	usrLogout();
+	// e.g static
+	goLogin();
+});
+
 $("#toolbar").click(function() {
+	$.session.remove('bindData');
 	changeToUserDetailInfo({
 		tag: CodeZ.TAG_USER_ADD,
 		href: CodeZ.HTML_PAGE_USER_ADD,
@@ -39,12 +54,9 @@ function editUser(data) {
 }
 
 function userList() {
-	changeToUserDetailInfo({
-		tag: CodeZ.TAG_USER_LIST,
-		href: CodeZ.HTML_PAGE_USER_LIST,
-		title: '用户列表',
-		actived: true,
-	});
+	$.session.remove('bindData');
+	var frameDom = $(window.top.document).find('#contentFrame');
+	frameDom.attr('src', CodeZ.URI_SECURITY_MAN.USERMAN);
 }
 
 function changeToUserDetailInfo(data) {
@@ -54,30 +66,81 @@ function changeToUserDetailInfo(data) {
 }
 
 function editData() {
-	var ulDom = $(window.parent.document).find('.active');
-	var dataObj = JSON.parse($.session.get('bindData'));
+	var dataObj;
+	var cacheData = $.session.get('bindData');
+	console.info(cacheData);
+	if(cacheData != undefined || cacheData != null) {
+		dataObj = JSON.parse(cacheData);
+	}
 	if(dataObj != undefined) {
-		if(dataObj.tag == CodeZ.TAG_USER_EDIT) {
-			console.info('111');
+		if(dataObj.tag != CodeZ.TAG_USER_ADD) {
 			var userObj = dataObj.bindData;
-			console.info(userObj);
+			$("#userAccount").attr("disabled","disabled");
 			$('#userName').val(userObj.userName);
 			$('#userRole').val(userObj.role.roleId);
 			$('#userAccount').val(userObj.userAccount);
 			$('#userpassword').val(userObj.password);
 			$('#dep').val(userObj.dep);
 		}
-		return;
 	}
 }
 
-function check() {
+// 保存更新用户信息
+function saveUser(fn) {
+	var tag = CodeZ.ACTION_USR_ADD;
+	var dataObj = new Object();
+	var cacheData = $.session.get('bindData');
+	if(cacheData != undefined || cacheData != null) {
+		dataObj = JSON.parse(cacheData).bindData;
+		tag = CodeZ.ACTION_USR_EDIT;
+	}
+	dataObj.userName = $('#userName').val();
+	if(dataObj.role == undefined) {
+		var role = new Object();
+		role.roleId = $('#userRole').val();
+		dataObj.role = role;
+	}else {
+		dataObj.role.roleId = $('#userRole').val();
+	}
+	dataObj.userAccount = $('#userAccount').val();
+	dataObj.password = $('#userpassword').val();
+	dataObj.dep = $('#dep').val();
+	updateUser(tag, dataObj, function(data) {
+		if(data.success) {
+			CodeZComponents.showSuccessTip({
+				title: '提示',
+				text: '更新成功'
+			});
+			if(fn) {
+				fn(dataObj);
+			}
+		} else {
+			CodeZComponents.showErrorTip({
+				title: '提示',
+				text: data.error,
+			});
+		}
+	});
+}
+
+// 面包屑导航选择跳转
+function breadItemTransfer() {
 	addIframe($('#userFrame'), $(event.target).constructor.data.href)
 	BreadMenu.updateBread($(event.target).parent().parent(), $(event.target).constructor.data);
 }
 
 // 更新用户信息
-function updateUser(userObj, callback) {}
+function updateUser(tag,userObj, callback) {
+	CodeZComponents.postRequest({
+		action: tag,
+		user: JSON.stringify(userObj)
+	}, function(data) {
+		if(callback) {
+			callback(data);
+		}
+	});
+}
+
 
 var UserMan = {
 	// 注销用户
@@ -100,11 +163,16 @@ var UserMan = {
 					});
 					var user = dialog.getData('bindData');
 					user.deleted = 1;
-					updateUser(user, function(success) {
-						if(success) {
+					updateUser(user, function(data) {
+						if(data.success) {
 							if(fn) {
 								fn(user);
 							}
+						} else {
+							CodeZComponents.showErrorTip({
+								title: '提示',
+								text: data.error,
+							});
 						}
 					});
 				}
@@ -115,22 +183,24 @@ var UserMan = {
 				}
 			}]
 		});
-		// BootstrapDialog.confirm("确认提示框");
-		// BootstrapDialog.warning("警告框");
-		// BootstrapDialog.danger("危险框");
 	},
 
 	// 激活用户
 	activeObject: function(data, fn) {
-		CodeZComponents.showSuccessTip({
-			title: '提示',
-			text: '激活成功'
-		});
 		var user = data;
 		user.deleted = 0;
-		if(fn) {
-			fn(user);
-		}
+		updateUser(user, function(data) {
+			if(data.success) {
+				if(fn) {
+					fn(user);
+				}
+			} else {
+				CodeZComponents.showErrorTip({
+					title: '提示',
+					text: data.error,
+				});
+			}
+		});
 	},
 
 	/*
@@ -216,14 +286,14 @@ var UserMan = {
 					if(row.deleted == "0" || row.deleted == 0) {
 						return "<div class=\"row\">" +
 							"<div class=\"col-md-12\">" +
-							"<a href=\"#\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-pencil fa-fw\"></span></a>" +
-							"<a href=\"#\" class=\"tooltip-show cancel\" data-toggle=\"tooltip\" title=\"注销\"><span class=\"fa fa-user-times text-danger fa-fw\"></span></a>" +
+							"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-pencil fa-fw\"></span></a>" +
+							"<a href=\"javascript:;\" class=\"tooltip-show cancel\" data-toggle=\"tooltip\" title=\"注销\"><span class=\"fa fa-user-times text-danger fa-fw\"></span></a>" +
 							"</div></div>";
 					}
 					return "<div class=\"row\">" +
 						"<div class=\"col-md-12\">" +
-						"<a href=\"#\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-pencil fa-fw\"></span></a>" +
-						"<a href=\"#\" class=\"tooltip-show activited\" data-toggle=\"tooltip\" title=\"启用\"><span class=\"fa fa-circle-o-notch fa-fw text-success\"></span></a>" +
+						"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-pencil fa-fw\"></span></a>" +
+						"<a href=\"javascript:;\" class=\"tooltip-show activited\" data-toggle=\"tooltip\" title=\"启用\"><span class=\"fa fa-circle-o-notch fa-fw text-success\"></span></a>" +
 						"</div></div>";
 				},
 				events: {

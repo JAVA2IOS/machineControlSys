@@ -29,6 +29,11 @@
             $array = self::getData($result);
             $user = new user();
             $user->tableMappers($array[0]);
+
+            if ($user->deleted) {
+                return self::handler(false,null,"该账号已经注销，请切换账号使用");
+            }
+
             $user->lginTime = CodeZNowDateY_M_D_HMS;
             /* 更新登录时间 */
             $this->editUser($user);
@@ -61,6 +66,14 @@
          * 编辑用户信息(可修改用户的所有信息)
          * */
         function editUser(user $userObject) {
+
+            if (empty($userObject->password)) {
+                return self::handler(false,null,"密码不能为空");
+            }
+
+            if (empty($userObject->role->roleId)) {
+                return self::handler(false,null,"角色不能为空");
+            }
             $values = "userName = " . CodeZAddApostrophe($userObject->userName) . ", userAccount = " . CodeZAddApostrophe($userObject->userAccount);
             $values = $values . ", password = " . CodeZAddApostrophe($userObject->password);
             $values = $values . ", roleId = " . $userObject->role->roleId;
@@ -97,6 +110,28 @@
 
         /*新增用户*/
         function addNewUser(user $newUser) {
+            if (empty($newUser->userAccount)) {
+                return self::handler(false,null,"账号不能为空");
+            }else {
+
+                $parameter = CodeZEnumTable::USER . ".userAccount = " . CodeZAddApostrophe($newUser->userAccount);
+                $sqlString = $this->CodeZQuerySql(CodeZEnumTable::USER,null, $parameter);
+
+                $result = self::excuteQuery($sqlString);
+
+                if (self::dataExisted($result)) {
+                    return self::handler(false,null,"账号已经存在，请换个账号");
+                }
+            }
+
+            if (empty($newUser->password)) {
+                return self::handler(false,null,"密码不能为空");
+            }
+
+            if (empty($newUser->role->roleId)) {
+                return self::handler(false,null,"角色不能为空");
+            }
+
             $columns = "userName, userAccount, password, dep, roleId";
             $valus = CodeZAddApostrophe($newUser->userName) . ", " . CodeZAddApostrophe($newUser->userAccount);
             $valus = $valus . ", " . CodeZAddApostrophe($newUser->password);

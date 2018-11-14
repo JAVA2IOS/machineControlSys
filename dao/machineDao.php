@@ -36,13 +36,14 @@
         /* 新增压铸机 */
         public function addMachine(machine $machine)
         {
-            $columns = "machineName,  machineModel, machineType, port, location, address, connectable";
+            $columns = "machineName,  machineModel, machineType, port, location, address, updateTime, connectable";
             $values = CodeZAddApostrophe($machine->machineName);
             $values = $values . ", " . CodeZAddApostrophe($machine->machineModel);
             $values = $values . ", " . CodeZAddApostrophe($machine->machineType);
             $values = $values . ", " . CodeZAddApostrophe($machine->port);
             $values = $values . ", " . CodeZAddApostrophe($machine->location);
             $values = $values . ", " . CodeZAddApostrophe($machine->address);
+            $values = $values . ", " . CodeZAddApostrophe($machine->updateTime);
             $values = $values . ", " . $machine->connectable;
 
             $sqlString = $this->CodeZInsertSql(CodeZEnumTable::MACHINE, $columns, $values);
@@ -60,6 +61,7 @@
             $columns = $columns . ", port = " . CodeZAddApostrophe($machine->port);
             $columns = $columns . ", location = " . CodeZAddApostrophe($machine->location);
             $columns = $columns . ", address = " . CodeZAddApostrophe($machine->address);
+            $columns = $columns . ", updateTime = " . CodeZAddApostrophe($machine->updateTime);
             $columns = $columns . ", connectable = " . $machine->connectable;
             $columns = $columns . ", deleted = " . $machine->deleted;
 

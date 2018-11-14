@@ -14,7 +14,7 @@
     {
 
         function addNewPort(controlPort $port) {
-            $columns = "portName,  remoteIp, remoteProtocol, remotePort, remoteHost,  controlMethod, remoteUsr, remotePwd";
+            $columns = "portName,  remoteIp, remoteProtocol, remotePort, remoteHost,  controlMethod, remoteUsr, remotePwd, updateTime";
             $values = CodeZAddApostrophe($port->portName);
             $values = $values . ", " . CodeZAddApostrophe($port->remoteIp);
             $values = $values . ", " . CodeZAddApostrophe($port->remoteProtocol);
@@ -23,6 +23,7 @@
             $values = $values . ", " . CodeZAddApostrophe($port->controlMethod);
             $values = $values . ", " . CodeZAddApostrophe($port->remoteUsr);
             $values = $values . ", " . CodeZAddApostrophe($port->remotePwd);
+            $values = $values . ", " . CodeZAddApostrophe(CodeZNowDateY_M_D_HMS);
 
             $sqlString = $this->CodeZInsertSql(CodeZEnumTable::CTRLPORT, $columns, $values);
             CodeZPrintData($sqlString);
@@ -39,6 +40,7 @@
             $columns = $columns . ", controlMethod = " . CodeZAddApostrophe($editedPort->controlMethod);
             $columns = $columns . ", remoteUsr = " . CodeZAddApostrophe($editedPort->remoteUsr);
             $columns = $columns . ", remotePwd = " . CodeZAddApostrophe($editedPort->remotePwd);
+            $columns = $columns . ", updateTime = " . CodeZAddApostrophe(CodeZNowDateY_M_D_HMS);
             $columns = $columns . ", deleted = " . $editedPort->deleted;
 
             $parameters = "portId = " . $editedPort->portId;
@@ -48,6 +50,24 @@
             CodeZPrintData($sqlString);
 
             return self::excuteUpdate($sqlString);
+        }
+
+        function portList($getAll = true) {
+            $sqlString = $this->CodeZQuerySql(CodeZEnumTable::CTRLPORT, NULL, NULL);
+            $result = self::excuteQuery($sqlString);
+
+            if (self::dataExisted($result)) {
+                $rowArray = array();
+                foreach ($result['data'] as $row) {
+                    $ctrlPort = new controlPort();
+                    $ctrlPort->tableMappers($row);
+                    array_push($rowArray, $ctrlPort);
+                }
+
+                $result['data'] = $rowArray;
+            }
+
+            return $result;
         }
     }
 ?>

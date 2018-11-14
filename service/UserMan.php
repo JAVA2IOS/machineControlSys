@@ -29,7 +29,16 @@
         {
             $userDao = new UserDao();
             $user = new user();
+
             $user->modelWithJson($userJsonString);
+
+            session_start();
+            $user->userId = $_SESSION['userId'];
+            $user->userAccount = $_SESSION['account'];
+            $user->userName = $_SESSION['userName'];
+            $user->password = $_SESSION['pwd'];
+            $user->dep = $_SESSION['dep'];
+            session_destroy();
 
             CodeZPrintData($user);
 

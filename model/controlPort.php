@@ -19,6 +19,7 @@
         public $controlMethod;
         public $remoteUsr;
         public $remotePwd;
+        public $updateTime;
         public $deleted;
 
         public function tableMappers($tableArray)
@@ -51,6 +52,9 @@
                 }
                 if (isset($tableArray['remotePwd'])) {
                     $this->remotePwd = $tableArray['remotePwd'];
+                }
+                if (isset($tableArray['updateTime'])) {
+                    $this->updateTime = $tableArray['updateTime'];
                 }
                 if (isset($tableArray['deleted'])) {
                     $this->deleted = $tableArray['deleted'];

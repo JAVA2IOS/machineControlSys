@@ -10,3 +10,7 @@
 .login-dialog .modal-dialog {
     width: 300px;
 }
+
+.panel-dialog {
+	width: 500px;
+}

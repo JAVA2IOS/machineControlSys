@@ -40,6 +40,13 @@
             echo json_encode($controlPortDao->editPort($newPort));
         }
 
+        public static function portList($getall = true)
+        {
+            $portDao = new controlPortDao();
+
+            echo json_encode($portDao->portList($getall));
+        }
+
         /* 获取数据库列表 */
         public static function dataBaseList($getAll = true)
         {

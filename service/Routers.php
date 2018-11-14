@@ -156,6 +156,26 @@
                     UserMan::userList(true);
                 }
                 break;
+            case RoutersEnumUri::userEdit:
+                {
+                    UserMan::editUser($_POST['user']);
+                }
+                break;
+            case RoutersEnumUri::userRegist:
+                {
+                    UserMan::addNewUser($_POST['user']);
+                }
+                break;
+            case RoutersEnumUri::portList:
+                {
+                    SoftParameterMan::portList(true);
+                }
+                break;
+            case RoutersEnumUri::portEdit:
+                {
+                    SoftParameterMan::editPort($_POST['port']);
+                }
+                break;
         }
 
     }

@@ -17,6 +17,7 @@
         public $port;
         public $location;
         public $address;
+        public $updateTime;
         public $connectable;
         public $deleted;
 
@@ -44,6 +45,9 @@
                 }
                 if (isset($tableArray['address'])) {
                     $this->address = $tableArray['address'];
+                }
+                if (isset($tableArray['updateTime'])) {
+                    $this->updateTime = $tableArray['updateTime'];
                 }
                 if (isset($tableArray['connectable'])) {
                     $this->connectable = $tableArray['connectable'];
