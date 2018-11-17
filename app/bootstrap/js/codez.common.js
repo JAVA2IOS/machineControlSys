@@ -49,7 +49,8 @@ var breadMenuTag = {
 
 // 断开或者启用传感器
 function connectedSensor(connectedData, connect = false, fn) {
-	updateSingleData(CodeZ.ACTION_SENSOR.EDIT, connectedData, connect ? '已注销传感器' : '注册成功', fn);
+	connectedData.connected = connect ? 1 : 0;
+	updateSingleData(CodeZ.ACTION_SENSOR.EDIT, connectedData, !connect ? '已注销传感器' : '传感器注册成功', fn);
 }
 
 // 配置列表参数信息
@@ -58,23 +59,22 @@ function configureSensorListStyle() {
 		column: [{
 			field: 'sensorName',
 			title: "名称",
-			width: '25%',
+			width: '30%',
 			valign: 'middle',
 		}, {
 			field: 'sensorType',
-			title: "型号",
+			title: "类型",
 			width: '10%',
 			valign: 'middle',
 		}, {
 			field: 'sensorModel',
-			title: "类型",
+			title: "型号",
 			width: '10%',
 			valign: 'middle',
 		}, {
 			field: 'sensorPort',
 			title: "端口号",
 			valign: 'middle',
-			width: '10%',
 		}, {
 			field: 'location',
 			title: "安装位置",
@@ -83,25 +83,19 @@ function configureSensorListStyle() {
 		}, {
 			field: 'address',
 			title: "地址编号",
-			width: '10%',
 			valign: 'middle',
 		}, {
-			field: 'updateTime',
-			title: "更新时间",
-			width: '15%',
-			valign: 'middle',
-		}, {
-			field: 'deleted',
+			field: 'connected',
 			title: "状态",
 			valign: 'middle',
-			width: '10%',
+			width: '20%',
 			formatter: function(value, row, index) {
 				if(value == 1 || value == '1') {
 
-					return '未注册';
+					return '已注册';
 				}
 
-				return '注册';
+				return '未注册';
 			},
 		}, {
 			field: 'action',
@@ -110,7 +104,7 @@ function configureSensorListStyle() {
 			align: 'center',
 			width: '20%',
 			formatter: function(value, row, index) {
-				if(row.deleted == 1 || row.deleted == '1') {
+				if(row.connected == 0 || row.connected == '0') {
 					return "<div class=\"row\">" +
 						"<div class=\"col-sm-8 col-sm-offset-2\">" +
 						"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
@@ -128,7 +122,7 @@ function configureSensorListStyle() {
 					getDetailItemInfo(row);
 				},
 				"click .disconnect": function(e, value, row, index) {
-					connectedSensor(row, true, function(data) {
+					connectedSensor(row, false, function(data) {
 						$("#table-container").bootstrapTable('updateRow', {
 							index: index,
 							row: data
@@ -136,7 +130,7 @@ function configureSensorListStyle() {
 					});
 				},
 				"click .connect": function(e, value, row, index) {
-					connectedSensor(row, false, function(data) {
+					connectedSensor(row, true, function(data) {
 						$("#table-container").bootstrapTable('updateRow', {
 							index: index,
 							row: data
@@ -146,7 +140,7 @@ function configureSensorListStyle() {
 			},
 		}],
 		rowStyle: function(row, index) {
-			if(row.deleted == 1 || row.deleted == '1') {
+			if(row.connected == 0 || row.connected == '0') {
 				return {
 					css: {
 						'font-size': '10px',
@@ -169,10 +163,10 @@ function configureSensorListStyle() {
 
 // UI配置
 function sensorUIComponents() {
-	var title = ['用户名', '用户名', '用户名'];
-	var identifiers = ['uerName', 'uerName', 'uerName'];
-	var inputDoms;
-	for (i = 0; i < identifiers.length; i ++) {
+	var title = ['名称', '类型', '型号', '端口号', '安装位置', '地址编号'];
+	var identifiers = ['sensorName', 'sensorType', 'sensorModel', 'sensorPort', 'location', 'sensorNo'];
+	var inputDoms = '';
+	for(i = 0; i < identifiers.length; i++) {
 		var data = identifiers[i];
 		var itemTitle = title[i];
 		inputDoms += '<div class="form-group"><label for="' + data + '" class="col-sm-2 control-label text-center">' + itemTitle + '</label><div class="col-sm-9">' +
@@ -185,15 +179,125 @@ function sensorUIComponents() {
 
 // 配置显示参数数据
 function confgiureSensorDataInfo(data) {
-	// $('#dd').val(data.userName);
+	var bindObj = data.bindData;
+	if(bindObj){
+		$('#sensorName').val(bindObj.sensorName);
+		$('#sensorType').val(bindObj.sensorType);
+		$('#sensorModel').val(bindObj.sensorModel);
+		$('#sensorPort').val(bindObj.sensorPort);
+		$('#location').val(bindObj.location);
+		$('#sensorNo').val(bindObj.address);
+	}
 }
 
 // 更新当前的参数数据
 function updateSensorData(updatedData) {
-	// updatedData.userName = $('#dd').val();
+	updatedData.sensorName = $('#sensorName').val();
+	updatedData.sensorType = $('#sensorType').val();
+	updatedData.sensorModel = $('#sensorModel').val();
+	updatedData.sensorPort = $('#sensorPort').val();
+	updatedData.location = $('#location').val();
+	updatedData.address = $('#sensorNo').val();
 
 	return updatedData;
 }
+
+
+/*
+ * ================
+ * 压铸机配置
+ * ================
+ */
+function configureMachineListStyle() {
+	var tableParam = {
+		column: [{
+			field: 'machineName',
+			title: "压铸机名称",
+			width: '30%',
+			valign: 'middle',
+		}, {
+			field: 'machineType',
+			title: "类型",
+			width: '10%',
+			valign: 'middle',
+		}, {
+			field: 'machineModel',
+			title: "型号",
+			width: '10%',
+			valign: 'middle',
+		}, {
+			field: 'port',
+			title: "端口号",
+			valign: 'middle',
+		}, {
+			field: 'location',
+			title: "安装位置",
+			valign: 'middle',
+			width: '20%',
+		}, {
+			field: 'address',
+			title: "地址编号",
+			valign: 'middle',
+		}, {
+			field: 'connectable',
+			title: "状态",
+			valign: 'middle',
+			width: '20%',
+			formatter: function(value, row, index) {
+				if(value == 1 || value == '1') {
+
+					return '可连接';
+				}
+
+				return '不可连接';
+			},
+		}],
+	};
+
+	return tableParam;
+}
+
+// UI配置
+function machineUIComponents() {
+	var title = ['压铸机名称', '类型', '型号', '端口号', '安装位置', '地址编号'];
+	var identifiers = ['machineName', 'machineType', 'machineModel', 'port', 'location', 'address'];
+	var inputDoms = '';
+	for(i = 0; i < identifiers.length; i++) {
+		var data = identifiers[i];
+		var itemTitle = title[i];
+		inputDoms += '<div class="form-group"><label for="' + data + '" class="col-sm-2 control-label text-center">' + itemTitle + '</label><div class="col-sm-9">' +
+			'<input required="required" type="text" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
+			'</div></div>';
+	}
+
+	return inputDoms;
+}
+
+// 配置显示参数数据
+function confgiureMachineDataInfo(data) {
+	var bindObj = data.bindData;
+	if(bindObj){
+		$('#machineName').val(bindObj.machineName);
+		$('#machineType').val(bindObj.machineType);
+		$('#machineModel').val(bindObj.machineModel);
+		$('#port').val(bindObj.port);
+		$('#location').val(bindObj.location);
+		$('#address').val(bindObj.address);
+	}
+}
+
+// 更新当前的参数数据
+function updateMachineData(updatedData) {
+	updatedData.machineName = $('#machineName').val();
+	updatedData.machineType = $('#machineType').val();
+	updatedData.machineModel = $('#machineModel').val();
+	updatedData.port = $('#port').val();
+	updatedData.location = $('#location').val();
+	updatedData.address = $('#address').val();
+
+	return updatedData;
+}
+
 
 /*
  * ================
@@ -220,7 +324,6 @@ function goIndexPage() {
  */
 function goTablePage() {
 	$('#panelTitle').html('&nbsp;<h4>' + categoryTag.INDEXTILE + '</h4></div>');
-	console.info($('#panelTitle'));
 	BreadMenu.init('breadNav', [breadMenuTag.tableBread]);
 	addIframe('#contentFrame', urls.LIST);
 }
@@ -238,7 +341,7 @@ function addNewData(action, newSensorData, callback) {
 
 // 进入到详细页面响应方法
 function getDetailItemInfo(data) {
-	var bindData = breadMenuTag.updateBread;
+	var bindData = breadMenuTag.editBread;
 	if(data) {
 		bindData.bindData = data;
 	}
@@ -261,7 +364,7 @@ function configureUIComponents() {
 			components = sensorUIComponents();
 			break;
 		case CodeZ.NAV_MACHINEMAN.MACHINE:
-
+		components = machineUIComponents();
 			break;
 		case CodeZ.NAV_MACHINEMAN.COUNTER:
 
@@ -309,7 +412,7 @@ function configureItemInfoData() {
 				confgiureSensorDataInfo(dataObj);
 				break;
 			case CodeZ.NAV_MACHINEMAN.MACHINE:
-
+				confgiureMachineDataInfo(dataObj);
 				break;
 			case CodeZ.NAV_MACHINEMAN.COUNTER:
 
@@ -349,14 +452,14 @@ $("#dataCancel").click(function() {
 
 // 确认项按钮响应
 $("#dataSubmit").click(function() {
-	var categoryStr = cacheKey.substr(0, cacheKey.length - '_key'.length);
-	var actionParameters = action.ADD;
+	var categoryStr = sessionCacheKeyTag.substr(0, sessionCacheKeyTag.length - '_key'.length);
+	var actionParameters = actions.ADD;
 	var infoTip = '新增成功';
 	var dataObj = new Object();
 	var cacheData = $.session.get(sessionCacheKeyTag);
 	if(cacheData != undefined || cacheData != null) {
 		dataObj = JSON.parse(cacheData).bindData;
-		actionParameters = action.EDIT;
+		actionParameters = actions.EDIT;
 		infoTip = '更新成功';
 	}
 	// 配置数据
@@ -371,7 +474,7 @@ $("#dataSubmit").click(function() {
 			updateSensorData(dataObj);
 			break;
 		case CodeZ.NAV_MACHINEMAN.MACHINE:
-
+			updateMachineData(dataObj);
 			break;
 		case CodeZ.NAV_MACHINEMAN.COUNTER:
 
@@ -735,7 +838,9 @@ function configureCategoryData() {
 			}
 			break;
 		case CodeZ.NAV_MACHINEMAN.MACHINE:
-
+			{
+				tableParam = configureMachineListStyle();
+			}
 			break;
 		case CodeZ.NAV_MACHINEMAN.COUNTER:
 

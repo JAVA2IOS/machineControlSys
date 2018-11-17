@@ -26,6 +26,7 @@
             $sensorDao = new sensorDao();
             $sensor = new sensor();
             $sensor->modelWithJson($sensorJson);
+
             CodeZPrintData($sensor);
 
             echo json_encode($sensorDao->addSensor($sensor));
@@ -43,7 +44,6 @@
             $sensorDao = new sensorDao();
             $sensor = new sensor();
             $sensor->modelWithJson($sensorJson);
-            CodeZPrintData($sensor);
 
             echo json_encode($sensorDao->editSensor($sensor));
         }
@@ -129,5 +129,7 @@
 
             echo json_encode($counterDao->searchCounterList($searchString));
         }
+
+
     }
 ?>

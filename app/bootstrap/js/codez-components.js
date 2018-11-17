@@ -66,6 +66,11 @@ var CodeZ = {
 		ADD: 'tag_machine_add',
 		EDIT: 'tag_machine_edit',
 		INFO: 'tag_machine_info',
+		INDEXTILE: '自动压铸机配置',
+		LISTTITLE: '自动压铸机配置',
+		ADDTITLE: '添加自动压铸机',
+		EDITTITLE: '修改自动压铸机',
+		INFOTITLE: '自动压铸机信息',
 	},
 
 	// HTML
@@ -83,9 +88,9 @@ var CodeZ = {
 		INFO: 'dataInfo.html',
 	},
 	HTML_PAGE_MACHINE: {
-		INDEX: 'machine.html',
-		LIST: 'machineList.html',
-		INFO: 'machineInfo.html',
+		INDEX: 'dataIndex.html',
+		LIST: 'dataList.html',
+		INFO: 'dataInfo.html',
 	},
 
 	HTML_PAGE_COUNTER: 'counter.html',
@@ -124,8 +129,8 @@ var CodeZ = {
 	},
 	URI_MACHINEMAN: {
 		SENSOR: 'dataIndex.html',
-		MACHINE: 'machine.html',
-		COUNTER: 'counter.html',
+		MACHINE: 'dataIndex.html',
+		COUNTER: 'dataIndex.html',
 	},
 	URI_CONTROLPARAMETER: 'controlParameters.html',
 	URI_AUTO_CONTROL: 'autoControl.html',
@@ -138,6 +143,10 @@ var CodeZ = {
 
 var SessionMan = {
 	configureDataSource: function(tag) {
+		$.session.remove('tag');
+		$.session.remove('action');
+		$.session.remove('page');
+		$.session.remove('cacheKey');
 		switch(tag) {
 			case CodeZ.NAV_SOFTPARAMETER.CONTROL_CFG:
 
@@ -154,7 +163,13 @@ var SessionMan = {
 				}
 				break;
 			case CodeZ.NAV_MACHINEMAN.MACHINE:
-
+			{
+					//传感器处理
+					$.session.set('tag', JSON.stringify(CodeZ.TAG_MACHINE));
+					$.session.set('action', JSON.stringify(CodeZ.ACTION_MACHINE));
+					$.session.set('page', JSON.stringify(CodeZ.HTML_PAGE_MACHINE));
+					$.session.set('cacheKey', tag + '_key');
+				}
 				break;
 			case CodeZ.NAV_MACHINEMAN.COUNTER:
 

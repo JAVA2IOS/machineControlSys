@@ -186,6 +186,31 @@
                     MachineMan::sensorList();
                 }
                 break;
+            case RoutersEnumUri::sensorAdd:
+                {
+                    MachineMan::addNewSensor($_POST['data']);
+                }
+                break;
+            case RoutersEnumUri::sensorEdit:
+                {
+                    MachineMan::editSensor($_POST['data']);
+                }
+                break;
+            case RoutersEnumUri::machineList:
+                {
+                    MachineMan::machineList();
+                }
+                break;
+            case RoutersEnumUri::machineAdd:
+                {
+                    MachineMan::addMachine($_POST['data']);
+                }
+                break;
+            case RoutersEnumUri::machineEdit:
+                {
+                    MachineMan::editMachine($_POST['data']);
+                }
+                break;
         }
 
     }

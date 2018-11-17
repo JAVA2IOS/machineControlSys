@@ -15,6 +15,11 @@
 
         /* 传感器注册 */
         function addSensor(sensor $sensor) {
+            $emptyData = self::emptyDataObj($sensor);
+            if (!empty($emptyData)) {
+                return $emptyData;
+            }
+
             $columns = "sensorName,  sensorModel, sensorType, location, address, sensorPort,  connected";
             $values = CodeZAddApostrophe($sensor->sensorName);
             $values = $values . ", " . CodeZAddApostrophe($sensor->sensorModel);
@@ -22,6 +27,9 @@
             $values = $values . ", " . CodeZAddApostrophe($sensor->location);
             $values = $values . ", " . CodeZAddApostrophe($sensor->address);
             $values = $values . ", " . CodeZAddApostrophe($sensor->sensorPort);
+            if (empty($sensor->connected)) {
+                $sensor->connected = 0;
+            }
             $values = $values . ", " . $sensor->connected;
 
             $sqlString = $this->CodeZInsertSql(CodeZEnumTable::SENSOR, $columns, $values);
@@ -32,6 +40,13 @@
 
         /* 修改传感器(维护、注销、测试链接) */
         function editSensor(sensor $sensor) {
+            $emptyData = self::emptyDataObj($sensor);
+            if (!empty($emptyData)) {
+                return $emptyData;
+            }
+            if (empty($sensor->connected)) {
+                $sensor->connected = 0;
+            }
             $columns = "sensorName = " . CodeZAddApostrophe($sensor->sensorName);
             $columns = $columns . ", sensorModel = " . CodeZAddApostrophe($sensor->sensorModel);
             $columns = $columns . ", sensorType = " . CodeZAddApostrophe($sensor->sensorType);
@@ -67,5 +82,29 @@
             }
 
             return $result;
+        }
+
+        public static function emptyDataObj(sensor $empitedData)
+        {
+            if (empty($empitedData->sensorName)) {
+                return CodeDBTool::handler(false, null, "传感器名称不能为空");
+            }
+            if (empty($empitedData->sensorType)) {
+                return CodeDBTool::handler(false, null, "请设置型号");
+            }
+            if (empty($empitedData->sensorModel)) {
+                return CodeDBTool::handler(false, null, "请设置类型");
+            }
+            if (empty($empitedData->location)) {
+                return CodeDBTool::handler(false, null, "请输入安装位置");
+            }
+            if (empty($empitedData->sensorPort)) {
+                return CodeDBTool::handler(false, null, "请输入端口号");
+            }
+            if (empty($empitedData->address)) {
+                return CodeDBTool::handler(false, null, "请输入地址编号");
+            }
+
+            return null;
         }
     }

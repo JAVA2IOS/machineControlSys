@@ -36,6 +36,13 @@
         /* 新增压铸机 */
         public function addMachine(machine $machine)
         {
+            $emptyData = self::emptyDataObj($machine);
+            if (!empty($emptyData)) {
+                return $emptyData;
+            }
+            if (empty($machine->connectable)) {
+                $machine->connectable = 0;
+            }
             $columns = "machineName,  machineModel, machineType, port, location, address, updateTime, connectable";
             $values = CodeZAddApostrophe($machine->machineName);
             $values = $values . ", " . CodeZAddApostrophe($machine->machineModel);
@@ -55,6 +62,13 @@
         /* 修改压铸机 */
         public function editMachine(machine $machine)
         {
+            $emptyData = self::emptyDataObj($machine);
+            if (!empty($emptyData)) {
+                return $emptyData;
+            }
+            if (empty($machine->connectable)) {
+                $machine->connectable = 0;
+            }
             $columns = "machineName = " . CodeZAddApostrophe($machine->machineName);
             $columns = $columns . ", machineModel = " . CodeZAddApostrophe($machine->machineModel);
             $columns = $columns . ", machineType = " . CodeZAddApostrophe($machine->machineType);
@@ -94,5 +108,29 @@
             }
 
             return $result;
+        }
+
+        public static function emptyDataObj(machine $empitedData)
+        {
+            if (empty($empitedData->machineName)) {
+                return CodeDBTool::handler(false, null, "自动压铸机名称不能为空");
+            }
+            if (empty($empitedData->machineType)) {
+                return CodeDBTool::handler(false, null, "请设置型号");
+            }
+            if (empty($empitedData->machineModel)) {
+                return CodeDBTool::handler(false, null, "请设置类型");
+            }
+            if (empty($empitedData->location)) {
+                return CodeDBTool::handler(false, null, "请输入安装位置");
+            }
+            if (empty($empitedData->port)) {
+                return CodeDBTool::handler(false, null, "请输入端口号");
+            }
+            if (empty($empitedData->address)) {
+                return CodeDBTool::handler(false, null, "请输入地址编号");
+            }
+
+            return null;
         }
     }
