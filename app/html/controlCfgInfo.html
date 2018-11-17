@@ -90,17 +90,19 @@
 		<script type="text/javascript" src="../bootstrap/js/jquery.session.js"></script>
 		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<script src="../bootstrap/js/pnotify/pnotify.js"></script>
+		<script src="../bootstrap/js/bootstrap-dialog.js"></script>
 		<script src="../bootstrap/js/codez-components.js"></script>
-		<script src="../bootstrap/js/model.js"></script>
 		<script src="../bootstrap/js/softMan.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				$('.btn-default').click(function() {
-					firstMenu();
+					portIndexPage();
 				});
 				$('.btn-primary').click(function() {
-					firstMenu();
+					savePort();
 				});
+				SoftMan.modelPortInfo();
 			});
 		</script>
 	</body>

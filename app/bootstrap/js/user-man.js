@@ -61,6 +61,7 @@ function userList() {
 
 function changeToUserDetailInfo(data) {
 	var ulDom = $(window.parent.document).find('.breadcrumb');
+	ulDom.show();
 	BreadMenu.updateBread(ulDom, data);
 	directHref(data.href);
 }
@@ -163,7 +164,7 @@ var UserMan = {
 					});
 					var user = dialog.getData('bindData');
 					user.deleted = 1;
-					updateUser(user, function(data) {
+					updateUser(CodeZ.ACTION_USR_EDIT, user, function(data) {
 						if(data.success) {
 							if(fn) {
 								fn(user);
@@ -189,7 +190,7 @@ var UserMan = {
 	activeObject: function(data, fn) {
 		var user = data;
 		user.deleted = 0;
-		updateUser(user, function(data) {
+		updateUser(CodeZ.ACTION_USR_EDIT,user, function(data) {
 			if(data.success) {
 				if(fn) {
 					fn(user);
@@ -218,6 +219,8 @@ var UserMan = {
 	}
 	*/
 	configureUserList: function() {
+		var ulDom = $(window.parent.document).find('.breadcrumb');
+		ulDom.show();
 		CodeZComponents.postRequest({
 			action: CodeZ.ACTION_USR_LIST
 		}, function(data) {
@@ -226,7 +229,6 @@ var UserMan = {
 				UserMan.showUserList(dataRow);
 			}
 		});
-
 	},
 
 	showUserList: function(dataList) {

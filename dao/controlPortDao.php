@@ -14,6 +14,27 @@
     {
 
         function addNewPort(controlPort $port) {
+            if (empty($port->portName)) {
+                return self::handler(false, null, "端口名称不能为空");
+            }
+            if (empty($port->remoteProtocol)) {
+                return self::handler(false, null, "请设置协议");
+            }
+            if (empty($port->remotePort)) {
+                return self::handler(false, null, "请设置端口号");
+            }
+            if (empty($port->remoteHost)) {
+                return self::handler(false, null, "请设置远程主机");
+            }
+            if (empty($port->controlMethod)) {
+                return self::handler(false, null, "请设置控制方式");
+            }
+            if (empty($port->remoteUsr)) {
+                return self::handler(false, null, "请输入用户名");
+            }
+            if (empty($port->remotePwd)) {
+                return self::handler(false, null, "请输入密码");
+            }
             $columns = "portName,  remoteIp, remoteProtocol, remotePort, remoteHost,  controlMethod, remoteUsr, remotePwd, updateTime";
             $values = CodeZAddApostrophe($port->portName);
             $values = $values . ", " . CodeZAddApostrophe($port->remoteIp);
@@ -32,6 +53,27 @@
         }
 
         function editPort(controlPort $editedPort) {
+            if (empty($editedPort->portName)) {
+                return self::handler(false, null, "端口名称不能为空");
+            }
+            if (empty($editedPort->remoteProtocol)) {
+                return self::handler(false, null, "请设置协议");
+            }
+            if (empty($editedPort->remotePort)) {
+                return self::handler(false, null, "请设置端口号");
+            }
+            if (empty($editedPort->remoteHost)) {
+                return self::handler(false, null, "请设置远程主机");
+            }
+            if (empty($editedPort->controlMethod)) {
+                return self::handler(false, null, "请设置控制方式");
+            }
+            if (empty($editedPort->remoteUsr)) {
+                return self::handler(false, null, "请输入用户名");
+            }
+            if (empty($editedPort->remotePwd)) {
+                return self::handler(false, null, "请输入密码");
+            }
             $columns = "portName = " . CodeZAddApostrophe($editedPort->portName);
             $columns = $columns . ", remoteIp = " . CodeZAddApostrophe($editedPort->remoteIp);
             $columns = $columns . ", remoteProtocol = " . CodeZAddApostrophe($editedPort->remoteProtocol);

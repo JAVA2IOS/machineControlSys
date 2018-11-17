@@ -21,7 +21,7 @@
         /* 新增控制端口 */
         public static function addPort($portJsonStrng)
         {
-            $newPort = new  controlPort();
+            $newPort = new controlPort();
             $newPort->modelWithJson($portJsonStrng);
 
             $controlPortDao = new controlPortDao();

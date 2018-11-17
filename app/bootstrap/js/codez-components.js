@@ -7,10 +7,30 @@ var CodeZ = {
 	ACTION_USR_LIST: 'usrList',
 	ACTION_USR_EDIT: 'usrEdit',
 	ACTION_USR_ADD: 'usrRegist',
-	
-	ACTION_PORT_ADD: 'portAdd',
-	ACTION_PORT_LIST: 'portList',
-	ACTION_PORT_EDIT: 'portEdit',
+
+	ACTION_PORT: {
+		ADD: 'portAdd',
+		LIST: 'portList',
+		EDIT: 'portEdit',
+	},
+
+	ACTION_DATA_BASE: {
+		ADD: '',
+		LIST: '',
+		EDIT: '',
+	},
+
+	ACTION_SENSOR: {
+		ADD: 'sensorAdd',
+		LIST: 'sensorList',
+		EDIT: 'sensorEdit',
+	},
+
+	ACTION_MACHINE: {
+		ADD: 'machineAdd',
+		LIST: 'machineList',
+		EDIT: 'machineEdit',
+	},
 
 	// 标识符
 	TAG_CONTROL_CFG_LIST: 'tag_control_cfg_list',
@@ -27,6 +47,27 @@ var CodeZ = {
 	TAG_USER_EDIT: 'tag_user_edit',
 	TAG_USER_ADD: 'tag_user_add',
 
+	TAG_SENSOR: {
+		INDEX: 'tag_sensor_index',
+		INDEXTILE: '传感器管理',
+		LIST: 'tag_sensor_list',
+		LISTTITLE: '传感器管理',
+		ADD: 'tag_sensor_add',
+		ADDTITLE: '新增传感器',
+		EDIT: 'tag_sensor_edit',
+		EDITTITLE: '修改传感器',
+		INFO: 'tag_sensor_info',
+		INFOTITLE: '传感器信息',
+	},
+
+	TAG_MACHINE: {
+		INDEX: 'tag_machine_index',
+		LIST: 'tag_machine_list',
+		ADD: 'tag_machine_add',
+		EDIT: 'tag_machine_edit',
+		INFO: 'tag_machine_info',
+	},
+
 	// HTML
 	HTML_PAGE_INDEX: 'index.html',
 	HTML_PAGE_LOGIN: 'login.html',
@@ -34,8 +75,19 @@ var CodeZ = {
 	HTML_PAGE_CTRL_CFG_LIST: 'controlCfgList.html',
 	HTML_PAGE_CTRL_CFG_INFO: 'controlCfgInfo.html',
 	HTML_PAGE_DATABASE_CONNECT: 'database.html',
-	HTML_PAGE_SENSOR: 'sensor.html',
-	HTML_PAGE_MACHINE: 'machine.html',
+	HTML_PAGE_DATABASE_LIST: 'dataBaseList.html',
+
+	HTML_PAGE_SENSOR: {
+		INDEX: 'dataIndex.html',
+		LIST: 'dataList.html',
+		INFO: 'dataInfo.html',
+	},
+	HTML_PAGE_MACHINE: {
+		INDEX: 'machine.html',
+		LIST: 'machineList.html',
+		INFO: 'machineInfo.html',
+	},
+
 	HTML_PAGE_COUNTER: 'counter.html',
 	HTML_PAGE_CONTROLPARAMETER: 'controlParameters.html',
 	HTML_PAGE_AUTO_CONTROL: 'autoControl.html',
@@ -71,7 +123,7 @@ var CodeZ = {
 		DATABASE_CONNECT: 'database.html',
 	},
 	URI_MACHINEMAN: {
-		SENSOR: 'sensor.html',
+		SENSOR: 'dataIndex.html',
 		MACHINE: 'machine.html',
 		COUNTER: 'counter.html',
 	},
@@ -84,8 +136,53 @@ var CodeZ = {
 	},
 }
 
+var SessionMan = {
+	configureDataSource: function(tag) {
+		switch(tag) {
+			case CodeZ.NAV_SOFTPARAMETER.CONTROL_CFG:
+
+			case CodeZ.NAV_SOFTPARAMETER.DATABASE_CONNECT:
+
+				break;
+			case CodeZ.NAV_MACHINEMAN.SENSOR:
+				{
+					//传感器处理
+					$.session.set('tag', JSON.stringify(CodeZ.TAG_SENSOR));
+					$.session.set('action', JSON.stringify(CodeZ.ACTION_SENSOR));
+					$.session.set('page', JSON.stringify(CodeZ.HTML_PAGE_SENSOR));
+					$.session.set('cacheKey', tag + '_key');
+				}
+				break;
+			case CodeZ.NAV_MACHINEMAN.MACHINE:
+
+				break;
+			case CodeZ.NAV_MACHINEMAN.COUNTER:
+
+				break;
+			case CodeZ.NAV_CONTROLPARAMETER:
+
+				break;
+			case CodeZ.NAV_AUTO_CONTROL:
+
+				break;
+			case CodeZ.NAV_CONTROL_DATA:
+
+				break;
+			case CodeZ.NAV_SECURITY_MAN.USERMAN:
+
+				break;
+			case CodeZ.NAV_SECURITY_MAN.ROLEMAN:
+
+				break;
+			default:
+				break;
+		}
+	},
+}
+
 // 导航栏跳转
 function navSrc(tag) {
+	SessionMan.configureDataSource(tag);
 	switch(tag) {
 		case CodeZ.NAV_SOFTPARAMETER.CONTROL_CFG:
 			directRoutersUri(CodeZ.URI_SOFTPARAMETER.CONTROL_CFG);
@@ -178,7 +275,7 @@ var BreadMenu = {
 			href.attr('onClick', 'check()');
 			item.append(href);
 		}
-		
+
 		return item;
 	},
 	/*
@@ -249,6 +346,35 @@ var BreadMenu = {
 	},
 }
 
+// 判断是否是Json格式字符串
+function isJSON(str) {
+	if(str) {
+		if(typeof str == 'string') {
+			try {
+				var obj = JSON.parse(str);
+				if(typeof obj == 'object' && obj) {
+					return true;
+				} else {
+					CodeZComponents.showErrorTip({
+						text: '数据格式错误，请联系技术人员'
+					});
+					return false;
+				}
+
+			} catch(e) {
+				CodeZComponents.showErrorTip({
+					text: '数据格式错误，请联系技术人员'
+				});
+				return false;
+			}
+		}
+	}
+	CodeZComponents.showErrorTip({
+		text: '数据格式错误，请联系技术人员'
+	});
+	return false;
+}
+
 /*
  * css配置
  */
@@ -281,20 +407,21 @@ var CodeZComponents = {
 			url: CodeZ.RQUEST_URI,
 			data: parameters,
 			success: function(result) {
-				console.info(result);
-				var data = JSON.parse(result);
-				if(!data.success) {
-					if(data.data) {
-						if(data.data.code != undefined) {
-							if(data.data.code == '-10000') {
-								loginFilter();
-								return;
+				if(isJSON(result)) {
+					var data = JSON.parse(result);
+					if(!data.success) {
+						if(data.data) {
+							if(data.data.code != undefined) {
+								if(data.data.code == '-10000') {
+									loginFilter();
+									return;
+								}
 							}
 						}
 					}
-				}
-				if(callback != undefined) {
-					callback(data);
+					if(callback != undefined) {
+						callback(data);
+					}
 				}
 			}
 		});
@@ -550,6 +677,7 @@ var CodeZComponents = {
 						});
 
 						var hrefObj = this.addHref({
+							href: 'javascript:;',
 							value: " &nbsp;" + node.text,
 							name: "navTitle",
 							data: node.target
@@ -715,8 +843,11 @@ var CodeZComponents = {
 		this.configureListener(function() {
 			$("a[name='navTitle']").on("click", function() {
 				navSrc($(this).data("bindData"));
-				$(".active").removeClass("active");
-				$(this).parent().attr("class", "active");
+				var activedDom = $('#main-nav').find(".active");
+				if(activedDom) {
+					activedDom.removeClass("active");
+				}
+				$(this).attr("class", "active");
 			});
 
 			$("a[name='toggled']").on("click", function() {
@@ -987,9 +1118,9 @@ var CodeZComponents = {
 					onUnCheckRow(row, e);
 				}
 			},
-			detailView : showDetail,
-			detailFormatter : function(index, row) {
-				if (detailFn != undefined) {
+			detailView: showDetail,
+			detailFormatter: function(index, row) {
+				if(detailFn != undefined) {
 					detailFn(index, row);
 				}
 			},
@@ -1012,7 +1143,7 @@ var CodeZComponents = {
 		PNotify.defaultStack.firstpos2 = 5;
 		PNotify.defaultStack.spacing1 = 15;
 		PNotify.defaultStack.spacing2 = 5;
-		 PNotify.defaultStack.context = window.top.body;
+		PNotify.defaultStack.context = window.top.body;
 		PNotify.alert({
 			type: type,
 			title: title,

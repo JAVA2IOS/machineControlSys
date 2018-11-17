@@ -176,6 +176,16 @@
                     SoftParameterMan::editPort($_POST['port']);
                 }
                 break;
+            case RoutersEnumUri::portAdd:
+                {
+                    SoftParameterMan::addPort($_POST['port']);
+                }
+                break;
+            case RoutersEnumUri::sensorList:
+                {
+                    MachineMan::sensorList();
+                }
+                break;
         }
 
     }

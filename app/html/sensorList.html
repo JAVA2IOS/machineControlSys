@@ -6,7 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-		<title>控制配置列表</title>
+		<title>控制传感器列表</title>
 
 		<!-- Bootstrap -->
 		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@
 		<div class="container-fluid" style="height: 100%;">
 			<div class="panel-body" style="margin-top: 30px;">
 				<div id="toolbar">
-					<button id="addPort" type="button" class="btn btn-default"><span class="fa fa-inbox fa-fw text-primary"></span>&nbsp;新增</button>
+					<button id="addSensor" type="button" class="btn btn-default"><span class="fa fa-plus fa-fw text-primary"></span>&nbsp;新增</button>
 				</div>
 				<div id="table-container"></div>
 			</div>
@@ -52,11 +52,10 @@
 		<script src="../bootstrap/js/pnotify/pnotify.js"></script>
 		<script src="../bootstrap/js/bootstrap-dialog.js"></script>
 		<script src="../bootstrap/js/codez-components.js"></script>
-		<script src="../bootstrap/js/model.js"></script>
-		<script src="../bootstrap/js/softMan.js"></script>
+		<script src="../bootstrap/js/machineMan.js"></script>
 		<script type="text/javascript">
 			$(function() {
-				SoftMan.configureCfgListData();
+				MachineMan.configureSensorListData();
 				$("[data-toggle='tooltip']").tooltip();
 			});
 		</script>
