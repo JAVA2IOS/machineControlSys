@@ -211,6 +211,21 @@
                     MachineMan::editMachine($_POST['data']);
                 }
                 break;
+            case RoutersEnumUri::counterList:
+                {
+                    MachineMan::counterList();
+                }
+                break;
+            case RoutersEnumUri::counterAdd:
+                {
+                    MachineMan::addCounter($_POST['data']);
+                }
+                break;
+            case RoutersEnumUri::counterEdit:
+                {
+                    MachineMan::editCounter($_POST['data']);
+                }
+                break;
         }
 
     }

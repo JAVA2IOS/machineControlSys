@@ -180,7 +180,7 @@ function sensorUIComponents() {
 // 配置显示参数数据
 function confgiureSensorDataInfo(data) {
 	var bindObj = data.bindData;
-	if(bindObj){
+	if(bindObj) {
 		$('#sensorName').val(bindObj.sensorName);
 		$('#sensorType').val(bindObj.sensorType);
 		$('#sensorModel').val(bindObj.sensorModel);
@@ -201,7 +201,6 @@ function updateSensorData(updatedData) {
 
 	return updatedData;
 }
-
 
 /*
  * ================
@@ -251,6 +250,31 @@ function configureMachineListStyle() {
 
 				return '不可连接';
 			},
+		}, {
+			field: 'action',
+			title: "操作",
+			valign: 'middle',
+			align: 'center',
+			width: '20%',
+			formatter: function(value, row, index) {
+				if(row.deleted == 0 || row.deleted == '0') {
+					return "<div class=\"row\">" +
+						"<div class=\"col-sm-8 col-sm-offset-2\">" +
+						"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
+						"<a href=\"javascript:;\" class=\"tooltip-show connect\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"注册\"><span class=\"fa fa-plug fa-fw text-primary\"></span></a>" +
+						"</div></div>";
+				}
+				return "<div class=\"row\">" +
+					"<div class=\"col-sm-8 col-sm-offset-2\">" +
+					"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
+					"<a href=\"javascript:;\" class=\"tooltip-show disconnect\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"注销\"><span class=\"fa fa-unlink text-danger fa-fw\"></span></a>" +
+					"</div></div>";
+			},
+			events: {
+				'click .edit': function(e, value, row, index) {
+					getDetailItemInfo(row);
+				},
+			},
 		}],
 	};
 
@@ -276,7 +300,7 @@ function machineUIComponents() {
 // 配置显示参数数据
 function confgiureMachineDataInfo(data) {
 	var bindObj = data.bindData;
-	if(bindObj){
+	if(bindObj) {
 		$('#machineName').val(bindObj.machineName);
 		$('#machineType').val(bindObj.machineType);
 		$('#machineModel').val(bindObj.machineModel);
@@ -298,6 +322,125 @@ function updateMachineData(updatedData) {
 	return updatedData;
 }
 
+/*
+ * ================
+ * 计数器配置
+ * ================
+ */
+function configureCounterListStyle() {
+	var tableParam = {
+		column: [{
+			field: 'counterName',
+			title: "计数器名称",
+			width: '30%',
+			valign: 'middle',
+		}, {
+			field: 'counterModel',
+			title: "型号",
+			width: '10%',
+			valign: 'middle',
+		}, {
+			field: 'counterType',
+			title: "计数类型",
+			width: '10%',
+			valign: 'middle',
+		}, {
+			field: 'counterPort',
+			title: "端口号",
+			valign: 'middle',
+		}, {
+			field: 'counterDecimal',
+			title: "进制",
+			valign: 'middle',
+			width: '20%',
+		}, {
+			field: 'address',
+			title: "地址编号",
+			valign: 'middle',
+		}, {
+			field: 'connectable',
+			title: "状态",
+			valign: 'middle',
+			width: '20%',
+			formatter: function(value, row, index) {
+				if(value == 1 || value == '1') {
+
+					return '可连接';
+				}
+
+				return '不可连接';
+			},
+		}, {
+			field: 'action',
+			title: "操作",
+			valign: 'middle',
+			align: 'center',
+			width: '20%',
+			formatter: function(value, row, index) {
+				if(row.deleted == 0 || row.deleted == '0') {
+					return "<div class=\"row\">" +
+						"<div class=\"col-sm-8 col-sm-offset-2\">" +
+						"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
+						"<a href=\"javascript:;\" class=\"tooltip-show connect\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"恢复\"><span class=\"fa fa-plug fa-fw text-primary\"></span></a>" +
+						"</div></div>";
+				}
+				return "<div class=\"row\">" +
+					"<div class=\"col-sm-8 col-sm-offset-2\">" +
+					"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
+					"<a href=\"javascript:;\" class=\"tooltip-show disconnect\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"注销\"><span class=\"fa fa-unlink text-danger fa-fw\"></span></a>" +
+					"</div></div>";
+			},
+			events: {
+				'click .edit': function(e, value, row, index) {
+					getDetailItemInfo(row);
+				},
+			},
+		}],
+	};
+
+	return tableParam;
+}
+
+// UI配置
+function counterUIComponents() {
+	var title = ['计数器名称', '型号', '计数类型', '端口号', '进制', '地址编号'];
+	var identifiers = ['counterName', 'counterModel', 'counterType', 'counterPort', 'counterDecimal', 'address'];
+	var inputDoms = '';
+	for(i = 0; i < identifiers.length; i++) {
+		var data = identifiers[i];
+		var itemTitle = title[i];
+		inputDoms += '<div class="form-group"><label for="' + data + '" class="col-sm-2 control-label text-center">' + itemTitle + '</label><div class="col-sm-9">' +
+			'<input required="required" type="text" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
+			'</div></div>';
+	}
+
+	return inputDoms;
+}
+
+// 配置显示参数数据
+function confgiureCounterDataInfo(data) {
+	var bindObj = data.bindData;
+	if(bindObj) {
+		$('#counterName').val(bindObj.counterName);
+		$('#counterModel').val(bindObj.counterModel);
+		$('#counterType').val(bindObj.counterType);
+		$('#counterPort').val(bindObj.counterPort);
+		$('#counterDecimal').val(bindObj.counterDecimal);
+		$('#address').val(bindObj.address);
+	}
+}
+
+// 更新当前的参数数据
+function updateCounterData(updatedData) {
+	updatedData.counterName = $('#counterName').val();
+	updatedData.counterModel = $('#counterModel').val();
+	updatedData.counterType = $('#counterType').val();
+	updatedData.counterPort = $('#counterPort').val();
+	updatedData.counterDecimal = $('#counterDecimal').val();
+	updatedData.address = $('#address').val();
+
+	return updatedData;
+}
 
 /*
  * ================
@@ -364,10 +507,10 @@ function configureUIComponents() {
 			components = sensorUIComponents();
 			break;
 		case CodeZ.NAV_MACHINEMAN.MACHINE:
-		components = machineUIComponents();
+			components = machineUIComponents();
 			break;
 		case CodeZ.NAV_MACHINEMAN.COUNTER:
-
+			components = counterUIComponents();
 			break;
 		case CodeZ.NAV_CONTROLPARAMETER:
 
@@ -415,7 +558,7 @@ function configureItemInfoData() {
 				confgiureMachineDataInfo(dataObj);
 				break;
 			case CodeZ.NAV_MACHINEMAN.COUNTER:
-
+				confgiureCounterDataInfo(dataObj);
 				break;
 			case CodeZ.NAV_CONTROLPARAMETER:
 
@@ -477,7 +620,7 @@ $("#dataSubmit").click(function() {
 			updateMachineData(dataObj);
 			break;
 		case CodeZ.NAV_MACHINEMAN.COUNTER:
-
+			updateCounterData();
 			break;
 		case CodeZ.NAV_CONTROLPARAMETER:
 
@@ -843,7 +986,9 @@ function configureCategoryData() {
 			}
 			break;
 		case CodeZ.NAV_MACHINEMAN.COUNTER:
-
+			{
+				tableParam = configureCounterListStyle();
+			}
 			break;
 		case CodeZ.NAV_CONTROLPARAMETER:
 

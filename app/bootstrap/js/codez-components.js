@@ -32,6 +32,12 @@ var CodeZ = {
 		EDIT: 'machineEdit',
 	},
 
+	ACTION_COUNTER: {
+		ADD: 'counterAdd',
+		LIST: 'counterList',
+		EDIT: 'counterEdit',
+	},
+
 	// 标识符
 	TAG_CONTROL_CFG_LIST: 'tag_control_cfg_list',
 	TAG_CONTROL_CFG_EDIT: 'tag_control_cfg_edit',
@@ -73,6 +79,19 @@ var CodeZ = {
 		INFOTITLE: '自动压铸机信息',
 	},
 
+	TAG_COUNTER: {
+		INDEX: 'tag_counter_index',
+		LIST: 'tag_counter_list',
+		ADD: 'tag_counter_add',
+		EDIT: 'tag_counter_edit',
+		INFO: 'tag_counter_info',
+		INDEXTILE: '压铸计数器配置',
+		LISTTITLE: '压铸计数器配置',
+		ADDTITLE: '添加压铸计数器',
+		EDITTITLE: '修改压铸计数器',
+		INFOTITLE: '压铸计数器信息',
+	},
+
 	// HTML
 	HTML_PAGE_INDEX: 'index.html',
 	HTML_PAGE_LOGIN: 'login.html',
@@ -93,10 +112,15 @@ var CodeZ = {
 		INFO: 'dataInfo.html',
 	},
 
-	HTML_PAGE_COUNTER: 'counter.html',
-	HTML_PAGE_CONTROLPARAMETER: 'controlParameters.html',
-	HTML_PAGE_AUTO_CONTROL: 'autoControl.html',
-	HTML_PAGE_CONTROL_DATA: 'controlData.html',
+	HTML_PAGE_COUNTER: {
+		INDEX: 'dataIndex.html',
+		LIST: 'dataList.html',
+		INFO: 'dataInfo.html',
+	},
+
+	HTML_PAGE_CONTROLPARAMETER: 'dataInfo.html',
+	HTML_PAGE_AUTO_CONTROL: 'dataInfo.html',
+	HTML_PAGE_CONTROL_DATA: 'dataInfo.html',
 	HTML_PAGE_USERMAN: undefined,
 
 	HTML_PAGE_ROLEMAN: 'roleMan.html',
@@ -132,9 +156,9 @@ var CodeZ = {
 		MACHINE: 'dataIndex.html',
 		COUNTER: 'dataIndex.html',
 	},
-	URI_CONTROLPARAMETER: 'controlParameters.html',
-	URI_AUTO_CONTROL: 'autoControl.html',
-	URI_CONTROL_DATA: 'controlData.html',
+	URI_CONTROLPARAMETER: 'dataIndex.html',
+	URI_AUTO_CONTROL: 'dataIndex.html',
+	URI_CONTROL_DATA: 'dataIndex.html',
 	URI_SECURITY_MAN: {
 		USERMAN: 'userman.html',
 		ROLEMAN: 'roleMan.html'
@@ -163,8 +187,8 @@ var SessionMan = {
 				}
 				break;
 			case CodeZ.NAV_MACHINEMAN.MACHINE:
-			{
-					//传感器处理
+				{
+					//压铸机处理
 					$.session.set('tag', JSON.stringify(CodeZ.TAG_MACHINE));
 					$.session.set('action', JSON.stringify(CodeZ.ACTION_MACHINE));
 					$.session.set('page', JSON.stringify(CodeZ.HTML_PAGE_MACHINE));
@@ -172,7 +196,13 @@ var SessionMan = {
 				}
 				break;
 			case CodeZ.NAV_MACHINEMAN.COUNTER:
-
+				{
+					//计数器处理
+					$.session.set('tag', JSON.stringify(CodeZ.TAG_COUNTER));
+					$.session.set('action', JSON.stringify(CodeZ.ACTION_COUNTER));
+					$.session.set('page', JSON.stringify(CodeZ.HTML_PAGE_COUNTER));
+					$.session.set('cacheKey', tag + '_key');
+				}
 				break;
 			case CodeZ.NAV_CONTROLPARAMETER:
 
