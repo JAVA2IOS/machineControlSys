@@ -49,7 +49,7 @@
     <session id="-1904037345">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="19" />
+          <entry key="project.closed" value="20" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
@@ -62,12 +62,12 @@
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.25" value="1" />
-          <entry key="project.open.time.26" value="1" />
+          <entry key="project.open.time.26" value="2" />
           <entry key="project.open.time.27" value="1" />
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.34" value="1" />
-          <entry key="project.opened" value="19" />
+          <entry key="project.opened" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -77,7 +77,7 @@
           <entry key="http" value="1" />
           <entry key="ini" value="2" />
           <entry key="js" value="5" />
-          <entry key="php" value="197" />
+          <entry key="php" value="205" />
           <entry key="sql" value="1" />
         </counts>
       </usages-collector>
@@ -88,7 +88,7 @@
           <entry key="HTTP Request" value="1" />
           <entry key="Ini" value="2" />
           <entry key="JavaScript" value="4" />
-          <entry key="PHP" value="197" />
+          <entry key="PHP" value="205" />
           <entry key="Scratch" value="2" />
         </counts>
       </usages-collector>
@@ -97,7 +97,7 @@
           <entry key="dummy" value="10" />
           <entry key="html" value="2" />
           <entry key="js" value="62" />
-          <entry key="php" value="20767" />
+          <entry key="php" value="21512" />
           <entry key="txt" value="31" />
         </counts>
       </usages-collector>
@@ -105,7 +105,7 @@
         <counts>
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="62" />
-          <entry key="PHP" value="20767" />
+          <entry key="PHP" value="21512" />
           <entry key="PLAIN_TEXT" value="41" />
         </counts>
       </usages-collector>
@@ -124,8 +124,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/service/Routers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="46" column="27" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="27" />
+            <state relative-caret-position="315">
+              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
             </state>
           </provider>
         </entry>
@@ -133,26 +133,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dao/machineDao.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1663">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="483">
+              <caret line="44" column="13" lean-forward="true" selection-start-line="38" selection-start-column="12" selection-end-line="44" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dao/controlParameterDao.php">
+        <entry file="file://$PROJECT_DIR$/dao/counterDao.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1180">
-              <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/counter.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="56" column="50" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="50" />
+            <state relative-caret-position="-697">
+              <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -160,17 +151,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dao/controlPortDao.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="890">
+            <state relative-caret-position="545">
               <caret line="106" column="17" lean-forward="true" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dao/controlParameterDao.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="143" column="9" lean-forward="true" selection-start-line="114" selection-start-column="8" selection-end-line="143" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/service/MachineMan.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="72" column="9" lean-forward="true" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dao/softParameterDao.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="85" column="42" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="42" />
+            <state relative-caret-position="483">
+              <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
             </state>
           </provider>
         </entry>
@@ -178,35 +187,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/operator.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1641">
-              <caret line="73" column="13" lean-forward="true" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
+            <state relative-caret-position="1249">
+              <caret line="69" column="17" lean-forward="true" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/controlParameter.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="582">
+              <caret line="48" column="47" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/service/SoftParameterMan.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1511">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dao/roleDao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1012">
-              <caret line="49" column="27" lean-forward="true" selection-start-line="35" selection-start-column="12" selection-end-line="49" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/controlPort.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1380">
-              <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+            <state relative-caret-position="421">
+              <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
             </state>
           </provider>
         </entry>
@@ -228,6 +228,7 @@
       <find>\&lt;\?php\n    \/\*\*\n     \* Created by PhpStorm\.\n     \* User\: hq\n     \* Date\: 2018\/10\/14\n     \* Time\: 14\:50\n     \*\/\n    define\(\&quot;CodeZNowTimeStamp\&quot;\, date\(\'Y\-m\-d\'\, time\(\)\)\)\;\n    define\(\&quot;CodeZNowDate\&quot;\, date\(\'Y\-m\-d\'\)\)\;\n    define\(\&quot;CodeZNowDateYM\&quot;\, date\(\'Y\-m\'\)\)\;\n    define\(\&quot;CodeZNowDateY_M_D_HMS\&quot;\, date\(\'Y\-m\-d H\:i\:s\'\)\)\; \n    \?\&gt;\n</find>
       <find>\&lt;\?php\n\n\/\*\*\n \* Created by PhpStorm\.\n \* User\: codez\n \* Date\: 2018年10月13日\n \* Time\: 21点15分\n \*\/\n\n\n    define\(\&quot;CodeZUpdate\&quot;\, \&quot;update\&quot;\)\;\n    define\(\&quot;CodeZInsert\&quot;\, \&quot;insert\&quot;\)\;\n    define\(\&quot;CodeZDeleted\&quot;\, \&quot;delete\&quot;\)\;\n    define\(\&quot;SQLERROR_SYNTAX\&quot;\, \&quot;SQL_SYNTAX_ERROR\&quot;\)\;\n    define\(\&quot;SQLERROR_EXCUTE_FAILED\&quot;\, \&quot;SQL_EXCUTE_FAILED\&quot;\)\;\n    define\(\&quot;SQLERROR_DATA_EMPTY\&quot;\, \&quot;SQL_DATA_EMPTY\&quot;\)\;\n    define\(\&quot;SQLERROR_SQL_SCENTENCE_EMPTY\&quot;\, \&quot;SQL_SCENTENCE_NULL\&quot;\)\;\n\n    class CodeDBTool\n    \{\n\n        const insertAction \= \&quot;insert into\&quot;\;\n        const updateAction \= \&quot;update\&quot;\;\n        const deleteAction \= \&quot;delete from\&quot;\;\n        const sqlSentenceSelect \= \&quot;SELECT\&quot;\;\n        const sqlSentenceFrom \= \&quot;FROM\&quot;\;\n        const sqlSentenceWhere \= \&quot;WHERE\&quot;\;\n        const sqlSentenceLeftJoin \= \&quot;LEFT JOIN\&quot;\;\n        const sqlSentenceRightJoin \= \&quot;RIGHT JOIN\&quot;\;\n\n        \/\*\n         \* sql 查询 字符串拼写\n         \* \*\/\n        function CodeZQuerySql\(\$tableName \= NULL\, \$queryColumns \= NULL\, \$parameters \= NULL\) \{\n            if \(empty\(\$tableName\)\) \{\n                return NULL\;\n            \}\n            \$sqlString \= \&quot;SELECT \&quot;\;\n            if \(empty\(\$queryColumns\)\) \{\n                \$sqlString \= \$sqlString \. \&quot; \* FROM \&quot; \. \$tableName\;\n            \}else \{\n                \$sqlString \= \$sqlString \. \$queryColumns \. \&quot; FROM \&quot; \. \$tableName\;\n            \}\n\n            if \(empty\(\$parameters\)\) \{\n                return \$sqlString \. \&quot;\;\&quot;\;\n            \}\n\n            return \$sqlString \. \&quot; where \&quot; \. \$parameters \. \&quot;\;\&quot;\;\n        \}\n\n        \/\*\n         \* 关于 更新 字符串的拼写\n         \* \*\/\n        function CodeZCommitUpdateSql\(\$commitAction\, \$tableName \= NULL\, \$queryColumn \= NULL\, \$values \= NULL\, \$parameters \= NULL\) \{\n            if \(empty\(\$commitAction\)\) \{\n                return NULL\;\n            \}\n\n            switch \(\$commitAction\) \{\n                case CodeZUpdate\:\n                    return \$this\-\&gt;CodeZUpdateSql\(\$tableName\, \$values\, \$parameters\)\;\n                    break\;\n                case CodeZInsert\:\n                    return \$this\-\&gt;CodeZInsertSql\(\$tableName\, \$queryColumn\, \$values\)\;\n                    break\;\n                case CodeZDeleted\:\n                    return \$this\-\&gt;CodeZDeletedSql\(\$tableName\, \$parameters\)\;\n                    break\;\n            \}\n\n            return NULL\;\n        \}\n\n        \/\* sql insert \*\/\n        function CodeZInsertSql\(\$tableName \= NULL\, \$columns \= NULL\, \$values \= NULL\) \{\n            if \(empty\(\$tableName\)\) \{\n                return NULL\;\n            \}\n\n            \$sqlString \= self\:\:insertAction \. \&quot; \&quot; \. \$tableName\;\n\n            if \(empty\(\$columns\)\) \{\n\n            \}else \{\n                \$sqlString \= \$sqlString \. \&quot; \(\&quot; \. \$columns \. \&quot;\)\&quot;\;\n            \}\n\n            if \(empty\(\$values\)\) \{\n                return NULL\;\n            \}else \{\n                return \$sqlString \. \&quot; VALUES \(\&quot; \. \$values \. \&quot;\)\;\&quot;\;\n            \}\n        \}\n\n        \/\* sql update  \*\/\n        function CodeZUpdateSql\(\$tableName \= NULL\, \$values \= NULL\, \$parameters \= NULL\) \{\n            if \(empty\(\$tableName\)\) \{\n                return NULL\;\n            \}\n\n            \$sqlString \= self\:\:updateAction \. \&quot; \&quot; \. \$tableName\;\n\n            if \(empty\(\$values\)\) \{\n                return NULL\;\n            \}else \{\n                \$sqlString \= \$sqlString \. \&quot; SET \&quot; \. \$values \. \&quot; \&quot;\;\n            \}\n\n            if \(empty\(\$parameters\)\) \{\n                return \$sqlString \. \&quot;\;\&quot;\;\n            \}else \{\n                return \$sqlString \. \&quot; WHERE \&quot; \. \$values \. \&quot;\;\&quot;\;\n            \}\n        \}\n\n        \/\* sql delete  \*\/\n        function CodeZDeletedSql\(\$tableName \= NULL\, \$parameters \= NULL\) \{\n            if \(empty\(\$tableName\)\) \{\n                return NULL\;\n            \}\n\n            \$sqlString \= self\:\:deleteAction \. \&quot; \&quot; \. \$tableName\;\n\n            if \(empty\(\$parameters\)\) \{\n                return \$sqlString \. \&quot;\;\&quot;\;\n            \}else \{\n                return \$sqlString \. \&quot; WHERE \&quot; \. \$parameters \. \&quot;\;\&quot;\;\n            \}\n        \}\n\n        \/\*\n        连接数据库\n        \*\/\n        public static function getConn\(\)\n        \{\n            \/\* 配置文件数据 \*\/\n            \$config \= parse_ini_file\(realpath\(dirname\(__FILE__\)\.\'\/\.\.\/\'\)\.\'\/config\/cfg\.ini\'\)\;\n            \$host \= \$config\[\'databasepath\'\]\;\n            \$username \= \$config\[\'account\'\]\;\n            \$password \= \$config\[\'passport\'\]\;\n            \$dbname \= \$config\[\'database\'\]\;\n\n            \$conn \= mysqli_connect\(\$host\, \$username\, \$password\, \$dbname\)\;\n\n            if \(\$conn\-\&gt;connect_errno\)\n            \{\n                die\(\&quot;连接MySQL数据库失败\！\&quot; \. \$conn\-\&gt;connect_error\)\;\n            \}\n\n            \/\* 设置字符串编码\，防止乱码问题 \*\/\n            mysqli_query\(\$conn\, \&quot;set names utf8\&quot;\)\;\n\n            return \$conn\;\n        \}\n\n\n        \/\* excute query data \*\/\n        public static function excuteQuery\(\$sqlString\)\n        \{\n            try \{\n                \/\/ 创建连接\n                \$conn \= self\:\:getConn\(\)\;\n                if \(empty\(\$sqlString\)\) \{\n                    die\(\&quot;sql为空\, 无法查询 \&quot;\)\;\n                \}\n\n                \$result \= mysqli_query\(\$conn\, \$sqlString\)\;\n\n                if \(mysqli_num_rows\(\$result\) \&gt; 0\) \{\n                    return \$result\;\n                \} else \{\n                    throw new  Exception\(SQLERROR_SQL_SCENTENCE_EMPTY\)\;\n                \}\n            \}catch \(Exception \$e\)\{\n                \n            \}\n\n    \/\/\	\	mysqli_close\(\$conn\)\;\n        \}\n\n        \/\* excute update\, insert\, delete data \*\/\n        public static function excuteUpdate\(\$sqlString\)\n        \{\n            try \{\n            \/\/ 创建连接\n            \$conn \= self\:\:getConn\(\)\;\n            if \(empty\(\$sqlString\)\) \{\n                throw new  Exception\(SQLERROR_SQL_SCENTENCE_EMPTY\)\;\n            \}\n\n            if \(mysqli_query\(\$conn\, \$sqlString\)\) \{\n                return true\;\n            \} else \{\n                throw new  Exception\(SQLERROR_EXCUTE_FAILED\. \&quot; reason \:\&quot; \. mysqli_error\(\$conn\)\)\;\n            \}\n        \}catch \(Exception \$e\)\{\n\n    \}\n        \}\n    \}\n\?\&gt;</find>
       <find>echo</find>
+      <find>\&lt;\?php\n    \/\*\*\n     \* Created by PhpStorm\.\n     \* User\: hq\n     \* Date\: 2018\/10\/25\n     \* Time\: 22\:19\n     \*\/\n    require_once dirname\(__FILE__\) \. \&quot;\/\.\.\/tool\/DB\.php\&quot;\;\n    require_once dirname\(__FILE__\) \. \&quot;\/\.\.\/tool\/Common\.php\&quot;\;\n    require_once dirname\(__FILE__\) \. \&quot;\/\.\.\/model\/controlParameter\.php\&quot;\;\n\n    class controlParameterDao extends CodeDBTool\n    \{\n        \/\* 控制参数列表 \*\/\n        public function parametersList\(\$getAll \= true\) \{\n            \$parameters \= \&quot;deleted \= 0\&quot;\;\n            \$sqlString \= \$this\-\&gt;CodeZQuerySql\(CodeZEnumTable\:\:PARAMETER\, NULL\, \$getAll \? NULL \: \$parameters\)\;\n            \$result \= self\:\:excuteQuery\(\$sqlString\)\;\n\n            if \(self\:\:dataExisted\(\$result\)\) \{\n                \$rowArray \= array\(\)\;\n                foreach \(\$result\[\'data\'\] as \$row\) \{\n                    \$paras \= new controlParameter\(\)\;\n                    \$paras\-\&gt;tableMappers\(\$row\)\;\n                    array_push\(\$rowArray\, \$paras\)\;\n                \}\n\n                self\:\:replaceData\(\$result\, \$rowArray\)\;\n            \}\n\n            return \$result\;\n        \}\n\n        \/\* 新增控制参数 \*\/\n        public function addParameters\(controlParameter \$controlParameter\)\n        \{\n            \$columns \= \&quot;ctrlNo\,  rollWeight\, material\, rollNumber\, rollIntervals\, rollPressure\, rollName\, rollTimes\&quot;\;\n            \$values \= CodeZAddApostrophe\(\$controlParameter\-\&gt;ctrlNo\)\;\n            \$values \= \$values \. \&quot;\, \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;rollWeight\)\;\n            \$values \= \$values \. \&quot;\, \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;material\)\;\n            \$values \= \$values \. \&quot;\, \&quot; \. \$controlParameter\-\&gt;rollNumber\;\n            \$values \= \$values \. \&quot;\, \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;rollIntervals\)\;\n            \$values \= \$values \. \&quot;\, \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;rollPressure\)\;\n            \$values \= \$values \. \&quot;\, \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;rollName\)\;\n            \$values \= \$values \. \&quot;\, \&quot; \. \$controlParameter\-\&gt;rollTimes\;\n\n            \$sqlString \= \$this\-\&gt;CodeZInsertSql\(CodeZEnumTable\:\:PARAMETER\, \$columns\, \$values\)\;\n            CodeZPrintData\(\$sqlString\)\;\n\n            return self\:\:excuteUpdate\(\$sqlString\)\;\n        \}\n\n        \/\* 修改控制参数 \*\/\n        public function editParameters\(controlParameter \$controlParameter\)\n        \{\n            \$columns \= \&quot;rollName \= \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;rollName\)\;\n            \$columns \= \$columns \. \&quot;\, ctrlNo \= \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;ctrlNo\)\;\n            \$columns \= \$columns \. \&quot;\, rollWeight \= \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;rollWeight\)\;\n            \$columns \= \$columns \. \&quot;\, material \= \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;material\)\;\n            \$columns \= \$columns \. \&quot;\, rollNumber \= \&quot; \.  \$controlParameter\-\&gt;rollNumber\;\n            \$columns \= \$columns \. \&quot;\, rollIntervals \= \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;rollIntervals\)\;\n            \$columns \= \$columns \. \&quot;\, rollPressure \= \&quot; \. CodeZAddApostrophe\(\$controlParameter\-\&gt;rollPressure\)\;\n            \$columns \= \$columns \. \&quot;\, rollTimes \= \&quot; \. \$controlParameter\-\&gt;rollTimes\;\n            \$columns \= \$columns \. \&quot;\, deleted \= \&quot; \. \$controlParameter\-\&gt;deleted\;\n\n            \$parameters \= \&quot;ctrlId \= \&quot; \. \$controlParameter\-\&gt;ctrlId\;\n\n            \$sqlString \= \$this\-\&gt;CodeZUpdateSql\(CodeZEnumTable\:\:PARAMETER\, \$columns\, \$parameters\)\;\n\n            CodeZPrintData\(\$sqlString\)\;\n\n            return self\:\:excuteUpdate\(\$sqlString\)\;\n        \}\n\n        \/\* 查询控制参数 \*\/\n        public function searchParametersList\(\$searchString\)\n        \{\n            \$parameters \= \&quot;deleted \= 0 \&quot; \. \&quot;AND ctrlNo like \'\%\&quot; \. \$searchString \. \&quot;\%\'\&quot;\;\n            \$sqlString \= \$this\-\&gt;CodeZQuerySql\(CodeZEnumTable\:\:PARAMETER\, NULL\, \$parameters\)\;\n            CodeZPrintData\(\$sqlString\)\;\n            \$result \= self\:\:excuteQuery\(\$sqlString\)\;\n\n            if \(self\:\:dataExisted\(\$result\)\) \{\n                \$rowArray \= array\(\)\;\n                foreach \(\$result\[\'data\'\] as \$row\) \{\n                    \$paras \= new controlParameter\(\)\;\n                    \$paras\-\&gt;tableMappers\(\$row\)\;\n                    array_push\(\$rowArray\, \$paras\)\;\n                \}\n\n                self\:\:replaceData\(\$result\, \$rowArray\)\;\n            \}\n\n            return \$result\;\n        \}\n\n        public static function emptyDataObj\(controlParameter \$controlParameter\)\n        \{\n            if \(empty\(\$controlParameter\-\&gt;ctrlNo\)\) \{\n                return CodeDBTool\:\:handler\(false\, null\, \&quot;压铸单号不能为空\&quot;\)\;\n            \}\nif \(empty\(\$controlParameter\-\&gt;ctrlNo\)\) \{\n                return CodeDBTool\:\:handler\(false\, null\, \&quot;压铸单号不能为空\&quot;\)\;\n            \}\nif \(empty\(\$controlParameter\-\&gt;ctrlNo\)\) \{\n                return CodeDBTool\:\:handler\(false\, null\, \&quot;压铸单号不能为空\&quot;\)\;\n            \}\nif \(empty\(\$controlParameter\-\&gt;ctrlNo\)\) \{\n                return CodeDBTool\:\:handler\(false\, null\, \&quot;压铸单号不能为空\&quot;\)\;\n            \}\nif \(empty\(\$controlParameter\-\&gt;ctrlNo\)\) \{\n                return CodeDBTool\:\:handler\(false\, null\, \&quot;压铸单号不能为空\&quot;\)\;\n            \}\n\n\n            return null\;\n        \}\n    \}\n\?\&gt;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -246,7 +247,6 @@
         <option value="$PROJECT_DIR$/APP/js/login.js" />
         <option value="$PROJECT_DIR$/tool/`1212.http" />
         <option value="$PROJECT_DIR$/model/user.php" />
-        <option value="$PROJECT_DIR$/tool/DB.php" />
         <option value="$PROJECT_DIR$/dao/dbManagerDao.php" />
         <option value="$PROJECT_DIR$/tool/CodeZObject.php" />
         <option value="$PROJECT_DIR$/model/dbManager.php" />
@@ -257,9 +257,7 @@
         <option value="$PROJECT_DIR$/model/sensor.php" />
         <option value="$PROJECT_DIR$/model/counter.php" />
         <option value="$PROJECT_DIR$/dao/counterDao.php" />
-        <option value="$PROJECT_DIR$/dao/controlParameterDao.php" />
         <option value="$PROJECT_DIR$/model/operator.php" />
-        <option value="$PROJECT_DIR$/dao/softParameterDao.php" />
         <option value="$PROJECT_DIR$/tool/Common.php" />
         <option value="$PROJECT_DIR$/dao/userDao.php" />
         <option value="$PROJECT_DIR$/service/UserMan.php" />
@@ -267,10 +265,13 @@
         <option value="$PROJECT_DIR$/model/controlPort.php" />
         <option value="$PROJECT_DIR$/dao/controlPortDao.php" />
         <option value="$PROJECT_DIR$/service/SoftParameterMan.php" />
-        <option value="$PROJECT_DIR$/service/MachineMan.php" />
         <option value="$PROJECT_DIR$/dao/sensorDao.php" />
         <option value="$PROJECT_DIR$/dao/machineDao.php" />
+        <option value="$PROJECT_DIR$/tool/DB.php" />
+        <option value="$PROJECT_DIR$/dao/controlParameterDao.php" />
+        <option value="$PROJECT_DIR$/service/MachineMan.php" />
         <option value="$PROJECT_DIR$/service/Routers.php" />
+        <option value="$PROJECT_DIR$/dao/softParameterDao.php" />
       </list>
     </option>
   </component>
@@ -294,7 +295,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -337,6 +337,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,11 +407,12 @@
       <workItem from="1542196184543" duration="10787000" />
       <workItem from="1542440287416" duration="12409000" />
       <workItem from="1542530196021" duration="2156000" />
+      <workItem from="1542630827374" duration="7827000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127788000" />
+    <option name="totallyTimeSpent" value="135615000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -424,7 +426,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49838883" visible="true" weight="0.195629" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49838883" visible="true" weight="0.1977612" />
       <window_info id="Favorites" order="1" sideWeight="0.5016112" side_tool="true" weight="0.17963752" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -483,13 +485,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/login.js" />
-    <entry file="das://90a32d92-e4ac-408a-8544-53e11cab0132/schema/machinecsdb/table/dbmanager">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://90a32d92-e4ac-408a-8544-53e11cab0132/schema/machinecsdb/table/dbmanager" />
     <entry file="file://$PROJECT_DIR$/dao/dbManagerDao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-668">
@@ -515,20 +511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="874">
           <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/controlParameter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="8" column="64" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/counterDao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -567,13 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tool/DB.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="251" column="27" lean-forward="true" selection-start-line="251" selection-start-column="27" selection-end-line="251" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/service/UserMan.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -602,17 +577,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service/MachineMan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="920">
-          <caret line="45" column="48" selection-start-line="45" selection-start-column="48" selection-end-line="45" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dao/sensorDao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="29" column="12" lean-forward="true" selection-start-line="29" selection-start-column="12" selection-end-line="31" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/counter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="56" column="50" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -630,59 +605,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/counter.php">
+    <entry file="file://$PROJECT_DIR$/tool/DB.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="56" column="50" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/Routers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="46" column="27" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/machineDao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1663">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/controlParameterDao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1180">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/controlPortDao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="890">
-          <caret line="106" column="17" lean-forward="true" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/operator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1641">
-          <caret line="73" column="13" lean-forward="true" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/softParameterDao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="85" column="42" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="42" />
+        <state relative-caret-position="546">
+          <caret line="206" column="17" lean-forward="true" selection-start-line="206" selection-start-column="17" selection-end-line="206" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/service/SoftParameterMan.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1511">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="421">
+          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/counterDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-697">
+          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/controlPortDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="106" column="17" lean-forward="true" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/controlParameter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="48" column="47" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/MachineMan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="72" column="9" lean-forward="true" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/controlParameterDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="143" column="9" lean-forward="true" selection-start-line="114" selection-start-column="8" selection-end-line="143" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/Routers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/operator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1249">
+          <caret line="69" column="17" lean-forward="true" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/machineDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="44" column="13" lean-forward="true" selection-start-line="38" selection-start-column="12" selection-end-line="44" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/softParameterDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
         </state>
       </provider>
     </entry>

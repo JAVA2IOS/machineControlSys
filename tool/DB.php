@@ -199,11 +199,11 @@
 
             if (empty(mysqli_error($conn))) {
                 if (mysqli_num_rows($result) >0) {
-                    $rolwArray = array();
+                    $rowArray = array();
                     while ($row = mysqli_fetch_assoc($result)) {
-                        array_push($rolwArray, $row);
+                        array_push($rowArray, $row);
                     }
-                    return self::handler(true, $rolwArray, NULL);
+                    return self::handler(true, $rowArray, NULL);
                 }
                 return self::dataEmpty();
             }else {

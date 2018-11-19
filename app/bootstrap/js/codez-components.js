@@ -38,6 +38,30 @@ var CodeZ = {
 		EDIT: 'counterEdit',
 	},
 
+	ACTION_PARAMETERS: {
+		ADD: 'parameterAdd',
+		LIST: 'parameterList',
+		EDIT: 'parameterEdit',
+	},
+
+	ACTION_AUTO_CONTROL: {
+		ADD: 'operatorAdd',
+		LIST: 'operatorList',
+		EDIT: 'operatorEdit',
+	},
+
+	ACTION_CONTROL_DATA: {
+		ADD: 'Add',
+		LIST: 'List',
+		EDIT: 'Edit',
+	},
+
+	ACTION_ROLEMAN: {
+		ADD: 'Add',
+		LIST: 'List',
+		EDIT: 'Edit',
+	},
+
 	// 标识符
 	TAG_CONTROL_CFG_LIST: 'tag_control_cfg_list',
 	TAG_CONTROL_CFG_EDIT: 'tag_control_cfg_edit',
@@ -92,6 +116,58 @@ var CodeZ = {
 		INFOTITLE: '压铸计数器信息',
 	},
 
+	TAG_PARAMETERS: {
+		INDEX: 'tag_parameters_index',
+		LIST: 'tag_parameters_list',
+		ADD: 'tag_parameters_add',
+		EDIT: 'tag_parameters_edit',
+		INFO: 'tag_parameters_info',
+		INDEXTILE: '控制参数',
+		LISTTITLE: '控制参数',
+		ADDTITLE: '新增控制参数',
+		EDITTITLE: '修改控制参数',
+		INFOTITLE: '控制参数信息',
+	},
+
+	TAG_AUTO_CONTROL: {
+		INDEX: 'tag_auto_control_index',
+		LIST: 'tag_auto_control_list',
+		ADD: 'tag_auto_control_add',
+		EDIT: 'tag_auto_control_edit',
+		INFO: 'tag_auto_control_info',
+		INDEXTILE: '压铸机智能化控制',
+		LISTTITLE: '压铸机智能化控制',
+		ADDTITLE: '添加压铸机控制',
+		EDITTITLE: '修改压铸机控制',
+		INFOTITLE: '压铸机控制信息',
+	},
+
+	TAG_CONTROL_DATA: {
+		INDEX: 'tag_control_data_index',
+		LIST: 'tag_control_data_list',
+		ADD: 'tag_control_data_add',
+		EDIT: 'tag_control_data_edit',
+		INFO: 'tag_control_data_info',
+		INDEXTILE: '自动压铸机控制',
+		LISTTITLE: '自动压铸机控制',
+		ADDTITLE: '添加自动压铸机',
+		EDITTITLE: '自动压铸机信息',
+		INFOTITLE: '自动压铸机信息',
+	},
+
+	TAG_ROLEMAN: {
+		INDEX: 'tag_role_index',
+		LIST: 'tag_role_list',
+		ADD: 'tag_role_add',
+		EDIT: 'tag_role_edit',
+		INFO: 'tag_role_info',
+		INDEXTILE: '角色管理',
+		LISTTITLE: '角色管理',
+		ADDTITLE: '添加角色',
+		EDITTITLE: '编辑角色',
+		INFOTITLE: '角色信息',
+	},
+
 	// HTML
 	HTML_PAGE_INDEX: 'index.html',
 	HTML_PAGE_LOGIN: 'login.html',
@@ -118,12 +194,36 @@ var CodeZ = {
 		INFO: 'dataInfo.html',
 	},
 
-	HTML_PAGE_CONTROLPARAMETER: 'dataInfo.html',
-	HTML_PAGE_AUTO_CONTROL: 'dataInfo.html',
-	HTML_PAGE_CONTROL_DATA: 'dataInfo.html',
+	HTML_PAGE_PARAMETERS: {
+		INDEX: 'dataIndex.html',
+		LIST: 'dataList.html',
+		INFO: 'dataInfo.html',
+	},
+
+	HTML_PAGE_AUTO_CONTROL: {
+		INDEX: 'dataIndex.html',
+		LIST: 'dataList.html',
+		INFO: 'dataInfo.html',
+	},
+
+	HTML_PAGE_CONTROL_DATA: {
+		INDEX: 'dataIndex.html',
+		LIST: 'controlDataList.html',
+		INFO: 'dataInfo.html',
+	},
+
+	HTML_PAGE_ROLEMAN: {
+		INDEX: 'dataIndex.html',
+		LIST: 'controlDataList.html',
+		INFO: 'dataInfo.html',
+	},
+
+	// HTML_PAGE_CONTROLPARAMETER: 'dataInfo.html',
+	// HTML_PAGE_AUTO_CONTROL: 'dataInfo.html',
+	// HTML_PAGE_CONTROL_DATA: 'dataInfo.html',
 	HTML_PAGE_USERMAN: undefined,
 
-	HTML_PAGE_ROLEMAN: 'roleMan.html',
+	// HTML_PAGE_ROLEMAN: 'roleMan.html',
 	HTML_PAGE_USER_LIST: 'tableList.html',
 	HTML_PAGE_USER_EDIT: 'userEdit.html',
 	HTML_PAGE_USER_ADD: 'userEdit.html',
@@ -161,7 +261,7 @@ var CodeZ = {
 	URI_CONTROL_DATA: 'dataIndex.html',
 	URI_SECURITY_MAN: {
 		USERMAN: 'userman.html',
-		ROLEMAN: 'roleMan.html'
+		ROLEMAN: 'dataIndex.html'
 	},
 }
 
@@ -205,19 +305,41 @@ var SessionMan = {
 				}
 				break;
 			case CodeZ.NAV_CONTROLPARAMETER:
+				{
+					$.session.set('tag', JSON.stringify(CodeZ.TAG_PARAMETERS));
+					$.session.set('action', JSON.stringify(CodeZ.ACTION_PARAMETERS));
+					$.session.set('page', JSON.stringify(CodeZ.HTML_PAGE_PARAMETERS));
+					$.session.set('cacheKey', tag + '_key');
+				}
 
 				break;
 			case CodeZ.NAV_AUTO_CONTROL:
+				{
+					$.session.set('tag', JSON.stringify(CodeZ.TAG_AUTO_CONTROL));
+					$.session.set('action', JSON.stringify(CodeZ.ACTION_AUTO_CONTROL));
+					$.session.set('page', JSON.stringify(CodeZ.HTML_PAGE_AUTO_CONTROL));
+					$.session.set('cacheKey', tag + '_key');
+				}
 
 				break;
 			case CodeZ.NAV_CONTROL_DATA:
-
+				{
+					$.session.set('tag', JSON.stringify(CodeZ.TAG_CONTROL_DATA));
+					$.session.set('action', JSON.stringify(CodeZ.ACTION_CONTROL_DATA));
+					$.session.set('page', JSON.stringify(CodeZ.HTML_PAGE_CONTROL_DATA));
+					$.session.set('cacheKey', tag + '_key');
+				}
 				break;
 			case CodeZ.NAV_SECURITY_MAN.USERMAN:
 
 				break;
 			case CodeZ.NAV_SECURITY_MAN.ROLEMAN:
-
+				{
+					$.session.set('tag', JSON.stringify(CodeZ.TAG_ROLEMAN));
+					$.session.set('action', JSON.stringify(CodeZ.ACTION_ROLEMAN));
+					$.session.set('page', JSON.stringify(CodeZ.HTML_PAGE_ROLEMAN));
+					$.session.set('cacheKey', tag + '_key');
+				}
 				break;
 			default:
 				break;
@@ -447,11 +569,13 @@ var CodeZComponents = {
 
 	// 请求服务
 	postRequest: function(parameters, callback) {
+		console.info('参数:' + parameters);
 		$.ajax({
 			type: 'post',
 			url: CodeZ.RQUEST_URI,
 			data: parameters,
 			success: function(result) {
+				console.info('result :' + result);
 				if(isJSON(result)) {
 					var data = JSON.parse(result);
 					if(!data.success) {

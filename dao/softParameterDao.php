@@ -11,25 +11,30 @@
     require_once dirname(__FILE__) . "/../model/operator.php";
 
     /* 自动化控制 */
+
     class softParameterDao extends CodeDBTool
     {
 
         public function addOperator(operator $operator)
         {
+            $emptyData = self::emptyOperatorObj($operator)
+            if (!empty($emptyData)) {
+                return $emptyData;
+            }
             $columns = "totalTime,  ctrlId, rollWeight, material, rollNumber, rollIntervals,  rollPressure, rollTimes, openedSensor, openedCounter, openedMachine, startTime, stopTime";
-            $values = CodeZAddApostrophe($operator->totalTime);
-            $values = $values . ", " . $operator->ctrlId;
-            $values = $values . ", " . CodeZAddApostrophe($operator->rollWeight);
-            $values = $values . ", " . CodeZAddApostrophe($operator->material);
-            $values = $values . ", " . $operator->rollNumber;
-            $values = $values . ", " . CodeZAddApostrophe($operator->rollIntervals);
-            $values = $values . ", " . CodeZAddApostrophe($operator->rollPressure);
-            $values = $values . ", " . $operator->rollTimes;
-            $values = $values . ", " . $operator->openedSensor;
-            $values = $values . ", " . $operator->openedCounter;
-            $values = $values . ", " . $operator->openedMachine;
-            $values = $values . ", " . CodeZAddApostrophe($operator->startTime);
-            $values = $values . ", " . CodeZAddApostrophe($operator->stopTime);
+            $values  = CodeZAddApostrophe($operator->totalTime);
+            $values  = $values . ", " . $operator->ctrlId;
+            $values  = $values . ", " . CodeZAddApostrophe($operator->rollWeight);
+            $values  = $values . ", " . CodeZAddApostrophe($operator->material);
+            $values  = $values . ", " . $operator->rollNumber;
+            $values  = $values . ", " . CodeZAddApostrophe($operator->rollIntervals);
+            $values  = $values . ", " . CodeZAddApostrophe($operator->rollPressure);
+            $values  = $values . ", " . $operator->rollTimes;
+            $values  = $values . ", " . $operator->openedSensor;
+            $values  = $values . ", " . $operator->openedCounter;
+            $values  = $values . ", " . $operator->openedMachine;
+            $values  = $values . ", " . CodeZAddApostrophe($operator->startTime);
+            $values  = $values . ", " . CodeZAddApostrophe($operator->stopTime);
 
             $sqlString = $this->CodeZInsertSql(CodeZEnumTable::OPERATOR, $columns, $values);
             CodeZPrintData($sqlString);
@@ -38,7 +43,12 @@
         }
 
         /* 修改传感器(维护、注销、测试链接) */
-        function editOperator(operator $operator) {
+        function editOperator(operator $operator)
+        {
+            $emptyData = self::emptyOperatorObj($operator)
+            if (!empty($emptyData)) {
+                return $emptyData;
+            }
             $columns = "totalTime = " . CodeZAddApostrophe($operator->totalTime);
             $columns = $columns . ", ctrlId = " . $operator->ctrlId;
             $columns = $columns . ", rollNumber = " . $operator->rollNumber;
@@ -63,10 +73,11 @@
             return self::excuteUpdate($sqlString);
         }
 
-        function operatorList($getAll = true) {
+        function operatorList($getAll = true)
+        {
             $parameters = "deleted = 0";
-            $sqlString = $this->CodeZQuerySql(CodeZEnumTable::OPERATOR, NULL, $getAll ? NULL : $parameters);
-            $result = self::excuteQuery($sqlString);
+            $sqlString  = $this->CodeZQuerySql(CodeZEnumTable::OPERATOR, NULL, $getAll ? NULL : $parameters);
+            $result     = self::excuteQuery($sqlString);
 
             if (self::dataExisted($result)) {
                 $rowArray = array();
@@ -86,7 +97,7 @@
         public function searchOperatorList($searchString)
         {
             $parameters = "deleted = 0 " . "AND ctrlId like '%" . $searchString . "%'";
-            $sqlString = $this->CodeZQuerySql(CodeZEnumTable::MACHINE, NULL, $parameters);
+            $sqlString  = $this->CodeZQuerySql(CodeZEnumTable::MACHINE, NULL, $parameters);
             CodeZPrintData($sqlString);
             $result = self::excuteQuery($sqlString);
 
@@ -102,6 +113,25 @@
             }
 
             return $result;
+        }
+
+        public static function emptyOperatorObj(operator $operator)
+        {
+            if (empty($operator->ctrlId)) {
+                return CodeDBTool::handler(false, null, "压铸单号不能为空");
+            }
+            if (empty($operator->rollWeight)) {
+                return CodeDBTool::handler(false, null, "连铸连轧重量不能为空");
+            }
+            if (empty($operator->material)) {
+                return CodeDBTool::handler(false, null, "材质不能为空");
+            }
+            if (empty($operator->rollNumber)) {
+                return CodeDBTool::handler(false, null, "连铸连轧个数不能为空");
+            }
+
+
+            return null;
         }
     }
 

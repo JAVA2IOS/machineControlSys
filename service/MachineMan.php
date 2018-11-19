@@ -9,6 +9,7 @@
     require_once dirname(__FILE__) . "/../dao/sensorDao.php";
     require_once dirname(__FILE__) . "/../dao/machineDao.php";
     require_once dirname(__FILE__) . "/../dao/counterDao.php";
+    require_once dirname(__FILE__) . "/../dao/controlParameterDao.php";
 
     /*
      * 压铸机配置
@@ -131,5 +132,33 @@
         }
 
 
+        /* 控制参数列表 */
+        public static function controlParametersList($getAll = true)
+        {
+            $parametersDao = new controlParameterDao();
+            echo json_encode($parametersDao->parametersList($getAll));
+        }
+
+        /* 更新控制参数 */
+        public static function editControlParameters($parametersJsonString)
+        {
+            $parametersDao = new controlParameterDao();
+            $parameters = new controlParameter();
+            $parameters->modelWithJson($parametersJsonString);
+            CodeZPrintData($parameters);
+
+            echo json_encode($parametersDao->editParameters($parameters));
+        }
+
+
+        /* 新增控制参数 */
+        public static function addControlParameters($parametersJsonString)
+        {
+            $parametersDao = new controlParameterDao();
+            $parameters = new controlParameter();
+            $parameters->modelWithJson($parametersJsonString);
+
+            echo json_encode($parametersDao->addParameters($parameters));
+        }
     }
 ?>
