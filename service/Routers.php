@@ -48,9 +48,9 @@
         const parameterSrch = "parameterSearch"; // 搜索控制参数
 
         const operatorList = "operatorList"; // 压铸机智能化控制
-        const operatorAdd = "operatorAdd"; // 新增控制参数
-        const operatorEdit = "operatorEdit"; // 修改控制参数
-        const operatorSrch = "operatorSearch"; // 搜索控制参数
+        const operatorAdd = "operatorAdd"; // 新增压铸单号
+        const operatorEdit = "operatorEdit"; // 修改压铸单号
+        const operatorSrch = "operatorSearch"; // 搜索压铸单号
 
 
     }
@@ -254,6 +254,11 @@
                 case RoutersEnumUri::operatorAdd:
                     {
                         SoftParameterMan::addNewOperator($_POST['data']);
+                    }
+                    break;
+                case RoutersEnumUri::operatorSrch:
+                    {
+                        SoftParameterMan::searchOperator($_POST['data']);
                     }
                     break;
             }

@@ -223,7 +223,7 @@
             if (mysqli_query($conn, $sqlString)) {
                 return self::handler(true, "更新成功", NULL);
             } else {
-                return self::handler(false, NULL,SQLERROR_EXCUTE_FAILED . ", reason :" . mysqli_error($conn));
+                return self::handler(false, NULL,SQLERROR_EXCUTE_FAILED . ", reason :" . mysqli_error($conn) . "sql :" . $sqlString);
             }
         }
 

@@ -19,6 +19,7 @@
         public $rollPressure;
         public $rollName;
         public $rollTimes;
+        public $startTime;
         public $deleted;
 
         public function tableMappers($tableArray)
@@ -51,6 +52,9 @@
                 }
                 if (isset($tableArray['rollTimes'])) {
                     $this->rollTimes = $tableArray['rollTimes'];
+                }
+                if (isset($tableArray['startTime'])) {
+                    $this->startTime = $tableArray['startTime'];
                 }
                 if (isset($tableArray['deleted'])) {
                     $this->deleted = $tableArray['deleted'];

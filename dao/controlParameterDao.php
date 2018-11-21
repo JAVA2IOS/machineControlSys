@@ -48,7 +48,7 @@
                 return self::handler(false, null, "压铸单号已经存在，请使用其他单号");
             }
 
-            $columns = "ctrlNo,  rollWeight, material, rollNumber, rollIntervals, rollPressure, rollName, rollTimes";
+            $columns = "ctrlNo,  rollWeight, material, rollNumber, rollIntervals, rollPressure, rollName, rollTimes, startTime";
             $values  = CodeZAddApostrophe($controlParameter->ctrlNo);
             $values  = $values . ", " . CodeZAddApostrophe($controlParameter->rollWeight);
             $values  = $values . ", " . CodeZAddApostrophe($controlParameter->material);
@@ -57,6 +57,7 @@
             $values  = $values . ", " . CodeZAddApostrophe($controlParameter->rollPressure);
             $values  = $values . ", " . CodeZAddApostrophe($controlParameter->rollName);
             $values  = $values . ", " . $controlParameter->rollTimes;
+            $values  = $values . ", " . CodeZAddApostrophe(CodeZNowDateY_M_D_HMS);
 
             $sqlString = $this->CodeZInsertSql(CodeZEnumTable::PARAMETER, $columns, $values);
             CodeZPrintData($sqlString);

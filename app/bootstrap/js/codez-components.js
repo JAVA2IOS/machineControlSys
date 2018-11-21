@@ -15,9 +15,9 @@ var CodeZ = {
 	},
 
 	ACTION_DATA_BASE: {
-		ADD: '',
-		LIST: '',
-		EDIT: '',
+		ADD: 'dataBaseAdd',
+		LIST: 'dataBaseList',
+		EDIT: 'dataBaseEdit',
 	},
 
 	ACTION_SENSOR: {
@@ -48,6 +48,7 @@ var CodeZ = {
 		ADD: 'operatorAdd',
 		LIST: 'operatorList',
 		EDIT: 'operatorEdit',
+		SEARCH: 'operatorSearch',
 	},
 
 	ACTION_CONTROL_DATA: {
@@ -68,14 +69,22 @@ var CodeZ = {
 	TAG_CONTROL_CFG_ADD: 'tag_control_cfg_add',
 	TAG_CONTROL_CFG_INFO: 'tag_control_cfg_info',
 
-	TAG_DATABASE_LIST: 'tag_database_list',
-	TAG_DATABASE_EDIT: 'tag_database_edit',
-	TAG_DATABASE_ADD: 'tag_database_add',
-	TAG_DATABASE_INFO: 'tag_database_info',
-
 	TAG_USER_LIST: 'tag_user_list',
 	TAG_USER_EDIT: 'tag_user_edit',
 	TAG_USER_ADD: 'tag_user_add',
+
+	TAG_DATABASE: {
+		INDEX: 'tag_database_index',
+		INDEXTILE: '数据库管理',
+		LIST: 'tag_database_list',
+		LISTTITLE: '数据库列表',
+		ADD: 'tag_database_add',
+		ADDTITLE: '新增数据库',
+		EDIT: 'tag_database_edit',
+		EDITTITLE: '修改数据库',
+		INFO: 'tag_database_info',
+		INFOTITLE: '数据库信息',
+	},
 
 	TAG_SENSOR: {
 		INDEX: 'tag_sensor_index',
@@ -174,9 +183,12 @@ var CodeZ = {
 	HTML_PAGE_CTRL_CFG: 'controlCfg.html',
 	HTML_PAGE_CTRL_CFG_LIST: 'controlCfgList.html',
 	HTML_PAGE_CTRL_CFG_INFO: 'controlCfgInfo.html',
-	HTML_PAGE_DATABASE_CONNECT: 'database.html',
-	HTML_PAGE_DATABASE_LIST: 'dataBaseList.html',
 
+	HTML_PAGE_DATABASE: {
+		INDEX: 'dataIndex.html',
+		LIST: 'dataList.html',
+		INFO: 'dataInfo.html',
+	},
 	HTML_PAGE_SENSOR: {
 		INDEX: 'dataIndex.html',
 		LIST: 'dataList.html',
@@ -202,7 +214,7 @@ var CodeZ = {
 
 	HTML_PAGE_AUTO_CONTROL: {
 		INDEX: 'dataIndex.html',
-		LIST: 'dataList.html',
+		LIST: 'controlDataList.html',
 		INFO: 'dataInfo.html',
 	},
 
@@ -249,7 +261,7 @@ var CodeZ = {
 	// 导航栏地址
 	URI_SOFTPARAMETER: {
 		CONTROL_CFG: 'controlCfg.html',
-		DATABASE_CONNECT: 'database.html',
+		DATABASE_CONNECT: 'dataIndex.html',
 	},
 	URI_MACHINEMAN: {
 		SENSOR: 'dataIndex.html',
@@ -275,7 +287,13 @@ var SessionMan = {
 			case CodeZ.NAV_SOFTPARAMETER.CONTROL_CFG:
 
 			case CodeZ.NAV_SOFTPARAMETER.DATABASE_CONNECT:
-
+				{
+					//传感器处理
+					$.session.set('tag', JSON.stringify(CodeZ.TAG_DATABASE));
+					$.session.set('action', JSON.stringify(CodeZ.ACTION_DATA_BASE));
+					$.session.set('page', JSON.stringify(CodeZ.HTML_PAGE_DATABASE));
+					$.session.set('cacheKey', tag + '_key');
+				}
 				break;
 			case CodeZ.NAV_MACHINEMAN.SENSOR:
 				{
@@ -895,6 +913,12 @@ var CodeZComponents = {
 			},
 			"child": [{
 					"node": {
+						"text": "压铸机智能化控制",
+						"iconCss": "fa fa-sitemap fa-fw",
+						"target": CodeZ.NAV_AUTO_CONTROL
+					}
+				},{
+					"node": {
 						"id": "",
 						"href": "softparameters",
 						"text": "软件参数",
@@ -953,20 +977,13 @@ var CodeZComponents = {
 						"target": CodeZ.NAV_CONTROLPARAMETER
 					}
 				},
-				{
-					"node": {
-						"text": "压铸机智能化控制",
-						"iconCss": "fa fa-sitemap fa-fw",
-						"target": CodeZ.NAV_AUTO_CONTROL
-					}
-				},
-				{
-					"node": {
-						"text": "控制数据",
-						"iconCss": "fa fa-support fa-fw",
-						"target": CodeZ.NAV_CONTROL_DATA
-					}
-				},
+				// {
+				// 	"node": {
+				// 		"text": "控制数据",
+				// 		"iconCss": "fa fa-support fa-fw",
+				// 		"target": CodeZ.NAV_CONTROL_DATA
+				// 	}
+				// },
 				{
 					"node": {
 						"id": "",
