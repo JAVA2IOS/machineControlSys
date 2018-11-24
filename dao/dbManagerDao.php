@@ -51,8 +51,9 @@
 
         /* 新增数据库 */
         public function addNewDataBase(dbManager $db) {
-            $columns = "dbName";
+            $columns = "dbName, opened";
             $values = CodeZAddApostrophe($db->dbName);
+            $values = $values . ", opened = " . $db->opened;
 
             $insertSql = $this->CodeZInsertSql(CodeZEnumTable::DBMAN, $columns, $values);
 

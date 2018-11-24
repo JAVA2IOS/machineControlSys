@@ -19,36 +19,41 @@
     /*
      路由重定向
      */
+
     abstract class RoutersEnumUri
     {
-        const login = "usrLogin";   // 登录
-        const logout = "usrLogout";   // 退出登录
-        const userEdit = "usrEdit"; // 用户权限管理
-        const userRegist = "usrRegist"; // 用户注册
-        const userList = "usrList"; // 用户列表
-        const roleList = "roleList"; // 角色列表
-        const newRole = "addRole"; // 新增角色
-        const portAdd = "portAdd"; // 新增端口
-        const portList = "portList"; // 端口列表
-        const portEdit = "portEdit"; // 修改端口
-        const sensorList = "sensorList"; // 传感器列表
-        const sensorAdd = "sensorAdd"; // 新增传感器
-        const sensorEdit = "sensorEdit"; // 修改传感器
-        const machineAdd = "machineAdd"; // 新增压铸机
-        const machineList = "machineList"; // 压铸机列表
-        const machineEdit = "machineEdit"; // 修改压铸机
-        const machineSrch = "machineSearch"; // 搜索压铸机
-        const counterList = "counterList"; // 计数器列表
-        const counterAdd = "counterAdd"; // 新增计数器
-        const counterEdit = "counterEdit"; // 修改计数器
-        const counterSrch = "counterSearch"; // 搜索计数器
+        const login         = "usrLogin";   // 登录
+        const logout        = "usrLogout";   // 退出登录
+        const userEdit      = "usrEdit"; // 用户权限管理
+        const userRegist    = "usrRegist"; // 用户注册
+        const userList      = "usrList"; // 用户列表
+        const roleList      = "roleList"; // 角色列表
+        const newRole       = "addRole"; // 新增角色
+        const editRole      = "editRole"; // 修改角色
+        const portAdd       = "portAdd"; // 新增端口
+        const portList      = "portList"; // 端口列表
+        const portEdit      = "portEdit"; // 修改端口
+        const dataBaseList  = "dataBaseList"; // 数据库列表
+        const dataBaseEdit  = "dataBaseEdit"; // 数据库修改
+        const dataBaseAdd   = "dataBaseAdd"; // 数据库新增
+        const sensorList    = "sensorList"; // 传感器列表
+        const sensorAdd     = "sensorAdd"; // 新增传感器
+        const sensorEdit    = "sensorEdit"; // 修改传感器
+        const machineAdd    = "machineAdd"; // 新增压铸机
+        const machineList   = "machineList"; // 压铸机列表
+        const machineEdit   = "machineEdit"; // 修改压铸机
+        const machineSrch   = "machineSearch"; // 搜索压铸机
+        const counterList   = "counterList"; // 计数器列表
+        const counterAdd    = "counterAdd"; // 新增计数器
+        const counterEdit   = "counterEdit"; // 修改计数器
+        const counterSrch   = "counterSearch"; // 搜索计数器
         const parameterList = "parameterList"; // 控制参数列表
-        const parameterAdd = "parameterAdd"; // 新增控制参数
+        const parameterAdd  = "parameterAdd"; // 新增控制参数
         const parameterEdit = "parameterEdit"; // 修改控制参数
         const parameterSrch = "parameterSearch"; // 搜索控制参数
 
         const operatorList = "operatorList"; // 压铸机智能化控制
-        const operatorAdd = "operatorAdd"; // 新增压铸单号
+        const operatorAdd  = "operatorAdd"; // 新增压铸单号
         const operatorEdit = "operatorEdit"; // 修改压铸单号
         const operatorSrch = "operatorSearch"; // 搜索压铸单号
 
@@ -227,10 +232,10 @@
                     }
                     break;
                 case RoutersEnumUri::parameterList:
-                {
-                    MachineMan::controlParametersList(empty($_POST['data']));
-                }
-                break;
+                    {
+                        MachineMan::controlParametersList(empty($_POST['data']));
+                    }
+                    break;
                 case RoutersEnumUri::parameterEdit:
                     {
                         MachineMan::editControlParameters($_POST['data']);
@@ -261,10 +266,40 @@
                         SoftParameterMan::searchOperator($_POST['data']);
                     }
                     break;
+                case RoutersEnumUri::dataBaseList:
+                    {
+                        MachineMan::dataBaseList(empty($_POST['data']));
+                    }
+                    break;
+                case RoutersEnumUri::dataBaseAdd:
+                    {
+                        MachineMan::addDataBase($_POST['data']);
+                    }
+                    break;
+                case RoutersEnumUri::dataBaseEdit:
+                    {
+                        MachineMan::editDataBase($_POST['data']);
+                    }
+                    break;
+                case RoutersEnumUri::roleList:
+                    {
+                        RoleMan::roleList();
+                    }
+                    break;
+                case RoutersEnumUri::newRole:
+                    {
+                        RoleMan::addRole($_POST['data']);
+                    }
+                    break;
+                case RoutersEnumUri::editRole:
+                    {
+                        RoleMan::editRole($_POST['data']);
+                    }
+                    break;
             }
 
         }
-    }catch (Exception $e) {
+    } catch (Exception $e) {
         echo json_encode(CodeDBTool::handler(false, null, "请求异常:" . $e->getMessage()));
     }
 ?>

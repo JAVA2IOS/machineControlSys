@@ -49,6 +49,7 @@ var CodeZ = {
 		LIST: 'operatorList',
 		EDIT: 'operatorEdit',
 		SEARCH: 'operatorSearch',
+		FUZZYSEARCH: 'operatorFuzzySearch',
 	},
 
 	ACTION_CONTROL_DATA: {
@@ -58,9 +59,9 @@ var CodeZ = {
 	},
 
 	ACTION_ROLEMAN: {
-		ADD: 'Add',
-		LIST: 'List',
-		EDIT: 'Edit',
+		ADD: 'addRole',
+		LIST: 'roleList',
+		EDIT: 'editRole',
 	},
 
 	// 标识符
@@ -226,7 +227,7 @@ var CodeZ = {
 
 	HTML_PAGE_ROLEMAN: {
 		INDEX: 'dataIndex.html',
-		LIST: 'controlDataList.html',
+		LIST: 'dataList.html',
 		INFO: 'dataInfo.html',
 	},
 
@@ -585,9 +586,17 @@ var CodeZComponents = {
 		return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
 	},
 
+	getFormatterDate : function(dateString) {
+		var date = dateString;
+		date = date.substring(0,19);    
+		date = date.replace(/-/g,'/'); 
+
+		return new Date(date).getTime();
+	},
+
 	// 请求服务
 	postRequest: function(parameters, callback) {
-		console.info('参数:' + parameters);
+		console.info('参数:' + JSON.stringify(parameters));
 		$.ajax({
 			type: 'post',
 			url: CodeZ.RQUEST_URI,

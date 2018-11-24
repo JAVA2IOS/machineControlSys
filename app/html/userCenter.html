@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>Bootstrap demo template</title>
+
+		<!-- Bootstrap -->
+		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+		<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+		<style type="text/css">
+			body {
+				padding-top: 10px;
+			}
+			
+			.input-group {
+				margin-top: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+
+			<div class="panel">
+				<div class="panel-heading" style="border-bottom:dashed 1px #c2c2c2; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;">
+					<div class="panel-title">&nbsp;
+						<h4>用户管理</h4></div>
+											<ul class="breadcrumb" style="background-color: #FFFFFF; padding-left: 0px;">
+						<li>
+							<a href="#">用户列表</a>
+						</li>
+						<li>
+							<a href="#">新增用户</a>
+						</li>
+					</ul>
+				</div>
+				<div class="panel-body" style="margin-top: 30px;">
+					<form class="form-horizontal">
+						<!--用户名-->
+						<div class="form-group">
+							<label for="userAccount" class="col-sm-2 control-label text-center">用户名</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control dialog-form" id="userName" placeholder="请输入用户名">
+							</div>
+						</div>
+						<!--账号-->
+						<div class="form-group">
+							<label for="userAccount" class="col-sm-2 control-label">账号</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="userAccount" placeholder="请输入账号">
+							</div>
+						</div>
+						<!--密码-->
+						<div class="form-group">
+							<label for="userpassword" class="col-sm-2 control-label">密码</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="userpassword" placeholder="请输入密码">
+							</div>
+						</div>
+						部门
+						<div class="form-group">
+							<label for="dep" class="col-sm-2 control-label">部门</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="dep" placeholder="请输入部门">
+							</div>
+						</div>
+						<!--角色-->
+						<div class="form-group">
+							<label for="userRole" class="col-sm-2 control-label">权限</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="userRole">
+									<option value="1">普通用户</option>
+									<option value="0">系统管理员</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" style="margin-top: 30px;">
+							<div class="col-sm-offset-3 col-sm-9">
+								<button type="button" class="btn btn-default" style="margin-left: 30%;">取消</button>
+								<button type="submit" class="btn btn-primary">确定</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<!--<div class="panel-footer">
+					<button type="button" class="btn btn-default" style="margin-left: 30%;">取消</button>
+					<button type="submit" class="btn btn-primary pull-right" style="margin-right: 30%;">确定</button>
+				</div>-->
+			</div>
+
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+		</script>
+	</body>
+
+</html>

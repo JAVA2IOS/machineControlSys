@@ -10,10 +10,12 @@
     require_once dirname(__FILE__) . "/../dao/machineDao.php";
     require_once dirname(__FILE__) . "/../dao/counterDao.php";
     require_once dirname(__FILE__) . "/../dao/controlParameterDao.php";
+    require_once dirname(__FILE__) . "/../dao/dbManagerDao.php";
 
     /*
      * 压铸机配置
      * */
+
     class MachineMan
     {
 
@@ -25,7 +27,7 @@
         public static function addNewSensor($sensorJson)
         {
             $sensorDao = new sensorDao();
-            $sensor = new sensor();
+            $sensor    = new sensor();
             $sensor->modelWithJson($sensorJson);
 
             CodeZPrintData($sensor);
@@ -41,9 +43,10 @@
         }
 
         /* 修改传感器 */
-        public static function editSensor($sensorJson) {
+        public static function editSensor($sensorJson)
+        {
             $sensorDao = new sensorDao();
-            $sensor = new sensor();
+            $sensor    = new sensor();
             $sensor->modelWithJson($sensorJson);
 
             echo json_encode($sensorDao->editSensor($sensor));
@@ -65,7 +68,7 @@
         public static function addMachine($machineJson)
         {
             $machineDao = new machineDao();
-            $machine = new machine();
+            $machine    = new machine();
             $machine->modelWithJson($machineJson);
             CodeZPrintData($machine);
 
@@ -76,7 +79,7 @@
         public static function editMachine($machineJson)
         {
             $machineDao = new machineDao();
-            $machine = new machine();
+            $machine    = new machine();
             $machine->modelWithJson($machineJson);
             CodeZPrintData($machine);
 
@@ -106,17 +109,18 @@
         public static function addCounter($counterJson)
         {
             $counterDao = new counterDao();
-            $counter = new counter();
+            $counter    = new counter();
             $counter->modelWithJson($counterJson);
             CodeZPrintData($counter);
 
             echo json_encode($counterDao->addCounter($counter));
         }
+
         /* 计数器配置 */
         public static function editCounter($counterJson)
         {
             $counterDao = new counterDao();
-            $counter = new counter();
+            $counter    = new counter();
             $counter->modelWithJson($counterJson);
             CodeZPrintData($counter);
 
@@ -143,7 +147,7 @@
         public static function editControlParameters($parametersJsonString)
         {
             $parametersDao = new controlParameterDao();
-            $parameters = new controlParameter();
+            $parameters    = new controlParameter();
             $parameters->modelWithJson($parametersJsonString);
             CodeZPrintData($parameters);
 
@@ -155,10 +159,37 @@
         public static function addControlParameters($parametersJsonString)
         {
             $parametersDao = new controlParameterDao();
-            $parameters = new controlParameter();
+            $parameters    = new controlParameter();
             $parameters->modelWithJson($parametersJsonString);
 
             echo json_encode($parametersDao->addParameters($parameters));
         }
+
+
+        /* 数据库列表 */
+        public static function dataBaseList($getAll = true)
+        {
+            $dbDao = new dbManagerDao();
+            echo json_encode($dbDao->dataList($getAll));
+        }
+        /* 新增数据库 */
+        public static function addDataBase($dataBaseJsonString)
+        {
+            $dbDao = new dbManagerDao();
+            $dataBase = new dbManager();
+            $dataBase->modelWithJson($dataBaseJsonString);
+
+            echo json_encode($dbDao->addNewDataBase($dataBase));
+        }
+        /* 修改数据库 */
+        public static function editDataBase($dataBaseJsonString)
+        {
+            $dbDao = new dbManagerDao();
+            $dataBase = new dbManager();
+            $dataBase->modelWithJson($dataBaseJsonString);
+
+            echo json_encode($dbDao->editDataBase($dataBase));
+        }
     }
+
 ?>

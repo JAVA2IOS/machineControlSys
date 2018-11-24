@@ -7,6 +7,7 @@
      */
 
     require_once dirname(__FILE__) . "/../dao/roleDao.php";
+    require_once dirname(__FILE__) . "/../model/role.php";
 
     class RoleMan
     {
@@ -17,5 +18,22 @@
             $roleDao = new roleDao();
             echo json_encode($roleDao->roleList());
         }
+
+        public static function addRole($roleJsonString)
+        {
+            $roleDao = new roleDao();
+            $role = new role();
+            $role->modelWithJson($roleJsonString);
+            echo json_encode($roleDao->insertRole($role));
+        }
+
+        public static function editRole($roleJsonString)
+        {
+            $roleDao = new roleDao();
+            $role = new role();
+            $role->modelWithJson($roleJsonString);
+            echo json_encode($roleDao->editRole($role));
+        }
     }
+
 ?>

@@ -51,7 +51,7 @@ var breadMenuTag = {
 function configureDataBaseListStyle() {
 	var tableParam = {
 		column: [{
-			field: 'dataBaseName',
+			field: 'dbName',
 			title: "数据库名称",
 			width: 1000,
 			valign: 'middle',
@@ -92,30 +92,36 @@ function configureDataBaseListStyle() {
 				if(row.deleted == 1 || row.deleted == '1') {
 					return "<div class=\"row\">" +
 						"<div class=\"col-sm-8 col-sm-offset-2\">" +
-						"<a href=\"javascript:;\" class=\"tooltip-show open\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"打开\"><span class=\"fa fa-plug fa-fw text-primary\"></span></a>" +
+						"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
+						"<a href=\"javascript:;\" class=\"tooltip-show connect\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"注册\"><span class=\"fa fa-plug fa-fw text-primary\"></span></a>" +
 						"</div></div>";
 				}
 				return "<div class=\"row\">" +
 					"<div class=\"col-sm-8 col-sm-offset-2\">" +
-					"<a href=\"javascript:;\" class=\"tooltip-show close\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"断开\"><span class=\"fa fa-unlink text-danger fa-fw\"></span></a>" +
+					"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
+					"<a href=\"javascript:;\" class=\"tooltip-show disconnect\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"注销\"><span class=\"fa fa-unlink text-danger fa-fw\"></span></a>" +
 					"</div></div>";
 			},
 			events: {
-				"click .close": function(e, value, row, index) {
-					row.opened = 0;
-					updateSingleData(actions.edit, row, '数据库关闭', function(data) {
+				'click .edit': function(e, value, row, index) {
+					getDetailItemInfo(row);
+				},
+				"click .disconnect": function(e, value, row, index) {
+					row.deleted = 1;
+					updateSingleData(actions.EDIT, row, '数据库注销成功', function(data) {
 						$("#table-container").bootstrapTable('updateRow', {
 							index: index,
-							row: data
+							row: row
 						});
 					});
 				},
-				"click .open": function(e, value, row, index) {
-					row.opened = 1;
-					updateSingleData(actions.edit, row, '数据库打开成功', function(data) {
+				"click .connect": function(e, value, row, index) {
+					row.deleted = 0;
+					updateSingleData(actions.EDIT, row, '数据库注册成功', function(data) {
+						console.info(data);
 						$("#table-container").bootstrapTable('updateRow', {
 							index: index,
-							row: data
+							row: row
 						});
 					});
 				}
@@ -146,14 +152,17 @@ function configureDataBaseListStyle() {
 // UI配置
 function dataBaseUIComponents() {
 	var title = ['数据库名称', '打开数据库'];
-	var identifiers = ['dataBaseName', 'opened'];
+	var identifiers = ['dbName', 'opened'];
 	var inputDoms = '';
 	for(i = 0; i < identifiers.length; i++) {
 		var data = identifiers[i];
 		var itemTitle = title[i];
-		if(itemTitle == 'opened') {
-			inputDoms += '<div class="form-group"><div class="checkbox"><label>' +
-				'<input id = "' + data + '" type="checkbox">&nbsp;"' + itemTitle + '"</label></div></div>';
+		if(data == 'opened') {
+			inputDoms += '<div class="form-group">' +
+				'<label for="' + data + '" class="col-sm-2 control-label">' + itemTitle + '</label>' +
+				'<div class="col-sm-9">' +
+				'<select class="form-control" id="' + data + '"><option value="0" selected="selected">关闭</option><option value="1">开启</option>' +
+				'</select></div></div>';
 			continue;
 		}
 
@@ -169,7 +178,7 @@ function dataBaseUIComponents() {
 function confgiureDataBaseDataInfo(data) {
 	var bindObj = data.bindData;
 	if(bindObj) {
-		$('#dataBaseName').val(bindObj.dataBaseName);
+		$('#dbName').val(bindObj.dbName);
 		$('#opened').val(bindObj.opened);
 		if(data.deleted == '1' || data.deleted == 1) {
 			$('#opened').attr('disabled', 'disabled');
@@ -179,7 +188,7 @@ function confgiureDataBaseDataInfo(data) {
 
 // 更新当前的参数数据
 function updateDataBaseData(updatedData) {
-	updatedData.dataBaseName = $('#dataBaseName').val();
+	updatedData.dbName = $('#dbName').val();
 	updatedData.opened = $('#opened').val();
 
 	return updatedData;
@@ -818,21 +827,11 @@ function configureAutoControlListStyle() {
 			align: 'center',
 			width: '20%',
 			formatter: function(value, row, index) {
-				if(row.deleted == 0 || row.deleted == '0') {
-					return "<div class=\"row\">" +
-						"<div class=\"col-sm-8 col-sm-offset-2\">" +
-						"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
-						"<a href=\"javascript:;\" class=\"tooltip-show connect\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"恢复\"><span class=\"fa fa-plug fa-fw text-primary\"></span></a>" +
-						"</div></div>";
-				}
-				return "<div class=\"row\">" +
-					"<div class=\"col-sm-8 col-sm-offset-2\">" +
-					"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
-					"<a href=\"javascript:;\" class=\"tooltip-show disconnect\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"注销\"><span class=\"fa fa-unlink text-danger fa-fw\"></span></a>" +
-					"</div></div>";
+				return "<div class=\"row center-block \">" +
+					"<a href=\"javascript:;\" class=\"tooltip-show search\" data-toggle=\"tooltip\" title=\"查看\"><span class=\"fa fa-clipboard fa-fw\"></span></a></div>";
 			},
 			events: {
-				'click .edit': function(e, value, row, index) {
+				'click .search': function(e, value, row, index) {
 					getDetailItemInfo(row);
 				},
 			},
@@ -918,12 +917,63 @@ function updateAutoControlData(updatedData) {
  * ================
  */
 
-$('#searchByNumber').click(function() {
-	alert('按照单号查询');
+$('#searchByNo').click(function() {
+	var ctrlNo = $('#machineNumber').val();
+	if ($.isEmptyObject(ctrlNo)) {
+		CodeZComponents.showErrorTip({text : '压铸单号不能为空'});
+		return;
+	}
+
+	CodeZComponents.postRequest({
+		action: actions.FUZZYSEARCH,
+		data : {
+			type : 'no',
+			parameters : ctrlNo
+		}
+	}, function(data) {
+		if(data.success) {
+			tableParam.data = data.data;
+			CommonMan.configureTableListData(tableParam);
+		} else {
+			CodeZComponents.showErrorTip({
+				text: data.error
+			});
+		}
+	});
 });
 
 $('#searchByTime').click(function() {
-	alert('按照时间查询');
+	var startTime = $('#startTime').val();
+	var stopTime = $('#endTime').val();
+	if ($.isEmptyObject(startTime) || $.isEmptyObject(stopTime)) {
+		CodeZComponents.showErrorTip({text : '时间不能为空'});
+		return;
+	}
+
+	startTime = CodeZComponents.getFormatterDate(startTime);
+	stopTime = CodeZComponents.getFormatterDate(stopTime);
+	if (startTime > stopTime) {
+		CodeZComponents.showErrorTip({text : '结束时间不能小于开始时间'});
+		return;
+	}
+
+	CodeZComponents.postRequest({
+		action: actions.FUZZYSEARCH,
+		data : {
+			type : 'date',
+			start : startTime,
+			stop : stopTime,
+		}
+	}, function(data) {
+		if(data.success) {
+			tableParam.data = data.data;
+			CommonMan.configureTableListData(tableParam);
+		} else {
+			CodeZComponents.showErrorTip({
+				text: data.error
+			});
+		}
+	});
 });
 
 function configureControlDataListStyle() {
@@ -1043,7 +1093,7 @@ function configureRoleListStyle() {
 			width: '30%',
 			valign: 'middle',
 		}, {
-			field: 'description',
+			field: 'descript',
 			title: "角色描述",
 			width: '10%',
 			valign: 'middle',
@@ -1067,22 +1117,42 @@ function configureRoleListStyle() {
 			align: 'center',
 			width: '20%',
 			formatter: function(value, row, index) {
-				if(row.deleted == 0 || row.deleted == '0') {
+				if(row.deleted == 1 || row.deleted == '1') {
 					return "<div class=\"row\">" +
 						"<div class=\"col-sm-8 col-sm-offset-2\">" +
 						"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
-						"<a href=\"javascript:;\" class=\"tooltip-show connect\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"恢复\"><span class=\"fa fa-plug fa-fw text-primary\"></span></a>" +
+						"<a href=\"javascript:;\" class=\"tooltip-show restore\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"恢复\"><span class=\"fa fa-plug fa-fw text-primary\"></span></a>" +
 						"</div></div>";
 				}
 				return "<div class=\"row\">" +
 					"<div class=\"col-sm-8 col-sm-offset-2\">" +
 					"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
-					"<a href=\"javascript:;\" class=\"tooltip-show disconnect\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"注销\"><span class=\"fa fa-unlink text-danger fa-fw\"></span></a>" +
+					"<a href=\"javascript:;\" class=\"tooltip-show delete\" style = \"margin-left:10px;\" data-toggle=\"tooltip\" title=\"注销\"><span class=\"fa fa-unlink text-danger fa-fw\"></span></a>" +
 					"</div></div>";
 			},
 			events: {
 				'click .edit': function(e, value, row, index) {
 					getDetailItemInfo(row);
+				},
+
+				'click .restore': function(e, value, row, index) {
+					row.deleted = 0;
+					updateSingleData(actions.EDIT, row, '恢复成功', function(data) {
+						$("#table-container").bootstrapTable('updateRow', {
+							index: index,
+							row: data
+						});
+					});
+				},
+
+				'click .delete': function(e, value, row, index) {
+					row.deleted = 1;
+					updateSingleData(actions.EDIT, row, '注销成功', function(data) {
+						$("#table-container").bootstrapTable('updateRow', {
+							index: index,
+							row: data
+						});
+					});
 				},
 			},
 		}],
@@ -1093,26 +1163,17 @@ function configureRoleListStyle() {
 
 // UI配置
 function roleUIComponents() {
-	var title = ['角色名称', '角色描述', '状态'];
-	var identifiers = ['roleName', 'description', 'deleted'];
+	var title = ['角色名称', '角色描述'];
+	var identifiers = ['roleName', 'descript'];
 	var inputDoms = '';
 	for(i = 0; i < identifiers.length; i++) {
 		var data = identifiers[i];
 		var itemTitle = title[i];
-		if(data == 'description') {
+		if(data == 'descript') {
 			inputDoms += '<div class="form-group">' +
 				'<label for="' + data + '" class="col-sm-2 control-label">' + itemTitle + '</label>' +
 				'<div class="col-sm-9">' +
-				'<textarea class="form-control"></textarea></div></div>';
-			break;
-		}
-
-		if(data == 'deleted') {
-			inputDoms += '<div class="form-group">' +
-				'<label for="' + data + '" class="col-sm-2 control-label">' + itemTitle + '</label>' +
-				'<div class="col-sm-9">' +
-				'<select class="form-control" id="' + data + '"><option value="0" selected="selected">注销</option><option value="1">恢复</option>' +
-				'</select></div></div>';
+				'<textarea class="form-control" id="' + data + '"></textarea></div></div>';
 			break;
 		}
 
@@ -1128,23 +1189,16 @@ function roleUIComponents() {
 function confgiureRoleDataInfo(data) {
 	var bindObj = data.bindData;
 	if(bindObj) {
-		$('#counterName').val(bindObj.counterName);
-		$('#counterModel').val(bindObj.counterModel);
-		$('#counterType').val(bindObj.counterType);
-		$('#counterPort').val(bindObj.counterPort);
-		$('#counterDecimal').val(bindObj.counterDecimal);
-		$('#address').val(bindObj.address);
+		$('#roleName').val(bindObj.roleName);
+		console.info(bindObj.descript);
+		$('#descript').val(bindObj.descript);
 	}
 }
 
 // 更新当前的参数数据
 function updateRoleData(updatedData) {
-	updatedData.counterName = $('#counterName').val();
-	updatedData.counterModel = $('#counterModel').val();
-	updatedData.counterType = $('#counterType').val();
-	updatedData.counterPort = $('#counterPort').val();
-	updatedData.counterDecimal = $('#counterDecimal').val();
-	updatedData.address = $('#address').val();
+	updatedData.roleName = $('#roleName').val();
+	updatedData.descript = $('#descript').val();
 
 	return updatedData;
 }
