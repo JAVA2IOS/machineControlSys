@@ -784,7 +784,7 @@ function configureAutoControlListStyle() {
 			field: 'openedSensor',
 			title: "开启质量传感器",
 			valign: 'middle',
-			align : 'center',
+			align: 'center',
 			width: '5%',
 			formatter: function(value, row, index) {
 				return openedStyle(value, row, index);
@@ -793,7 +793,7 @@ function configureAutoControlListStyle() {
 			field: 'openedCounter',
 			title: "开启计数器",
 			valign: 'middle',
-			align : 'center',
+			align: 'center',
 			width: '5%',
 			formatter: function(value, row, index) {
 				return openedStyle(value, row, index);
@@ -802,7 +802,7 @@ function configureAutoControlListStyle() {
 			field: 'openedMachine',
 			title: "开启自动压铸机",
 			valign: 'middle',
-			align : 'center',
+			align: 'center',
 			width: '5%',
 			formatter: function(value, row, index) {
 				return openedStyle(value, row, index);
@@ -878,7 +878,10 @@ function confgiureAutoControlDataInfo(data) {
 	console.info(data);
 	if(bindObj) {
 		$('#ctrlId').select2({
-			data : [{id : bindObj.ctrlId, text : bindObj.ctrlId}]
+			data: [{
+				id: bindObj.ctrlId,
+				text: bindObj.ctrlId
+			}]
 		});
 		$('#ctrlId').val(bindObj.ctrlId);
 		$('#rollWeight').val(bindObj.rollWeight);
@@ -919,19 +922,24 @@ function updateAutoControlData(updatedData) {
 
 $('#searchByNo').click(function() {
 	var ctrlNo = $('#machineNumber').val();
-	if ($.isEmptyObject(ctrlNo)) {
-		CodeZComponents.showErrorTip({text : '压铸单号不能为空'});
+	if($.isEmptyObject(ctrlNo)) {
+		CodeZComponents.showErrorTip({
+			text: '压铸单号不能为空'
+		});
 		return;
 	}
 
+	var parameters = {
+		type: 'SearchNo',
+		parameters: ctrlNo
+	};
 	CodeZComponents.postRequest({
 		action: actions.FUZZYSEARCH,
-		data : {
-			type : 'no',
-			parameters : ctrlNo
-		}
+		data: JSON.stringify(parameters)
 	}, function(data) {
 		if(data.success) {
+			$("#table-container").bootstrapTable('destroy');
+			tableParam = configureAutoControlListStyle();
 			tableParam.data = data.data;
 			CommonMan.configureTableListData(tableParam);
 		} else {
@@ -945,27 +953,34 @@ $('#searchByNo').click(function() {
 $('#searchByTime').click(function() {
 	var startTime = $('#startTime').val();
 	var stopTime = $('#endTime').val();
-	if ($.isEmptyObject(startTime) || $.isEmptyObject(stopTime)) {
-		CodeZComponents.showErrorTip({text : '时间不能为空'});
+	if($.isEmptyObject(startTime) || $.isEmptyObject(stopTime)) {
+		CodeZComponents.showErrorTip({
+			text: '时间不能为空'
+		});
 		return;
 	}
 
-	startTime = CodeZComponents.getFormatterDate(startTime);
-	stopTime = CodeZComponents.getFormatterDate(stopTime);
-	if (startTime > stopTime) {
-		CodeZComponents.showErrorTip({text : '结束时间不能小于开始时间'});
+	var startDate = CodeZComponents.getFormatterDate(startTime);
+	var stopDate = CodeZComponents.getFormatterDate(stopTime);
+	if(startDate > stopDate) {
+		CodeZComponents.showErrorTip({
+			text: '结束时间不能小于开始时间'
+		});
 		return;
 	}
 
+	var parameters = {
+		type: 'SearchDate',
+		start: startTime,
+		stop: stopTime,
+	}
 	CodeZComponents.postRequest({
 		action: actions.FUZZYSEARCH,
-		data : {
-			type : 'date',
-			start : startTime,
-			stop : stopTime,
-		}
+		data: JSON.stringify(parameters)
 	}, function(data) {
 		if(data.success) {
+			$("#table-container").bootstrapTable('destroy');
+			tableParam = configureAutoControlListStyle();
 			tableParam.data = data.data;
 			CommonMan.configureTableListData(tableParam);
 		} else {
@@ -1380,8 +1395,8 @@ function configureItemInfoData() {
 			$('#material').val(dataObj.material);
 			$('#rollNumber').val(dataObj.rollNumber);
 			$('#rollIntervals').val(dataObj.rollIntervals);
-		$('#rollTimes').val(dataObj.rollTimes);
-		$('#rollPressure').val(dataObj.rollPressure);
+			$('#rollTimes').val(dataObj.rollTimes);
+			$('#rollPressure').val(dataObj.rollPressure);
 		});
 	}
 }
@@ -1402,7 +1417,7 @@ $("#dataCancel").click(function() {
 $("#dataSubmit").click(function() {
 	var categoryStr = sessionCacheKeyTag.substr(0, sessionCacheKeyTag.length - '_key'.length);
 	if(categoryTag)
-	var actionParameters = actions.ADD;
+		var actionParameters = actions.ADD;
 	var infoTip = '新增成功';
 	var dataObj = new Object();
 	var cacheData = $.session.get(sessionCacheKeyTag);

@@ -42,7 +42,6 @@
             $_SESSION['userId'] = $user->userId;
             $_SESSION['account'] = $user->userAccount;
             $_SESSION['userName'] = $user->userName;
-            $_SESSION['pwd'] = $user->password;
             $_SESSION['dep'] = $user->dep;
             $_SESSION['role'] = $user->role;
 
@@ -182,6 +181,9 @@
             $equalColumns = CodeZEnumTable::USER . ".roleId = " .  CodeZEnumTable::ROLE . ".roleId";
 
             $parameters = CodeZEnumTable::USER . ".deleted = 0 AND " . CodeZEnumTable::ROLE . ".deleted = 0";
+            if (!empty($_SESSION['userId'])) {
+                $parameters = CodeZEnumTable::USER . ".userId <> " . $_SESSION['userId'];
+            }
 
             $sqlString = $this->CodeZQueryLeftJoinSql(CodeZEnumTable::USER, $columns, CodeZEnumTable::ROLE, $equalColumns, $getAll ? NULL : $parameters);
 
@@ -189,12 +191,16 @@
 
             $userList = array();
             foreach ($result['data'] as $row) {
-                $user = new  user();
+                $user = new user();
                 $user->tableMappers($row);
                 array_push($userList, $user);
             }
 
             $result['data'] = $userList;
+
+            if (self::dataExisted($result)) {
+                $result['error'] = $sqlString;
+            }
 
             return $result;
         }

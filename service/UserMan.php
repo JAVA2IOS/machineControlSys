@@ -36,7 +36,6 @@
             $user->userId = $_SESSION['userId'];
             $user->userAccount = $_SESSION['account'];
             $user->userName = $_SESSION['userName'];
-            $user->password = $_SESSION['pwd'];
             $user->dep = $_SESSION['dep'];
             session_destroy();
 

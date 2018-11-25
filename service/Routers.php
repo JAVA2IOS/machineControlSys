@@ -42,7 +42,7 @@
         const machineAdd    = "machineAdd"; // 新增压铸机
         const machineList   = "machineList"; // 压铸机列表
         const machineEdit   = "machineEdit"; // 修改压铸机
-        const machineSrch   = "machineSearch"; // 搜索压铸机
+        const machineSrch   = "operatorFuzzySearch"; // 搜索压铸机
         const counterList   = "counterList"; // 计数器列表
         const counterAdd    = "counterAdd"; // 新增计数器
         const counterEdit   = "counterEdit"; // 修改计数器
@@ -56,8 +56,6 @@
         const operatorAdd  = "operatorAdd"; // 新增压铸单号
         const operatorEdit = "operatorEdit"; // 修改压铸单号
         const operatorSrch = "operatorSearch"; // 搜索压铸单号
-
-
     }
 
     try {
@@ -158,7 +156,7 @@
                     break;
                 case RoutersEnumUri::userList:
                     {
-                        UserMan::userList(true);
+                        UserMan::userList(false);
                     }
                     break;
                 case RoutersEnumUri::userEdit:
@@ -264,6 +262,11 @@
                 case RoutersEnumUri::operatorSrch:
                     {
                         SoftParameterMan::searchOperator($_POST['data']);
+                    }
+                    break;
+                case RoutersEnumUri::machineSrch:
+                    {
+                        SoftParameterMan::searchMachine($_POST['data']);
                     }
                     break;
                 case RoutersEnumUri::dataBaseList:

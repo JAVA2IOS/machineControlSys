@@ -54,9 +54,20 @@
         const DBMAN = "dbmanager";
     }
 
+    /* 压铸机查询类型 */
+    abstract class CodeZOperatorSearchType
+    {
+        const SearchByNo = "SearchNo";
+        const SearchByTime = "SearchDate";
+    }
+
     /* 将字符前后添加单引号 */
     function CodeZAddApostrophe($apostraopedString) {
         return "'" . $apostraopedString . "'";
+    }
+
+    function CodeZGetDateFormatterFromTimeStamp($timeStamp) {
+        return date('Y-m-d H:i:s', $timeStamp);
     }
 
     function CodeZPrintData($printedValue) {

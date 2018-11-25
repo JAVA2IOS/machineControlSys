@@ -106,7 +106,14 @@
         {
             $manDao = new softParameterDao();
 
-            echo json_encode($manDao->searchOperatorList($serachJson));
+            echo json_encode($manDao->searchParametersList($serachJson));
+        }
+
+        public static function searchMachine($searchJson)
+        {
+            $manDao = new softParameterDao();
+
+            echo json_encode($manDao->searchOperatorList($searchJson));
         }
     }
 ?>

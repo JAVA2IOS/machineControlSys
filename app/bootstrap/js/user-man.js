@@ -7,6 +7,7 @@ function usrLogin() {
 		pwd: $('#password').val()
 	}, function(data) {
 		if(data.success) {
+			$.session.set('user', JSON.stringify(data.data));
 			window.location.href = CodeZ.HTML_PAGE_INDEX;
 		} else {
 			CodeZComponents.showErrorTip({
@@ -20,14 +21,13 @@ function usrLogout() {
 	CodeZComponents.postRequest({
 		action: CodeZ.ACTION_LOGOUT,
 	}, function(data) {
+		$.session.remove('user');
 		goLogin();
 	});
 }
 
 $('#log-out').click(function() {
 	usrLogout();
-	// e.g static
-	goLogin();
 });
 
 $("#toolbar").click(function() {

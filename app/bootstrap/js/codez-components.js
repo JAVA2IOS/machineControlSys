@@ -581,9 +581,8 @@ var CodeZComponents = {
 		var minute = date.getMinutes();
 		var second = date.getSeconds();
 		minute = minute < 10 ? ('0' + minute) : minute;
-		second = second < 10 ? ('0' + second) : second;
 
-		return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+		return y + '-' + m + '-' + d + ' ' + h + ':' + minute;
 	},
 
 	getFormatterDate : function(dateString) {

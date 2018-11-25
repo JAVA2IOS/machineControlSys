@@ -24,7 +24,7 @@
 
             $parameters = "ctrlId = " . CodeZAddApostrophe($operator->ctrlId);
             $sqlString  = $this->CodeZQuerySql(CodeZEnumTable::OPERATOR, NULL, $parameters);
-            $result = self::excuteQuery($sqlString);
+            $result     = self::excuteQuery($sqlString);
 
             if (self::dataExisted($result)) {
                 return self::handler(false, null, "压铸单号已经存在，请使用其他单号");
@@ -101,11 +101,49 @@
             return $result;
         }
 
-        /* 查询数据 */
         public function searchOperatorList($searchString)
         {
-            $parameters = "deleted = 0 " . "AND ctrlNO like '%" . $searchString . "%'";
-            $sqlString  = $this->CodeZQuerySql(CodeZEnumTable::PARAMETER, NULL, $parameters);
+            $searchParameters = json_decode($searchString, true);
+
+            $parameters = "";
+            switch ($searchParameters['type']) {
+                case CodeZOperatorSearchType::SearchByNo:
+                    $parameters = "ctrlId like '%" . $searchParameters['parameters'] . "%'";
+                    break;
+                case CodeZOperatorSearchType::SearchByTime:
+                    {
+                        $startTime  = $searchParameters['start'];
+                        $endTime    = $searchParameters['stop'];
+                        $parameters = " unix_timestamp(startTime) between unix_timestamp(" . CodeZAddApostrophe($startTime) . ") AND unix_timestamp(" . CodeZAddApostrophe($endTime) . ")";
+                    }
+                    break;
+            }
+
+            $sqlString = $this->CodeZQuerySql(CodeZEnumTable::OPERATOR, NULL, $parameters);
+            CodeZPrintData($sqlString);
+            $result = self::excuteQuery($sqlString);
+
+            if (self::dataExisted($result)) {
+                $rowArray = array();
+                foreach ($result['data'] as $row) {
+                    $operator = new operator();
+                    $operator->tableMappers($row);
+                    array_push($rowArray, $operator);
+                }
+
+                self::replaceData($result, $rowArray);
+            }
+
+            return $result;
+        }
+
+        /* 查询数据 */
+        public function searchParametersList($searchString)
+        {
+
+            $parameters = "ctrlNO like '%" . $searchString . "%'";
+
+            $sqlString = $this->CodeZQuerySql(CodeZEnumTable::PARAMETER, NULL, $parameters);
             CodeZPrintData($sqlString);
             $result = self::excuteQuery($sqlString);
 
