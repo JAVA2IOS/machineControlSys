@@ -22,6 +22,7 @@
 
     abstract class RoutersEnumUri
     {
+        const index         = "dataIndex";   // 首页
         const login         = "usrLogin";   // 登录
         const logout        = "usrLogout";   // 退出登录
         const userEdit      = "usrEdit"; // 用户权限管理
@@ -133,7 +134,7 @@
             */
             $action = $_POST['action'];
 
-            if ($action != RoutersEnumUri::login) {
+            if ($action != RoutersEnumUri::login && $action != RoutersEnumUri::logout) {
                 session_start();
                 if (empty($_SESSION["userId"]) || ((int)$_SESSION["userId"]) < 0) {
                     $errorCode = ["code" => "-10000"];
@@ -144,6 +145,11 @@
 
 
             switch ($action) {
+                case RoutersEnumUri::index:
+                    {
+                        SoftParameterMan::dataIndex();
+                    }
+                    break;
                 case RoutersEnumUri::login:
                     {
                         UserMan::userLogin($_POST['user'], $_POST['pwd']);
@@ -151,7 +157,7 @@
                     break;
                 case RoutersEnumUri::logout:
                     {
-                        UserMan::userLogout($_POST['user']);
+                        UserMan::userLogout();
                     }
                     break;
                 case RoutersEnumUri::userList:
@@ -286,7 +292,7 @@
                     break;
                 case RoutersEnumUri::roleList:
                     {
-                        RoleMan::roleList();
+                        RoleMan::roleList(empty($_POST['data']));
                     }
                     break;
                 case RoutersEnumUri::newRole:

@@ -55,6 +55,14 @@ function configureDataBaseListStyle() {
 			title: "数据库名称",
 			width: 1000,
 			valign: 'middle',
+			formatter: function(value, row, index) {
+				var descriptLabel = value;
+				if(row.deleted == 1 || row.deleted == '1') {
+					descriptLabel += '&nbsp;<span class="label label-danger">已注销</span>';
+				}
+
+				return descriptLabel;
+			},
 		}, {
 			field: 'opened',
 			title: "状态",
@@ -62,25 +70,12 @@ function configureDataBaseListStyle() {
 			align: 'center',
 			width: 1000,
 			formatter: function(value, row, index) {
+				var descriptLabel = '已关闭';
 				if(value == 1 || value == '1') {
-					return '已打开';
+					descriptLabel = '已打开';
 				}
 
-				return '已关闭';
-			},
-		}, {
-			field: 'deleted',
-			title: "注销",
-			valign: 'middle',
-			align: 'center',
-			width: 1000,
-			formatter: function(value, row, index) {
-				if(value == 1 || value == '1') {
-
-					return '已注销';
-				}
-
-				return '正常';
+				return descriptLabel;
 			},
 		}, {
 			field: 'action',
@@ -214,6 +209,14 @@ function configureSensorListStyle() {
 			title: "名称",
 			width: '30%',
 			valign: 'middle',
+			formatter: function(value, row, index) {
+				if(row.connected == 1 || row.connected == '1') {
+
+					return value + '&nbsp;&nbsp;&nbsp;<span class="label label-success">已注册</span>';
+				}
+
+				return value + '&nbsp;&nbsp;&nbsp;<span class="label label-danger">未注册</span>';
+			},
 		}, {
 			field: 'sensorType',
 			title: "类型",
@@ -237,19 +240,6 @@ function configureSensorListStyle() {
 			field: 'address',
 			title: "地址编号",
 			valign: 'middle',
-		}, {
-			field: 'connected',
-			title: "状态",
-			valign: 'middle',
-			width: '20%',
-			formatter: function(value, row, index) {
-				if(value == 1 || value == '1') {
-
-					return '已注册';
-				}
-
-				return '未注册';
-			},
 		}, {
 			field: 'action',
 			title: "操作",
@@ -322,8 +312,12 @@ function sensorUIComponents() {
 	for(i = 0; i < identifiers.length; i++) {
 		var data = identifiers[i];
 		var itemTitle = title[i];
+		var inputType = 'text';
+		if(data == 'sensorPort'||data == 'sensorNo') {
+			inputType = 'number';
+		}
 		inputDoms += '<div class="form-group"><label for="' + data + '" class="col-sm-2 control-label text-center">' + itemTitle + '</label><div class="col-sm-9">' +
-			'<input required="required" type="text" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
+			'<input required="required" type="' + inputType + '" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
 			'</div></div>';
 	}
 
@@ -398,10 +392,10 @@ function configureMachineListStyle() {
 			formatter: function(value, row, index) {
 				if(value == 1 || value == '1') {
 
-					return '可连接';
+					return '<span class="label label-success">已连接</span>';
 				}
 
-				return '不可连接';
+				return '<span class="label label-warning">不可连接</span>';
 			},
 		}, {
 			field: 'action',
@@ -442,8 +436,12 @@ function machineUIComponents() {
 	for(i = 0; i < identifiers.length; i++) {
 		var data = identifiers[i];
 		var itemTitle = title[i];
+		var inputType = 'text';
+		if(data == 'port') {
+			inputType = 'number';
+		}
 		inputDoms += '<div class="form-group"><label for="' + data + '" class="col-sm-2 control-label text-center">' + itemTitle + '</label><div class="col-sm-9">' +
-			'<input required="required" type="text" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
+			'<input required="required" type="' + inputType + '" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
 			'</div></div>';
 	}
 
@@ -516,12 +514,15 @@ function configureCounterListStyle() {
 			valign: 'middle',
 			width: '20%',
 			formatter: function(value, row, index) {
+				if(row.deleted == 1 || row.deleted == '1') {
+					return '<span class="label label-danger">已注销</span>';
+				}
 				if(value == 1 || value == '1') {
 
-					return '可连接';
+					return '<span class="label label-success">已连接</span>';
 				}
 
-				return '不可连接';
+				return '<span class="label label-warning">不可连接</span>';
 			},
 		}, {
 			field: 'action',
@@ -530,7 +531,7 @@ function configureCounterListStyle() {
 			align: 'center',
 			width: '20%',
 			formatter: function(value, row, index) {
-				if(row.deleted == 0 || row.deleted == '0') {
+				if(row.deleted == 1 || row.deleted == '1') {
 					return "<div class=\"row\">" +
 						"<div class=\"col-sm-8 col-sm-offset-2\">" +
 						"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
@@ -547,6 +548,24 @@ function configureCounterListStyle() {
 				'click .edit': function(e, value, row, index) {
 					getDetailItemInfo(row);
 				},
+				'click .connect': function(e, value, row, index) {
+					row.deleted = 0;
+					updateSingleData(actions.EDIT, row, '恢复成功', function(data) {
+						$("#table-container").bootstrapTable('updateRow', {
+							index: index,
+							row: data
+						});
+					});
+				},
+				'click .disconnect': function(e, value, row, index) {
+					row.deleted = 1;
+					updateSingleData(actions.EDIT, row, '注销成功', function(data) {
+						$("#table-container").bootstrapTable('updateRow', {
+							index: index,
+							row: data
+						});
+					});
+				}
 			},
 		}],
 	};
@@ -562,8 +581,12 @@ function counterUIComponents() {
 	for(i = 0; i < identifiers.length; i++) {
 		var data = identifiers[i];
 		var itemTitle = title[i];
+		var inputType = 'text';
+		if(data == 'counterPort') {
+			inputType = 'number';
+		}
 		inputDoms += '<div class="form-group"><label for="' + data + '" class="col-sm-2 control-label text-center">' + itemTitle + '</label><div class="col-sm-9">' +
-			'<input required="required" type="text" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
+			'<input required="required" type="' + inputType + '" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
 			'</div></div>';
 	}
 
@@ -693,8 +716,12 @@ function parametersUIComponents() {
 	for(i = 0; i < identifiers.length; i++) {
 		var data = identifiers[i];
 		var itemTitle = title[i];
+		var inputType = 'text';
+		if(data == 'rollNumber' || data == 'rollTimes' || data == 'ctrlNo') {
+			inputType = 'number';
+		}
 		inputDoms += '<div class="form-group"><label for="' + data + '" class="col-sm-2 control-label text-center">' + itemTitle + '</label><div class="col-sm-9">' +
-			'<input required="required" type="text" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
+			'<input required="required" type="' + inputType + '" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
 			'</div></div>';
 	}
 
@@ -862,6 +889,10 @@ function autoControlUIComponents() {
 				'<div class="col-sm-9">' +
 				'<select class="form-control" id="' + data + '"><option value="0" selected="selected">关闭</option><option value="1">开启</option>' +
 				'</select></div></div>';
+		} else if(data == 'rollNumber' || data == 'rollTimes') {
+			inputDoms += '<div class="form-group"><label for="' + data + '" class="col-sm-2 control-label text-center">' + itemTitle + '</label><div class="col-sm-9">' +
+				'<input required="required" type="number" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
+				'</div></div>';
 		} else {
 			inputDoms += '<div class="form-group"><label for="' + data + '" class="col-sm-2 control-label text-center">' + itemTitle + '</label><div class="col-sm-9">' +
 				'<input required="required" type="text" class="form-control dialog-form" id="' + data + '" placeholder="请输入' + itemTitle + '">' +
@@ -1105,32 +1136,26 @@ function configureRoleListStyle() {
 		column: [{
 			field: 'roleName',
 			title: "角色名称",
-			width: '30%',
+			width: '1000',
 			valign: 'middle',
+			formatter: function(value, row, index) {
+				if(row.deleted == 1 || row.deleted == '1') {
+					return value + '&nbsp;&nbsp;&nbsp;<span class="label label-danger">已注销</span>';
+				}
+
+				return value + '&nbsp;&nbsp;&nbsp;<span class="label label-primary">正常</span>';
+			},
 		}, {
 			field: 'descript',
 			title: "角色描述",
-			width: '10%',
+			width: '1000',
 			valign: 'middle',
-		}, {
-			field: 'deleted',
-			title: "状态",
-			valign: 'middle',
-			width: '20%',
-			formatter: function(value, row, index) {
-				if(value == 1 || value == '1') {
-
-					return '已注销';
-				}
-
-				return '正常';
-			},
 		}, {
 			field: 'action',
 			title: "操作",
 			valign: 'middle',
 			align: 'center',
-			width: '20%',
+			width: '1000',
 			formatter: function(value, row, index) {
 				if(row.deleted == 1 || row.deleted == '1') {
 					return "<div class=\"row\">" +
@@ -1205,7 +1230,6 @@ function confgiureRoleDataInfo(data) {
 	var bindObj = data.bindData;
 	if(bindObj) {
 		$('#roleName').val(bindObj.roleName);
-		console.info(bindObj.descript);
 		$('#descript').val(bindObj.descript);
 	}
 }
@@ -1390,7 +1414,6 @@ function configureItemInfoData() {
 
 		$('#ctrlId').on('select2:select', function(e) {
 			var dataObj = e.params.data;
-			console.info(dataObj);
 			$('#rollWeight').val(dataObj.rollWeight);
 			$('#material').val(dataObj.material);
 			$('#rollNumber').val(dataObj.rollNumber);

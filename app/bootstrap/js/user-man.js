@@ -18,11 +18,16 @@ function usrLogin() {
 }
 
 function usrLogout() {
-	CodeZComponents.postRequest({
-		action: CodeZ.ACTION_LOGOUT,
-	}, function(data) {
-		$.session.remove('user');
-		goLogin();
+	$.ajax({
+		type: 'post',
+		url: CodeZ.RQUEST_URI,
+		data: {
+			action: CodeZ.ACTION_LOGOUT,
+		},
+		success: function(result) {
+			$.session.remove('user');
+			goLogin();
+		}
 	});
 }
 
@@ -69,16 +74,33 @@ function changeToUserDetailInfo(data) {
 function editData() {
 	var dataObj;
 	var cacheData = $.session.get('bindData');
-	console.info(cacheData);
+	CodeZComponents.postRequest({
+		action: CodeZ.ACTION_ROLEMAN.LIST,
+		data: true
+	}, function(data) {
+		if(data.success) {
+			var optionData = data.data;
+			$.map(optionData, function(option, index) {
+				option.id = option.roleId;
+				option.text = option.roleName;
+			});
+			$('#userRole').select2({
+				data: optionData
+			});
+		}
+	});
 	if(cacheData != undefined || cacheData != null) {
 		dataObj = JSON.parse(cacheData);
 	}
 	if(dataObj != undefined) {
 		if(dataObj.tag != CodeZ.TAG_USER_ADD) {
 			var userObj = dataObj.bindData;
-			$("#userAccount").attr("disabled","disabled");
+			$("#userAccount").attr("disabled", "disabled");
 			$('#userName').val(userObj.userName);
-			$('#userRole').val(userObj.role.roleId);
+			// $('#userRole').val(userObj.role.roleId);
+			$('#userRole').select2({
+				id: userObj.role.roleId
+			});
 			$('#userAccount').val(userObj.userAccount);
 			$('#userpassword').val(userObj.password);
 			$('#dep').val(userObj.dep);
@@ -100,7 +122,7 @@ function saveUser(fn) {
 		var role = new Object();
 		role.roleId = $('#userRole').val();
 		dataObj.role = role;
-	}else {
+	} else {
 		dataObj.role.roleId = $('#userRole').val();
 	}
 	dataObj.userAccount = $('#userAccount').val();
@@ -131,7 +153,7 @@ function breadItemTransfer() {
 }
 
 // 更新用户信息
-function updateUser(tag,userObj, callback) {
+function updateUser(tag, userObj, callback) {
 	CodeZComponents.postRequest({
 		action: tag,
 		user: JSON.stringify(userObj)
@@ -142,8 +164,28 @@ function updateUser(tag,userObj, callback) {
 	});
 }
 
-
 var UserMan = {
+	updatedUser: function() {
+		var dataObj = $.session.get('user');
+		if(dataObj) {
+			dataObj = JSON.parse(dataObj);
+			dataObj.userName = $('#userName').val();
+			dataObj.password = $('#user-password').val();
+			updateUser(CodeZ.ACTION_USR_EDIT, dataObj, function(data) {
+				if(data.success) {
+					CodeZComponents.showSuccessTip({
+						title: '提示',
+						text: data.data,
+					});
+				} else {
+					CodeZComponents.showErrorTip({
+						title: '提示',
+						text: data.error,
+					});
+				}
+			});
+		}
+	},
 	// 注销用户
 	banObject: function(data, fn) {
 		BootstrapDialog.show({
@@ -190,7 +232,7 @@ var UserMan = {
 	activeObject: function(data, fn) {
 		var user = data;
 		user.deleted = 0;
-		updateUser(CodeZ.ACTION_USR_EDIT,user, function(data) {
+		updateUser(CodeZ.ACTION_USR_EDIT, user, function(data) {
 			if(data.success) {
 				if(fn) {
 					fn(user);

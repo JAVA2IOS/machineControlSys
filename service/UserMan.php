@@ -25,21 +25,14 @@
         }
 
         /*退出*/
-        public static function userLogout($userJsonString)
+        public static function userLogout()
         {
             $userDao = new UserDao();
             $user = new user();
 
-            $user->modelWithJson($userJsonString);
-
             session_start();
             $user->userId = $_SESSION['userId'];
-            $user->userAccount = $_SESSION['account'];
-            $user->userName = $_SESSION['userName'];
-            $user->dep = $_SESSION['dep'];
             session_destroy();
-
-            CodeZPrintData($user);
 
             $data = $userDao->logout($user);
             echo json_encode($data);

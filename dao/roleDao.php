@@ -42,9 +42,10 @@
         }
 
         /* 角色列表 */
-        function roleList()
+        function roleList($getAll = true)
         {
-            $sqlString = $this->CodeZQuerySql(CodeZEnumTable::ROLE, NULL, NULL);
+            $parameters = "deleted = 0";
+            $sqlString = $this->CodeZQuerySql(CodeZEnumTable::ROLE, NULL, $getAll ? NULL : $parameters);
             $result    = self::excuteQuery($sqlString);
 
             if (self::dataExisted($result)) {

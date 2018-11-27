@@ -14,3 +14,90 @@
 .panel-dialog {
 	width: 500px;
 }
+.text-blue { color:#007bff;}
+.text-indigo { color:#6610f2;}
+.text-purple { color:#6f42c1;}
+.text-pink { color:#e83e8c;}
+.text-red { color:#dc3545;}
+.text-orange { color:#fd7e14;}
+.text-yellow { color:#ffc107;}
+.text-green { color:#28a745;}
+.text-teal { color:#20c997;}
+.text-cyan { color:#17a2b8;}
+.text-white {color:e: #fff;}
+.text-gray { color:#6c757d;}
+.text-gray-dark { color:#343a40;}
+.text-light { color:#f8f9fa;}
+.text-dark { color:#343a40;}
+
+.bg-blue { 
+	background:#007bff;
+	color: #fff;
+}
+.bg-indigo { 
+	background:#6610f2;
+	color: #fff;
+}
+.bg-purple { 
+	background:#6f42c1;
+	color: #fff;
+}
+.bg-pink { 
+	background:#e83e8c;
+	color: #fff;
+}
+.bg-red { 
+	background:#dc3545;
+	color: #fff;
+}
+.bg-orange { 
+	background:#fd7e14;
+	color: #fff;
+}
+.bg-yellow { 
+	background:#ffc107;
+	color: #fff;
+}
+.bg-green { 
+	background:#28a745;
+	color: #fff;
+}
+.bg-teal { 
+	background:#20c997;
+	color: #fff;
+}
+.bg-cyan { 
+	background:#17a2b8;
+	color: #fff;
+}
+.bg-white {
+	background:e: #fff;
+	color: #fff;
+}
+.bg-gray { 
+	background:#6c757d;
+	color: #fff;
+}
+.bg-gray-dark { 
+	background:#343a40;
+}
+.bg-light { 
+	background:#f8f9fa;
+}
+.bg-dark { 
+	background:#343a40;
+}
+
+.fa-rotate-45 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.fa-rotate-30 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  transform: rotate(30deg);
+}

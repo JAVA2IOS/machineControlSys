@@ -13,10 +13,10 @@
     {
 
         /* 获取角色列表数据 */
-        public static function roleList()
+        public static function roleList($getAll = true)
         {
             $roleDao = new roleDao();
-            echo json_encode($roleDao->roleList());
+            echo json_encode($roleDao->roleList($getAll));
         }
 
         public static function addRole($roleJsonString)

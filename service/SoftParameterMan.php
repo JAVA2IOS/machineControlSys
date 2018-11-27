@@ -9,14 +9,68 @@
     require_once dirname(__FILE__) . "/../dao/softParameterDao.php";
     require_once dirname(__FILE__) . "/../dao/controlPortDao.php";
     require_once dirname(__FILE__) . "/../dao/dbManagerDao.php";
+    require_once dirname(__FILE__) . "/../dao/userDao.php";
+    require_once dirname(__FILE__) . "/../dao/sensorDao.php";
+    require_once dirname(__FILE__) . "/../dao/counterDao.php";
     require_once dirname(__FILE__) . "/../model/controlPort.php";
     require_once dirname(__FILE__) . "/../model/dbManager.php";
+    require_once dirname(__FILE__) . "/../dao/machineDao.php";
 
     /*
      * 软件参数管理
      * */
+
     class SoftParameterMan
     {
+
+        public static function dataIndex()
+        {
+            $machineDao = new machineDao();
+            $dbDao      = new dbManagerDao();
+            $usrDao     = new userDao();
+            $sensorDao  = new sensorDao();
+            $counterDao = new counterDao();
+
+            $dataArray = array();
+
+            $machineListResult = $machineDao->machineList(false);
+            if (machineDao::dataExisted($machineListResult)) {
+                $dataArray['machine'] = count(machineDao::getData($machineListResult));
+            } else {
+                $dataArray['machine'] = 0;
+            }
+
+            $dbResult = $dbDao->dataList(false);
+            if (dbManagerDao::dataExisted($dbResult)) {
+                $dataArray['dataBase'] = count(dbManagerDao::getData($dbResult));
+            } else {
+                $dataArray['dataBase'] = 0;
+            }
+
+            $sensorResult = $sensorDao->sensorList(false);
+            if (sensorDao::dataExisted($sensorResult)) {
+                $dataArray['sensor'] = count(sensorDao::getData($sensorResult));
+            } else {
+                $dataArray['sensor'] = 0;
+            }
+
+            $counterResult = $counterDao->counterList(false);
+
+            if (counterDao::dataExisted($counterResult)) {
+                $dataArray['counter'] = count(counterDao::getData($counterResult));
+            } else {
+                $dataArray['counter'] = 0;
+            }
+
+            $usrResult = $usrDao->userList(false);
+            if (userDao::dataExisted($usrResult)) {
+                $dataArray['users'] = count(userDao::getData($usrResult));
+            } else {
+                $dataArray['users'] = 0;
+            }
+
+            echo json_encode($usrDao::handler(true, $dataArray, null));
+        }
 
         /* 新增控制端口 */
         public static function addPort($portJsonStrng)
@@ -66,7 +120,8 @@
         }
 
         /* 新增数据库 */
-        public static function addDataBase($dbJsonString) {
+        public static function addDataBase($dbJsonString)
+        {
             $dbMan = new dbManager();
             $dbMan->modelWithJson($dbJsonString);
             $dbManDao = new dbManagerDao();
@@ -116,4 +171,5 @@
             echo json_encode($manDao->searchOperatorList($searchJson));
         }
     }
+
 ?>

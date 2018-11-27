@@ -6,10 +6,13 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-		<title>Bootstrap demo template</title>
+		<title>主页</title>
 
 		<!-- Bootstrap -->
 		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../bootstrap/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../bootstrap/css/bootstrap-dialog.css" rel="stylesheet">
+		<link href="../bootstrap/css/codez.css" rel="stylesheet">
 
 		<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
 		<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
@@ -22,89 +25,240 @@
 				padding-top: 10px;
 			}
 			
-			.input-group {
+			.codez-info-box {
+				min-height: 100px;
+				background: #fff;
 				margin-top: 30px;
+				/*margin-left: 30px;*/
+				width: 100%;
+				padding: 1.25rem;
+				border-radius: 5px;
+				display: block;
+				box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+			}
+			
+			.info-box-icon {
+				float: left;
+				height: 70px;
+				width: 70px;
+				text-align: center;
+				font-size: 30px;
+				line-height: 74px;
+			}
+			
+			.info-box-content {
+				padding: 10px 10px 10px 0;
+				margin-left: 90px;
+			}
+			
+			.info-box-number {
+				font-weight: 300;
+				font-size: 21px;
+				display: block;
+			}
+			
+			.info-box-text {
+				display: block;
+				font-size: 16px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				font-weight: 300;
+			}
+			
+			.profile {
+				margin: 20px;
+				border: solid 1px rgba(0, 0, 0, .1);
+				padding: 20px;
+				background-color: #fff;
+			}
+			
+			.form-control,
+			.form-element {
+				display: initial;
+				color: #67757c;
+				padding-right: 15px;
+				padding-left: 15px;
+				border: 0;
+				background-color: transparent;
+				box-shadow: none;
+			}
+			
+			.form-control:focus {
+				box-shadow: none;
+				float: none;
+				border-bottom: solid 1px rgba(0, 0, 0, .1);
+			}
+			
+			.form-group label {
+				font-weight: 500;
+			}
+			
+			input {
+				text-rendering: auto;
+				letter-spacing: normal;
+				word-spacing: normal;
+				text-transform: none;
+				text-indent: 0px;
+				text-shadow: none;
+				font: 400 11px system-ui;
+			}
+			
+			.form-control[disabled],
+			.form-control[readonly],
+			.form-control {
+				background-color: #fff;
+				opacity: 1;
+			}
+			
+			.control-label {
+				padding-left: 30px;
 			}
 		</style>
 	</head>
 
-	<body>
+	<body style="background:#f8f9fa;">
 		<div class="container-fluid">
-
-			<div class="panel">
-				<div class="panel-heading" style="border-bottom:dashed 1px #c2c2c2; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;">
-					<div class="panel-title">&nbsp;
-						<h4>用户管理</h4></div>
-											<ul class="breadcrumb" style="background-color: #FFFFFF; padding-left: 0px;">
-						<li>
-							<a href="#">用户列表</a>
-						</li>
-						<li>
-							<a href="#">新增用户</a>
-						</li>
-					</ul>
+			<div class="row">
+				<div class="col-xl-3 col-sm-12 col-md-6 col-lg-3">
+					<div class="codez-info-box">
+						<span class="info-box-icon bg-primary">
+							<span class="fa fa-database fa-fw"></span>
+						</span>
+						<div class="info-box-content">
+							<span class="info-box-number text-gray-dark" id="dataBaseBox">0</span>
+							<span class="info-box-text text-gray-dark">数据库</span>
+						</div>
+					</div>
 				</div>
-				<div class="panel-body" style="margin-top: 30px;">
-					<form class="form-horizontal">
-						<!--用户名-->
-						<div class="form-group">
-							<label for="userAccount" class="col-sm-2 control-label text-center">用户名</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control dialog-form" id="userName" placeholder="请输入用户名">
-							</div>
+				<div class="col-xl-3 col-sm-12 col-md-6 col-lg-3">
+					<div class="codez-info-box">
+						<span class="info-box-icon bg-cyan">
+							<span class="fa fa-microchip fa-fw"></span>
+						</span>
+						<div class="info-box-content">
+							<span class="info-box-number text-gray-dark" id="sensorBox">0</span>
+							<span class="info-box-text text-gray-dark">控制传感器</span>
 						</div>
-						<!--账号-->
-						<div class="form-group">
-							<label for="userAccount" class="col-sm-2 control-label">账号</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="userAccount" placeholder="请输入账号">
-							</div>
-						</div>
-						<!--密码-->
-						<div class="form-group">
-							<label for="userpassword" class="col-sm-2 control-label">密码</label>
-							<div class="col-sm-9">
-								<input type="password" class="form-control" id="userpassword" placeholder="请输入密码">
-							</div>
-						</div>
-						部门
-						<div class="form-group">
-							<label for="dep" class="col-sm-2 control-label">部门</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="dep" placeholder="请输入部门">
-							</div>
-						</div>
-						<!--角色-->
-						<div class="form-group">
-							<label for="userRole" class="col-sm-2 control-label">权限</label>
-							<div class="col-sm-9">
-								<select class="form-control" id="userRole">
-									<option value="1">普通用户</option>
-									<option value="0">系统管理员</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group" style="margin-top: 30px;">
-							<div class="col-sm-offset-3 col-sm-9">
-								<button type="button" class="btn btn-default" style="margin-left: 30%;">取消</button>
-								<button type="submit" class="btn btn-primary">确定</button>
-							</div>
-						</div>
-					</form>
+					</div>
 				</div>
 
-				<!--<div class="panel-footer">
-					<button type="button" class="btn btn-default" style="margin-left: 30%;">取消</button>
-					<button type="submit" class="btn btn-primary pull-right" style="margin-right: 30%;">确定</button>
-				</div>-->
+				<div class="col-xl-3 col-sm-12 col-md-6 col-lg-3">
+					<div class="codez-info-box">
+						<span class="info-box-icon bg-teal">
+							<span class="fa fa-magnet fa-fw"></span>
+						</span>
+						<div class="info-box-content">
+							<span class="info-box-number text-gray-dark" id="machineBox">0</span>
+							<span class="info-box-text text-gray-dark">压铸机</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-3 col-sm-12 col-md-6 col-lg-3">
+					<div class="codez-info-box">
+						<span class="info-box-icon bg-orange">
+							<span class="fa fa-cubes fa-fw"></span>
+						</span>
+						<div class="info-box-content">
+							<span class="info-box-number text-gray-dark" id="counterBox">0</span>
+							<span class="info-box-text text-gray-dark">计数器</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-3 col-sm-12 col-md-6 col-lg-3" id="users-info-box">
+					<div class="codez-info-box">
+						<span class="info-box-icon bg-orange">
+							<span class="fa fa-users fa-fw"></span>
+						</span>
+						<div class="info-box-content">
+							<span class="info-box-number text-gray-dark" id="usersBox">0</span>
+							<span class="info-box-text text-gray-dark">用户</span>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
+			<div class="profile">
+				<form class="form-horizontal form-element  col-12" method="post" id="updateUser">
+
+					<div class="form-group row">
+						<label for="userName" class="col-sm-2 control-label">用户名</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="userName" placeholder="请输入用户名">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="account" class="col-sm-2 control-label">账号</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="account" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="user-password" class="col-sm-2 control-label">密码</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="user-password" placeholder="请设置密码">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="dep" class="col-sm-2 control-label">部门</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="dep" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="role" class="col-sm-2 control-label">角色</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" readonly="readonly" id="role">
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="logintTime" class="col-sm-2 control-label">当前登录时间</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" readonly="readonly" id="logintTime">
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="logoutTime" class="col-sm-2 control-label">上次退出时间</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" readonly="readonly" id="logoutTime">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-sm-10 col-sm-offset-2" style="padding-left: 30px;">
+							<button type="submit" class="btn btn-primary">确认</button>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
+
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../bootstrap/js/jquery.session.js"></script>
 		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<script src="../bootstrap/js/pnotify/pnotify.js"></script>
+		<script src="../bootstrap/js/bootstrap-dialog.js"></script>
+		<script src="../bootstrap/js/codez-components.js"></script>
+		<script src="../bootstrap/js/user-man.js"></script>
 		<script type="text/javascript">
+			$(function() {
+				configureDashboard();
+				$('#updateUser').on('submit', function() {
+					UserMan.updatedUser();
+					event.preventDefault();
+				});
+			});
 		</script>
 	</body>
 
