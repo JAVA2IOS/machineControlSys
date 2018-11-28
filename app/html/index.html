@@ -6,7 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-		<title>Bootstrap demo template</title>
+		<title>压铸机系统</title>
 
 		<!-- Bootstrap -->
 		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,9 +50,9 @@
 
 				<!-- 设置信息 -->
 				<ul class="nav navbar-nav navbar-right">
-					<!--<li>
-						<a href="#"><span class="glyphicon glyphicon-user" style="color: #ffffff;"></span></a>
-					</li>-->
+					<li>
+						<a href="javascript:;" ><span class="glyphicon glyphicon-user" style="color: #ffffff;"data-toggle="popover" title = "个人资料" data-placement = "bottom" data-content="内容"></span></a>
+					</li>
 					<li id="log-alert" data-toggle="modal" data-target="#ad-alert">
 						<a id="log-out" href="javascript:;" class="tooltip-show" data-toggle="tooltip" title="退出" data-placement="bottom"><span class="glyphicon glyphicon-log-out" style="color: #ffffff;"></span></a>
 					</li>
@@ -90,6 +90,7 @@
 				$(function() {
 					CodeZComponents.sideBar("#sideBar");
 					$("[data-toggle='tooltip']").tooltip();
+					$("[data-toggle='popover]").popover();
 					$(".refreshPage").click(function(data) {
 						$("#contentFrame").attr("src", $("#contentFrame").attr("src")).ready();
 					});

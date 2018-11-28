@@ -628,12 +628,19 @@ function configureParametersListStyle() {
 		column: [{
 			field: 'rollName',
 			title: "连铸连轧名称",
-			width: '30%',
+			width: '20%',
 			valign: 'middle',
+			formatter: function(value, row, index) {
+				if(row.deleted == 1 || row.deleted == '1') {
+					return value + '&nbsp;&nbsp;&nbsp;<span class="label label-danger">已注销</span>';
+				}
+				return value + '&nbsp;&nbsp;&nbsp;<span class="label label-primary">正常</span>';
+			},
+			
 		}, {
 			field: 'ctrlNo',
 			title: "压铸单号",
-			width: '30%',
+			width: '20%',
 			valign: 'middle',
 		}, {
 			field: 'rollWeight',
@@ -646,45 +653,28 @@ function configureParametersListStyle() {
 			width: '10%',
 			valign: 'middle',
 		}, {
-			field: 'rollNumber',
-			title: "连铸连轧个数",
-			valign: 'middle',
-		}, {
 			field: 'rollIntervals',
 			title: "间隔时间",
 			valign: 'middle',
-			width: '20%',
+			width: '10%',
 		}, {
 			field: 'rollPressure',
 			title: "压铸压力",
 			valign: 'middle',
-			width: '20%',
+			width: '10%',
 		}, {
 			field: 'rollTimes',
 			title: "连铸连轧次数",
 			valign: 'middle',
-			width: '20%',
-		}, {
-			field: 'deleted',
-			title: "状态",
-			valign: 'middle',
-			width: '20%',
-			formatter: function(value, row, index) {
-				if(value == 1 || value == '1') {
-
-					return '已注销';
-				}
-
-				return '正常';
-			},
+			width: '5%',
 		}, {
 			field: 'action',
 			title: "操作",
 			valign: 'middle',
 			align: 'center',
-			width: '20%',
+			width: '1000',
 			formatter: function(value, row, index) {
-				if(row.deleted == 0 || row.deleted == '0') {
+				if(row.deleted == 1 || row.deleted == '1') {
 					return "<div class=\"row\">" +
 						"<div class=\"col-sm-8 col-sm-offset-2\">" +
 						"<a href=\"javascript:;\" class=\"tooltip-show edit\" data-toggle=\"tooltip\" title=\"修改\"><span class=\"fa fa-edit fa-fw\"></span></a>" +
@@ -701,6 +691,24 @@ function configureParametersListStyle() {
 				'click .edit': function(e, value, row, index) {
 					getDetailItemInfo(row);
 				},
+				'click .connect': function(e, value, row, index) {
+					row.deleted = 0;
+					updateSingleData(actions.EDIT, row, '恢复成功', function(data) {
+						$("#table-container").bootstrapTable('updateRow', {
+							index: index,
+							row: data
+						});
+					});
+				},
+				'click .disconnect': function(e, value, row, index) {
+					row.deleted = 1;
+					updateSingleData(actions.EDIT, row, '注销成功', function(data) {
+						$("#table-container").bootstrapTable('updateRow', {
+							index: index,
+							row: data
+						});
+					});
+				}
 			},
 		}],
 	};
@@ -775,6 +783,14 @@ function configureAutoControlListStyle() {
 			title: "压铸单号",
 			width: '30%',
 			valign: 'middle',
+			formatter: function(value, row, index) {
+				if(row.deleted == 0 || row.deleted == '0') {
+
+					return value + '&nbsp;&nbsp;&nbsp;<span class="label label-success">正常</span>';
+				}
+
+				return value + '&nbsp;&nbsp;&nbsp;<span class="label label-danger">已注销</span>';
+			},
 		}, {
 			field: 'startTime',
 			title: "开始时间",
@@ -833,19 +849,6 @@ function configureAutoControlListStyle() {
 			width: '5%',
 			formatter: function(value, row, index) {
 				return openedStyle(value, row, index);
-			},
-		}, {
-			field: 'deleted',
-			title: "状态",
-			valign: 'middle',
-			width: '20%',
-			formatter: function(value, row, index) {
-				if(value == 1 || value == '1') {
-
-					return '已注销';
-				}
-
-				return '正常';
 			},
 		}, {
 			field: 'action',
@@ -1030,6 +1033,14 @@ function configureControlDataListStyle() {
 			title: "冲压单号",
 			width: '30%',
 			valign: 'middle',
+			formatter: function(value, row, index) {
+				if(row.deleted == 0 || row.deleted == '0') {
+
+					return value + '&nbsp;&nbsp;&nbsp;<span class="label label-success">正常</span>';
+				}
+
+				return value + '&nbsp;&nbsp;&nbsp;<span class="label label-danger">已注销</span>';
+			},
 		}, {
 			field: 'counterModel',
 			title: "连铸连轧名称",
@@ -1059,19 +1070,6 @@ function configureControlDataListStyle() {
 			title: "连冲次数",
 			valign: 'middle',
 			width: '20%',
-		}, {
-			field: 'deleted',
-			title: "状态",
-			valign: 'middle',
-			width: '20%',
-			formatter: function(value, row, index) {
-				if(value == 1 || value == '1') {
-
-					return '已注销';
-				}
-
-				return '正常';
-			},
 		}, {
 			field: 'action',
 			title: "操作",

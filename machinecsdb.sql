@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 18/11/2018 00:24:45
+ Date: 28/11/2018 21:47:03
 */
 
 SET NAMES utf8mb4;
@@ -35,6 +35,11 @@ CREATE TABLE `counter`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '压铸机计数器' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of counter
+-- ----------------------------
+INSERT INTO `counter` VALUES (1, '数量计数器修改后02', '数字型', '二进制', '900801', '二进制', '10.1.1.102', 1, 0);
+
+-- ----------------------------
 -- Table structure for ctrlparameter
 -- ----------------------------
 DROP TABLE IF EXISTS `ctrlparameter`;
@@ -48,9 +53,16 @@ CREATE TABLE `ctrlparameter`  (
   `rollPressure` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '连轧压力',
   `rollName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '连轧名称',
   `rollTimes` int(255) NULL DEFAULT 0 COMMENT '0次数',
+  `startTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '开始时间',
   `deleted` int(255) NULL DEFAULT 0 COMMENT '1删除，0不删除',
   PRIMARY KEY (`ctrlId`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '控制参数表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '控制参数表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ctrlparameter
+-- ----------------------------
+INSERT INTO `ctrlparameter` VALUES (1, '2018080201', '2000kg', '塑料', 4, '3分钟', '2000kpa', '121', 3, NULL, 0);
+INSERT INTO `ctrlparameter` VALUES (2, '20180802012', '2000kg', '塑料', 300, '3分钟', '2000kpa', '1212121', 3, '2018-11-21 23:17:26', 0);
 
 -- ----------------------------
 -- Table structure for ctrlport
@@ -72,6 +84,12 @@ CREATE TABLE `ctrlport`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '控制端口配置表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of ctrlport
+-- ----------------------------
+INSERT INTO `ctrlport` VALUES (1, '压铸机控制端口01', '10.35.0.22', 'tcp/ip', '1008', 'zbdbz', '消息', 'admin', '123', '2018-11-17 14:35:22', 0);
+INSERT INTO `ctrlport` VALUES (2, '21212', '12121', 'tcp/ip', '12121', '2121212', '12121', 'admin', '1212', '2018-11-17 16:52:20', 0);
+
+-- ----------------------------
 -- Table structure for ctrlsensor
 -- ----------------------------
 DROP TABLE IF EXISTS `ctrlsensor`;
@@ -89,6 +107,11 @@ CREATE TABLE `ctrlsensor`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '控制传感器表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of ctrlsensor
+-- ----------------------------
+INSERT INTO `ctrlsensor` VALUES (1, '温控传感器01修改后', '数字型', '在线式', '2008', '压铸线高架式270压铸', '10230', 1, 0);
+
+-- ----------------------------
 -- Table structure for dbmanager
 -- ----------------------------
 DROP TABLE IF EXISTS `dbmanager`;
@@ -101,6 +124,13 @@ CREATE TABLE `dbmanager`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '数据库管理' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of dbmanager
+-- ----------------------------
+INSERT INTO `dbmanager` VALUES (1, '卧式冷室压铸机数据库01', 0, 0);
+INSERT INTO `dbmanager` VALUES (2, '卧式冷室压铸机更新后的数据库03', 1, 1);
+INSERT INTO `dbmanager` VALUES (3, '卧式冷室压铸机数据库0124', 0, 1);
+
+-- ----------------------------
 -- Table structure for descriptsys
 -- ----------------------------
 DROP TABLE IF EXISTS `descriptsys`;
@@ -109,6 +139,11 @@ CREATE TABLE `descriptsys`  (
   `descript` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '描述信息',
   PRIMARY KEY (`demoId`) USING BTREE
 ) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of descriptsys
+-- ----------------------------
+INSERT INTO `descriptsys` VALUES ('1', '数据库直接写入数据');
 
 -- ----------------------------
 -- Table structure for machine
@@ -129,13 +164,19 @@ CREATE TABLE `machine`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '压铸机配置表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of machine
+-- ----------------------------
+INSERT INTO `machine` VALUES (1, '自动快速卧式冷室修改后压铸机01', '库卡2011', '自动', '20008', '自动压铸机控制车间02', '10.1.1.02', NULL, 1, 1);
+INSERT INTO `machine` VALUES (2, '压铸机名称1', '的方式', '第东段', '似懂非懂', '2上的', '对方的', '', 0, 0);
+
+-- ----------------------------
 -- Table structure for machineoperate
 -- ----------------------------
 DROP TABLE IF EXISTS `machineoperate`;
 CREATE TABLE `machineoperate`  (
   `operateId` int(255) NOT NULL AUTO_INCREMENT COMMENT '操作id',
   `totalTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '总连轧时长',
-  `ctrlId` int(255) NULL DEFAULT NULL COMMENT '连轧id',
+  `ctrlId` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '连轧id',
   `rollWeight` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '连轧重量',
   `material` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '材质',
   `rollNumber` int(255) NULL DEFAULT 0 COMMENT '连轧个数',
@@ -148,7 +189,13 @@ CREATE TABLE `machineoperate`  (
   `startTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '开始时间',
   `stopTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '结束时间',
   PRIMARY KEY (`operateId`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '压铸机操作表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '压铸机操作表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of machineoperate
+-- ----------------------------
+INSERT INTO `machineoperate` VALUES (2, '180分钟', '2018080201', '2000kg', '塑料', 4, '3分钟', '2000kpa', 3, 1, 1, 0, '2018-11-21 23:07:11', '');
+INSERT INTO `machineoperate` VALUES (4, '180分钟', '20180802012', '2000kg', '塑料', 300, '3分钟', '2000kpa', 3, 0, 0, 0, '2018-11-21 23:22:23', NULL);
 
 -- ----------------------------
 -- Table structure for role
@@ -160,7 +207,15 @@ CREATE TABLE `role`  (
   `descript` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '角色描述',
   `deleted` int(255) NULL DEFAULT 0 COMMENT '1删除，0不删除',
   PRIMARY KEY (`roleId`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '权限/角色表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '权限/角色表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES (1, '系统管理员', '拥有最高权限，可维护项目', 0);
+INSERT INTO `role` VALUES (2, '一般用户01', '只能使用一般查询权限，权限范围较少', 0);
+INSERT INTO `role` VALUES (4, '一般用户', '只能使用一般查询权限，权限范围较少', 0);
+INSERT INTO `role` VALUES (6, '一般用户02', '描述内容', 0);
 
 -- ----------------------------
 -- Table structure for user
@@ -179,5 +234,13 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`userId`) USING BTREE,
   INDEX `roleId`(`roleId`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, '系统管理员', 'admin', 'admin', 1, '人事部', '2018-11-28 21:41:56', '2018-11-28 21:41:50', 0);
+INSERT INTO `user` VALUES (2, '普通操作员1', 'normal001', 'normal001', 2, '行政部', '2018-11-27 23:21:45', '2018-11-27 23:22:10', 0);
+INSERT INTO `user` VALUES (3, '张三', 'zhangsan', 'zhangsan', 2, '部门01', '', '', 0);
+INSERT INTO `user` VALUES (4, 'admin', 'admin1234', 'admin1234', 1, 'bumen', '2018-11-17 22:49:46', '2018-11-18 00:23:08', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

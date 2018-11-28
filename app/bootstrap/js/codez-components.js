@@ -414,15 +414,15 @@ function configureDashboard() {
 		if(userSession.role.roleId == '1') {
 			$('#users-info-box').show();
 		}
+		$('#userName').val(userSession.userName);
+		$('#user-password').val(userSession.password);
+		$('#account').val(userSession.userAccount);
+		$('#dep').val(userSession.dep);
+		$('#role').val(userSession.role.roleName);
+		$('#logintTime').val(userSession.lginTime);
+		$('#logoutTime').val(userSession.lgoutTime);
 	}
 
-	$('#userName').val(userSession.userName);
-	$('#user-password').val(userSession.password);
-	$('#account').val(userSession.userAccount);
-	$('#dep').val(userSession.dep);
-	$('#role').val(userSession.role.roleName);
-	$('#logintTime').val(userSession.lginTime);
-	$('#logoutTime').val(userSession.lgoutTime);
 	CodeZComponents.postRequest({
 		action: CodeZ.ACTION_INDEX,
 	}, function(data) {
@@ -442,16 +442,20 @@ function configureDashboard() {
 				$('#dataBaseBox').html(dataValue);
 			}
 			if(dataObj.sensor) {
-				$('#sensorBox').html(dataObj.sensor);
+				var dataValue = dataObj.sensor + '&nbsp;&nbsp;&nbsp;<small class = "label label-success">可使用</small>';
+				$('#sensorBox').html(dataValue);
 			}
 			if(dataObj.machine) {
-				$('#machineBox').html(dataObj.machine);
+				var dataValue = dataObj.machine + '&nbsp;&nbsp;&nbsp;<small class = "label label-success">可使用</small>';
+				$('#machineBox').html(dataValue);
 			}
 			if(dataObj.counter) {
-				$('#counterBox').html(dataObj.counter);
+				var dataValue = dataObj.counter + '&nbsp;&nbsp;&nbsp;<small class = "label label-success">可使用</small>';
+				$('#counterBox').html(dataValue);
 			}
 			if(dataObj.users) {
-				$('#usersBox').html(dataObj.users);
+				var dataValue = dataObj.users + '&nbsp;&nbsp;&nbsp;<small class = "label label-success">可使用</small>';
+				$('#usersBox').html(dataValue);
 			}
 		}
 	});
